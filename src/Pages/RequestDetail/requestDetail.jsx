@@ -68,7 +68,7 @@ const AdminRequestDetail = () => {
                                         </Button>
 
                                         <Button
-                                            onClick={() => navigate(`/admin/reqTracking/requestDetail/approveRequest/${reqData?.request_id}`,{ state: reqData.status})}
+                                            onClick={() => navigate(`/reqTracking/requestDetail/approveRequest/${reqData?.request_id}`,{ state: reqData.status})}
                                             className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
                                             Duyệt yêu cầu
                                         </Button>

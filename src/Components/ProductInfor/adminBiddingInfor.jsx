@@ -3,7 +3,7 @@ import LayOut from "../Layout/layout.jsx";
 
 const AdminBiddingInfo = ({ data }) => {
     return (
-        <LayOut>
+        <>
             <div className="flex justify-between m-2.5 items-center px-2">
                 <div className="text-left text-sm font-semibold ">
                     Thông tin đấu giá
@@ -127,7 +127,7 @@ const AdminBiddingInfo = ({ data }) => {
             {/*        </div>*/}
             {/*    </>*/}
             {/*)}*/}
-        </LayOut>
+        </>
     );
 };
 

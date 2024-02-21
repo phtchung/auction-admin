@@ -32,7 +32,7 @@ const RequestTracking = () => {
     const handelClick = (value) => {
         setStatus(adminProcessStatus(value));
         setSelectedTab(value);
-        navigate(`/admin/reqTracking?status=${value}`);
+        navigate(`/reqTracking?status=${value}`);
     };
     return (
         <LayOut>
@@ -141,7 +141,7 @@ const RequestTracking = () => {
                                         onClick: () => {
                                             console.log(row.original);
                                             navigate(
-                                                `/admin/reqTracking/requestDetail/${row.original.request_id}?status=${row.original.status}`,
+                                                `/reqTracking/requestDetail/${row.original.request_id}?status=${row.original.status}`,
                                             )
                                         },
                                     })}

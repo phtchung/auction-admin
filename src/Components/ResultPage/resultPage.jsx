@@ -3,6 +3,7 @@ import {  Result } from 'antd';
 import {Button} from "@material-tailwind/react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
+import LayOut from "../Layout/layout.jsx";
 const ResultPage = () => {
     const navigate = useNavigate()
     const {state} = useLocation()
@@ -24,21 +25,21 @@ const ResultPage = () => {
         }
     }, [state]);
   return(
-      <>
+      <LayOut>
           <Result
               status="success"
               title={title}
               subTitle={subTitle}
               extra={[
                   <Button
-                      onClick={() => navigate('/admin/reqTracking') }
+                      onClick={() => navigate('/reqTracking') }
                       className="p-2 px-6 py-2 right-0 bg-blue-500 rounded text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
                       Về trang chủ
                   </Button>
 
               ]}
           />
-      </>
+      </LayOut>
   )
 }
 

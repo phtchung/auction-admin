@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
-import { Breadcrumb, Layout, Menu } from 'antd';
+import {  Layout, Menu } from 'antd';
 import {Link, useNavigate} from "react-router-dom";
+import {ToastContainer} from "react-toastify";
 const { Header, Content, Sider } = Layout;
 function getItem(label, key,children,path) {
     return {
@@ -12,10 +13,10 @@ function getItem(label, key,children,path) {
 }
 
 const items = [
-    getItem('Quản lý đấu giá người dùng', '1',null,'/admin/reqTracking'),
-    getItem('Quản lý đấu giá hệ thống', '2',null,'/admin/adminBidTracking'),
-    getItem('Tạo phiên đấu giá', '3',null,'/admin/createProductAuction'),
-
+    getItem('Quản lý đấu giá người dùng', '1',null,'/reqTracking'),
+    getItem('Quản lý đấu giá hệ thống', '2',null,'/adminBidTracking'),
+    getItem('Tạo phiên đấu giá', '3',null,'/createProductAuction'),
+    getItem('Đăng xuất', '4',null,'/logout'),
     // getItem('User', 'sub1', <UserOutlined />, [
     //     getItem('Tom', '3'),
     //     getItem('Bill', '4'),
@@ -73,6 +74,7 @@ const LayOut = ({ children }) => {
                     >
 
                     <div>
+
                         {children}
                     </div>
                     </Content>

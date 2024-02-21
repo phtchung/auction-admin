@@ -1,4 +1,4 @@
-import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
+
 import {DatePicker, Form, Input, Select, TreeSelect} from "antd";
 import {formatDateTime, treeSelectData} from "../../Utils/constant.js";
 import {Button} from "@material-tailwind/react";
@@ -74,7 +74,7 @@ const CreateProductAuction = () => {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 1000,
             });
-            navigate('/admin/resultSuccess',{state : 200})
+            navigate('/resultSuccess',{state : 200})
             handleOpen()
             setAdminAuctionData(null);
         } catch (error) {

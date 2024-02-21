@@ -10,15 +10,13 @@ import ResultPage from "../Components/ResultPage/resultPage.jsx";
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
 
-
-
 export const UserRoutes = [
     { path: "/404", element: <PageNotFound /> },
     { path: "/", element: <RequestTracking /> },
-    { path: "/admin/reqTracking", element: <RequestTracking /> },
-    { path: "/admin/adminBidTracking", element: <AdminBiddingTracking /> },
-    { path: "/admin/reqTracking/requestDetail/:id", element: <AdminRequestDetail /> },
-    { path: "/admin/reqTracking/requestDetail/approveRequest/:id", element: <ConfirmApproved /> },
-    { path: "/admin/resultSuccess", element: <ResultPage /> },
-    { path: "/admin/createProductAuction", element: <CreateProductAuction /> },
+    { path: "/reqTracking", element: <RequestTracking /> },
+    { path: "/adminBidTracking", element: <AdminBiddingTracking /> },
+    { path: "/reqTracking/requestDetail/:id", element: <AdminRequestDetail /> },
+    { path: "/reqTracking/requestDetail/approveRequest/:id", element: <ConfirmApproved /> },
+    { path: "/resultSuccess", element: <ResultPage /> },
+    { path: "/createProductAuction", element: <CreateProductAuction /> },
 ];

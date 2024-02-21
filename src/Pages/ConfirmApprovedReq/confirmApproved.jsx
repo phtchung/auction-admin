@@ -38,7 +38,7 @@ const ConfirmApproved = () => {
             }
             const res = await sendApproveData({...approveData});
             handleOpen()
-            navigate("/admin/resultSuccess", { state: 2});
+            navigate("/resultSuccess", { state: 2});
             setApproveData({rq_id:id});
         } catch (error) {
             toast.error(error?.response?.data?.message);
