@@ -60,6 +60,13 @@ export const rejectRequest = async (rejectData) => {
     });
 };
 
+export const cancelProduct = async (cancelData) => {
+    return privateHttp({
+        method: "POST",
+        url: "/admin/cancelProduct",
+        data: cancelData,
+    });
+};
 
 export const createProductAuction = async (productData) => {
     return privateHttp1({

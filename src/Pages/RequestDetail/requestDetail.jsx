@@ -4,7 +4,7 @@ import AdminBiddingInfo from "../../Components/ProductInfor/adminBiddingInfor.js
 import useAdminReqDetail from "./useReqDetail.jsx";
 import {Button} from "@material-tailwind/react";
 import {useNavigate, useParams} from "react-router-dom";
-import {rejectRequest} from "../../Services/requestService.jsx";
+import {cancelProduct, rejectRequest} from "../../Services/requestService.jsx";
 import {toast} from "react-toastify";
 import {useState} from "react";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
@@ -15,10 +15,13 @@ const AdminRequestDetail = () => {
     const {reqData, isLoading, isSuccess,isError} = useAdminReqDetail();
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
+    const [openCancel, setOpenCancel] = useState(false);
     const {id} = useParams()
     const [rejectData, setRejectData] = useState({req_id:id});
 
     const handleOpen = () => setOpen(!open);
+
+    const handleOpenCancel = () => setOpenCancel(!openCancel);
 
     const handleRejectData = (key, value) => {
         setRejectData({...rejectData, [key]: value});
@@ -28,7 +31,18 @@ const AdminRequestDetail = () => {
         try {
             const res = await rejectRequest({...rejectData,reject_time:formatDateTime(new Date())})
             handleOpen()
-            navigate("/admin/resultSuccess", { state: 13});
+            navigate("/resultSuccess", { state: 13});
+
+        } catch (error) {
+            toast.error(error?.response?.data?.message);
+        }
+    };
+
+    const handleCancel = async () => {
+        try {
+            const res = await cancelProduct({...rejectData,reject_time:formatDateTime(new Date())})
+            handleOpen()
+            navigate("/resultSuccess", { state: 13});
 
         } catch (error) {
             toast.error(error?.response?.data?.message);
@@ -37,9 +51,12 @@ const AdminRequestDetail = () => {
 
     if (isLoading) {
         return (
-            <Spin  tip="Loading" size="large">
+            <LayOut>
+                <Spin className="text-center"  tip="Loading" size="large">
 
-            </Spin>
+                </Spin>
+            </LayOut>
+
        )
     }
     if(isError){
@@ -72,6 +89,20 @@ const AdminRequestDetail = () => {
                                             className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
                                             Duyệt yêu cầu
                                         </Button>
+                                    </div>
+                                </>
+                            }
+
+                            {
+                                (reqData.admin_status === 'N' || reqData.admin_status === '-N')  &&
+                                <>
+                                    <div className="flex m-6 gap-5 justify-start mr-10">
+                                        <Button
+                                            onClick={handleOpenCancel}
+                                            className="p-2 px-6 py-2 right-0 bg-red-500 rounded text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
+                                            Hủy đấu giá
+                                        </Button>
+
                                     </div>
                                 </>
                             }
@@ -133,6 +164,44 @@ const AdminRequestDetail = () => {
                                 </DialogContent>
                             </Dialog>
 
+
+                            <Dialog open={openCancel} onClose={handleOpenCancel}  maxWidth="md">
+                                <DialogTitle>
+                                    <div className="flex items-center justify-between">
+                                    <span className="font-semibold text-sm">
+                                        Hủy đấu giá sản phẩm
+                                    </span>
+                                        <div
+                                            onClick={handleOpenCancel}
+                                            className="bg-gray-800 rounded cursor-pointer text-sm text-white hover:bg-neutral-600 border-none font-medium focus:outline-0"
+                                        >
+                                        </div>
+                                    </div>
+                                    <div className="border-b mt-2  border-gray-300"></div>
+                                </DialogTitle>
+                                <DialogContent>
+                                    <Stack spacing={2} margin={1}>
+
+                                        <div className="flex m-6 gap-5 justify-end mr-10">
+                                            <Button
+                                                onClick={handleOpenCancel}
+                                                className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm font-semibold focus:outline-0">
+                                                Không
+                                            </Button>
+
+                                            <Button
+                                                onClick={handleCancel}
+                                                className="p-2 px-6 py-2 right-0 bg-red-500  rounded text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
+                                                Chắc chắn
+                                            </Button>
+                                        </div>
+
+                                    </Stack>
+                                </DialogContent>
+                            </Dialog>
+
+
+
                             {isSuccess &&
                                 (reqData.status === 5 || reqData.status === 6)
                                 && (
@@ -178,7 +247,7 @@ const AdminRequestDetail = () => {
                             {reqData.status === 11 && (
                                 <>
                                     <div className="flex justify-between m-2.5 items-center px-2">
-                                        <div className="text-left text-base font-medium ">
+                                        <div className="text-left text-sm font-medium pt-5">
                                             Lí do hủy
                                         </div>
                                     </div>
@@ -202,7 +271,7 @@ const AdminRequestDetail = () => {
                             {reqData.status === 13 && (
                                 <>
                                     <div className="flex justify-between m-2.5 items-center px-2">
-                                        <div className="text-left text-base font-medium ">
+                                        <div className="text-left text-sm pt-5 font-medium ">
                                             Lí do từ chối yêu cầu đấu giá sản phẩm
                                         </div>
                                     </div>

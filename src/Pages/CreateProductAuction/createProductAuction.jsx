@@ -84,7 +84,7 @@ const CreateProductAuction = () => {
     };
     return (
         <LayOut>
-                <div className="home-right bg-white">
+                <div className="home-right" style={{backgroundColor:'#f5f5f5'}}>
                     <div className="flex px-6 pt-6 pb-2 gap-2 items-center  justify-end">
 
                         <div className="flex items-center  gap-2">
@@ -99,7 +99,7 @@ const CreateProductAuction = () => {
                         </div>
 
                     </div>
-                    <div className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
+                    <div className="items-center bg font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
 
                         <Form
                             {...formItemLayout}
@@ -356,7 +356,7 @@ const CreateProductAuction = () => {
                             <Form.Item {...tailFormItemLayout}>
                                 <Button
                                     onClick={handleOpen}
-                                    className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
+                                    className=" px-6 mb-8  right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
                                     Hoàn tất
                                 </Button>
                             </Form.Item>

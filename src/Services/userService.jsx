@@ -10,6 +10,22 @@ export const updateUserInfo = async (data) => {
   });
 };
 
+export const adminLogin =  async ({ email, password }) => {
+  let result = await publicHttp({
+    method: "POST",
+    url: "/admin/auth/signin",
+    data: {
+      email,
+      password,
+    },
+  });
+  if (result.message === "LOGIN_SUCCESS") {
+    localStorage.setItem("accessToken", result.token);
+  }
+  return result;
+}
+
+
 const USER = {
   getUser: ({ userId = "" }) =>
     privateHttp({
@@ -23,7 +39,7 @@ const USER = {
   me: () =>
     privateHttp({
       method: "GET",
-      url: "/user/me",
+      url: "/admin/me",
     }),
 
   register: async ({ email, password, name }) => {

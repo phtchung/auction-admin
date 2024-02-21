@@ -805,7 +805,7 @@ export const AdminCancelTrackingColumns =
         },
 
         {
-            accessorKey: 'start_time', header: 'Thời gian bắt đầu', size: 140, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'cancel_time', header: 'Thời gian hủy', size: 140, muiTableHeadCellProps: {align: 'center',},
         },
     ]
 
