@@ -34,6 +34,7 @@ export default function useAdminReqDetail() {
             reject_time:formatDateTime(new Date(data?.reject_time)),
             rank: data?.rank,
             status: data?.status,
+            admin_status:data?.admin_status,
             type_of_auction: data?.type_of_auction,
         };
         return { detail };

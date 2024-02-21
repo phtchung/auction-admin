@@ -1,7 +1,7 @@
 import { Card, Button, Typography, Input } from "@material-tailwind/react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
-import USER from "../../Services/userService.jsx";
+import USER, {adminLogin} from "../../Services/userService.jsx";
 import { toast } from "react-toastify";
 const Login = () => {
   const navigate = useNavigate();
@@ -21,7 +21,10 @@ const Login = () => {
 
   const handleClick = async () => {
     try {
-      const res = await USER.login({
+
+      localStorage.clear()
+
+      const res = await adminLogin({
         email: email,
         password: password,
       });
