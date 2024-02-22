@@ -27,15 +27,16 @@ export default function useAdminReqDetail() {
             approved_at:formatDateTime(new Date(data?.updatedAt)),
             start_time: formatDateTime(new Date(data?.start_time)),
             finish_time: formatDateTime(new Date(data?.finish_time)),
-            request_time: formatDateTime(new Date(data?.request_id?.createdAt)),
+            request_time: formatDateTime(new Date(data?.request_time)),
             image_list:data?.image_list,
             main_image:data?.main_image,
             reason:data?.reason,
             reject_time:formatDateTime(new Date(data?.reject_time)),
+            completed_time:formatDateTime(new Date(data?.completed_time)),
             rank: data?.rank,
             status: data?.status,
-            admin_status:data?.admin_status,
-            type_of_auction: data?.type_of_auction,
+            admin_belong:data?.admin_belong,
+            type_of_auction: data?.type_of_auction === 1 ? 'Đấu giá tăng' : 'Đấu giá giảm',
         };
         return { detail };
     }, []);

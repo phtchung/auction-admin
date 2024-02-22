@@ -26,12 +26,12 @@ export const AdminGetReqTracking = async (status) => {
     });
 };
 
-export const AdminGetBiddingTracking = async (admin_status) => {
+export const AdminGetBiddingTracking = async (status) => {
     return privateHttp({
         method: "POST",
         url: "/admin/product/bidList",
         data: {
-            admin_status: admin_status,
+            status: status,
         },
     });
 };

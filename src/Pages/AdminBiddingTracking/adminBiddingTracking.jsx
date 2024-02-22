@@ -46,7 +46,7 @@ const AdminBiddingTracking = () => {
                             Quản lý sản phẩm đấu giá hệ thống
                         </div>
                         <div className="  ">
-                            <CountdownTimer initialTimeInSeconds={20}/>
+                            <CountdownTimer initialTimeInSeconds={60}/>
                         </div>
                     </div>
                     <div className="border-b border-neutral-300 "></div>
@@ -57,63 +57,58 @@ const AdminBiddingTracking = () => {
                                     <TabItem
                                         data={tabDataBiddingAdmin[0]}
                                         count={adminBidCount?.countNewProduct}
-                                        onClick={() => handelClick('N')}
-                                        isSelected={selectedTab === 'N'}
+                                        onClick={() => handelClick(2)}
+                                        isSelected={selectedTab === 2}
                                     ></TabItem>
-                                    <TabItem
-                                        data={tabDataBiddingAdmin[9]}
-                                        count={adminBidCount?.countNewProductMinus}
-                                        onClick={() => handelClick('-N')}
-                                        isSelected={selectedTab === '-N'}
-                                    ></TabItem>
+
                                     <TabItem
                                         data={tabDataBiddingAdmin[1]}
                                         count={adminBidCount?.countProductBid}
-                                        onClick={() => handelClick('B')}
-                                        isSelected={selectedTab === 'B'}
+                                        onClick={() => handelClick(3)}
+                                        isSelected={selectedTab === 3 }
                                     ></TabItem>
                                     <TabItem
                                         data={tabDataBiddingAdmin[2]}
                                         count={adminBidCount?.countProductSuccess}
-                                        onClick={() => handelClick('S')}
-                                        isSelected={selectedTab === 'S'}
+                                        onClick={() => handelClick(5)}
+                                        isSelected={selectedTab === 5}
                                     ></TabItem>
                                     <TabItem
                                         data={tabDataBiddingAdmin[3]}
                                         count={adminBidCount?.countProductConfirm}
-                                        onClick={() => handelClick('C')}
-                                        isSelected={selectedTab === 'C'}
+                                        onClick={() => handelClick(6)}
+                                        isSelected={selectedTab === 6}
                                     ></TabItem>
                                     <TabItem
                                         data={tabDataBiddingAdmin[4]}
                                         count={adminBidCount?.countProductDelivery}
-                                        onClick={() => handelClick('D')}
-                                        isSelected={selectedTab === 'D'}
+                                        onClick={() => handelClick(7)}
+                                        isSelected={selectedTab === 7}
                                     ></TabItem>
 
                                     <TabItem
                                     data={tabDataBiddingAdmin[5]}
                                     count={adminBidCount?.countProductCompleted}
-                                    onClick={() => handelClick('E')}
-                                    isSelected={selectedTab === 'E'}
+                                    onClick={() => handelClick(8)}
+                                    isSelected={selectedTab === 8}
                                 ></TabItem>
                                     <TabItem
                                         data={tabDataBiddingAdmin[6]}
                                         count={adminBidCount?.countProductCancel}
-                                        onClick={() => handelClick('R')}
-                                        isSelected={selectedTab === 'R'}
+                                        onClick={() => handelClick(11)}
+                                        isSelected={selectedTab === 11}
                                     ></TabItem>
                                     <TabItem
                                         data={tabDataBiddingAdmin[7]}
                                         count={adminBidCount?.countProductReturn}
-                                        onClick={() => handelClick('G')}
-                                        isSelected={selectedTab === 'G'}
+                                        onClick={() => handelClick(9)}
+                                        isSelected={selectedTab === 9}
                                     ></TabItem>
                                     <TabItem
                                         data={tabDataBiddingAdmin[8]}
                                         count={adminBidCount?.countProductFailure}
-                                        onClick={() => handelClick('F')}
-                                        isSelected={selectedTab === 'F'}
+                                        onClick={() => handelClick(10)}
+                                        isSelected={selectedTab === 10}
                                     ></TabItem>
                                 </>
                             </div>
@@ -166,9 +161,8 @@ const AdminBiddingTracking = () => {
                                     })}
                                     muiTableBodyRowProps={({row}) => ({
                                         onClick: () => {
-                                            console.log(row.original);
                                             navigate(
-                                                `/reqTracking/requestDetail/${row.original.product_id}?status=${row.original.admin_status}`,
+                                                `/reqTracking/requestDetail/${row.original.product_id}?status=${row.original.status}`,
                                             )
                                         },
                                     })}
@@ -177,7 +171,6 @@ const AdminBiddingTracking = () => {
                         </>
                     )}
                 </div>
-
         </LayOut>
     );
 }

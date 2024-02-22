@@ -4,6 +4,8 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {NormalRoutes, UserRoutes} from "./Routes/routes.jsx";
 import RequireAuth from "./Components/context/requireAuth.jsx";
 import 'react-toastify/dist/ReactToastify.css';
+import '../src/Pages/Login/style.css'
+
 
 const App = () => {
     const queryClient = new QueryClient();

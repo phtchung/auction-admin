@@ -1,6 +1,11 @@
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {adminChangeStateToString, adminProcessStatus, tabDataAdmin} from "../../Utils/constant.js";
+import {
+
+    adminChangeStateToStringUser,
+    adminProcessStatus,
+    tabDataAdmin
+} from "../../Utils/constant.js";
 
 import CountdownTimer from "../../Components/Clock/countDownTime.jsx";
 import TabItem from "../../Components/TabItem/TabItem.jsx";
@@ -42,7 +47,7 @@ const RequestTracking = () => {
                             Quản lý yêu cầu đấu giá sản phẩm người dùng
                         </div>
                         <div className="  ">
-                            <CountdownTimer initialTimeInSeconds={20}/>
+                            <CountdownTimer initialTimeInSeconds={60}/>
                         </div>
                     </div>
                     <div className="border-b border-neutral-300 "></div>
@@ -95,7 +100,7 @@ const RequestTracking = () => {
                             <div className="border border-gray-300 ">
                                 <div className="flex items-center justify-between  bg-white  p-2 text-base">
                                     <div className="text-left font-medium my-2 ml-3 ">
-                                        Danh sách yêu cầu {adminChangeStateToString(status)}
+                                        Danh sách yêu cầu {adminChangeStateToStringUser(status)}
                                     </div>
                                 </div>
 
@@ -141,7 +146,7 @@ const RequestTracking = () => {
                                         onClick: () => {
                                             console.log(row.original);
                                             navigate(
-                                                `/reqTracking/requestDetail/${row.original.request_id}?status=${row.original.status}`,
+                                                `/reqTracking/userRequestDetail/${row.original.request_id}?status=${row.original.status}`,
                                             )
                                         },
                                     })}

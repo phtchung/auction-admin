@@ -31,6 +31,12 @@ const CountdownTimer = ({ initialTimeInSeconds }) => {
             queryClient.invalidateQueries({
                 queryKey: ["getReqTracking", status],
             });
+            queryClient.invalidateQueries({
+                queryKey: ["AdminGetBiddingCount"],
+            });
+            queryClient.invalidateQueries({
+                queryKey: ["AdminGetBiddingTracking", status],
+            });
             setTimeInSeconds(initialTimeInSeconds);
         }
     }, [timeInSeconds, initialTimeInSeconds]);

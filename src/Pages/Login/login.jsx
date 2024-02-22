@@ -48,7 +48,7 @@ const Login = () => {
 
   useEffect(() => {
     if (accessToken) {
-      navigate("/");
+      navigate("/reqTracking");
     }
   }, [navigate, accessToken]);
   return (

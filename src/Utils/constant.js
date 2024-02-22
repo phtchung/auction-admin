@@ -103,7 +103,7 @@ export const tabDataBiddingAdmin = [
     {
         value: "N",
         name: "New Product",
-        top: "Up",
+        top: "New",
         color: "bg-orange-400",
     },
     {
@@ -281,7 +281,7 @@ export const numberToString = (state) => {
     }
 };
 
-export const adminChangeStateToString = (state) => {
+export const adminChangeStateToStringUser = (state) => {
     switch (state) {
         case 1:
             return "Mới";
@@ -289,10 +289,57 @@ export const adminChangeStateToString = (state) => {
             return "Đã Duyệt";
         case 3:
             return "Đang Đấu Giá";
+        case 4:
+            return "Chờ thông tin giao hàng";
         case 11:
             return "Hủy";
         case 13:
             return "Từ Chối";
+        default:
+            return "Yêu Cầu Mới";
+    }
+};
+
+export const adminChangeStateToStringAdmin = (state) => {
+    switch (state) {
+        case 2:
+            return "Mới";
+        case 3:
+            return "Đang Đấu Giá";
+        case 4:
+            return "Chờ thông tin giao hàng";
+        case 5:
+            return "Đấu giá thành công";
+        case 6:
+            return "Đã xác nhận";
+        case 7:
+            return "Giao hàng";
+        case 8:
+            return "Hoàn thành";
+        case 9:
+            return "Trả hàng";
+        case 11:
+            return "Hủy";
+        case 10:
+            return "Đấu giá thất bại";
+        default:
+            return "Mới";
+    }
+};
+
+
+export const adminChangeStateRequestFromUser = (state) => {
+    switch (state) {
+        case 1:
+            return "Yêu Cầu Mới";
+        case 2:
+            return "Đã duyệt";
+        case 3:
+            return "Đang đấu giá";
+        case 11:
+            return "Hủy";
+        case 13:
+            return "Từ chối";
         default:
             return "Yêu Cầu Mới";
     }
@@ -390,20 +437,19 @@ export function adminProcessStatus(status) {
 
 export function adminProductStatus(status) {
     if (
-        status === 'N' ||
-        status === '-N' ||
-        status === 'B' ||
-        status === 'S' ||
-        status === 'C' ||
-        status === 'D' ||
-        status === 'E' ||
-        status === 'R' ||
-        status === 'G' ||
-        status === 'F'
+        status === 2 ||
+        status === 3 ||
+        status === 5 ||
+        status === 6 ||
+        status === 8 ||
+        status === 7 ||
+        status === 9 ||
+        status === 11 ||
+        status === 10
     ) {
         return status;
     } else {
-        return 'N';
+        return 3;
     }
 }
 export function reqConvertStatus(status) {
@@ -492,6 +538,8 @@ export function convertWinStatus(status) {
             return "Đã được xác nhận bởi người bán";
         case 7:
             return "Đang giao hàng";
+        case 8:
+            return "Hoàn thành";
         case 11 :
             return "Hủy thành công"
         default:
@@ -725,6 +773,9 @@ export const AdminNewProductTrackingColumns =
             accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
         },
         {
+            accessorKey: 'type_of_auction', header: 'Hính thức', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
             accessorKey: 'reserve_price',header: 'Giá khởi điểm', size: 90, muiTableHeadCellProps: {align: 'center',},
         },
         {
@@ -768,7 +819,7 @@ export const AdminSuccessTrackingColumns =
             accessorKey: 'final_price',header: 'Giá trúng thầu', size: 90, muiTableHeadCellProps: {align: 'center',},
         },
         {
-            accessorKey: 'phone', header: 'Số điện thoại', size: 100, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'phone_receiver', header: 'Số điện thoại', size: 100, muiTableHeadCellProps: {align: 'center',},
         },
         {
             accessorKey: 'victory_time', header: 'Thời gian thắng', size: 140, muiTableHeadCellProps: {align: 'center',},

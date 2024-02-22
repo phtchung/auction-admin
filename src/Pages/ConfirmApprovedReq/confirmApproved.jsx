@@ -49,7 +49,7 @@ const ConfirmApproved = () => {
   return(
       <LayOut>
               <div className="home-right bg-white">
-                  <div className="flex p-4 gap-2 items-center px-2 justify-between">
+                  <div className="flex p-4 gap-2  items-center px-2 justify-between">
                       <div
                           className="flex items-center cursor-pointer"
                           onClick={() => navigate(-1)}
@@ -177,8 +177,7 @@ const ConfirmApproved = () => {
                               </Form.Item>
                           </div>
                       </div>
-                      <div className="flex m-6 gap-5 justify-end mr-10">
-
+                      <div className="flex m-6 gap-5 pb-6 justify-end mr-10">
                           <Button
                               onClick={handleOpen}
                               className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">

@@ -1,22 +1,20 @@
 import {useEffect, useState} from 'react';
 import {  Layout, Menu } from 'antd';
-import {Link, useNavigate} from "react-router-dom";
-import {ToastContainer} from "react-toastify";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 const { Header, Content, Sider } = Layout;
-function getItem(label, key,children,path) {
+function getItem(label, key,children) {
     return {
         key,
         children,
         label,
-        path
     };
 }
 
 const items = [
-    getItem('Quản lý đấu giá người dùng', '1',null,'/reqTracking'),
-    getItem('Quản lý đấu giá hệ thống', '2',null,'/adminBidTracking'),
-    getItem('Tạo phiên đấu giá', '3',null,'/createProductAuction'),
-    getItem('Đăng xuất', '4',null,'/logout'),
+    getItem('Quản lý đấu giá người dùng', "/reqTracking"),
+    getItem('Quản lý đấu giá hệ thống', "/adminBidTracking"),
+    getItem('Tạo phiên đấu giá', "/createProductAuction"),
+    getItem('Đăng xuất', '/logout'),
     // getItem('User', 'sub1', <UserOutlined />, [
     //     getItem('Tom', '3'),
     //     getItem('Bill', '4'),
@@ -29,30 +27,30 @@ const items = [
 
 const LayOut = ({ children }) => {
     const [collapsed, setCollapsed] = useState(false);
-    useEffect(() => {
-        // Lấy path từ URL và chọn key tương ứng
-        const path = window.location.pathname
-        const selectedItem = items.find((item) => item.path === path)
-        if (selectedItem) {
-            setSelectedKey(selectedItem.key)
-        }
-    }, [])
+    // useEffect(() => {
+    //     // Lấy path từ URL và chọn key tương ứng
+    //     const path = window.location.pathname
+    //     const selectedItem = items.find((item) => item.path === path)
+    //     if (selectedItem) {
+    //         setSelectedKey(selectedItem.key)
+    //     }
+    // }, [])
+    const location = useLocation()
     const navigate = useNavigate()
 
     const [selectedKey, setSelectedKey] = useState('1')
-    console.log(selectedKey)
+
     return (
         <>
             <Layout>
                 <Sider style={{
-                    minHeight: '100vh',}}  className="fixed-sider " onCollapse={(value) => setCollapsed(value)}  >
+                    minHeight: '100vh'}}  className="fixed-sider " onCollapse={(value) => setCollapsed(value)}  >
                     <div className="demo-logo-vertical" />
-                    <Menu theme="dark"  selectedKeys={[selectedKey]}     mode="inline"  >
+                    <Menu style={{fontSize:12}} theme="dark" mode="inline" defaultSelectedKeys={[location.pathname]}  >
                         {items.map((item) => (
-                            <Menu.Item key={item.key} onClick={() =>  setSelectedKey(item.key)} >
-                                {item.icon}
+                            <Menu.Item key={item.key}  >
                                 <span>{item.label}</span>
-                                <Link to={item.path} />
+                                <Link to={item.key} />
                             </Menu.Item>
                         ))}
                     </Menu>
@@ -68,13 +66,10 @@ const LayOut = ({ children }) => {
                             margin: '0 32px 32px',
                             width:1260,
                             minHeight:300,
-                            boxShadow: '0 1px 0 0 rgba(0, 0, 0, 0.12)',
-
+                            textAlign:'center'
                         }}
                     >
-
                     <div>
-
                         {children}
                     </div>
                     </Content>
