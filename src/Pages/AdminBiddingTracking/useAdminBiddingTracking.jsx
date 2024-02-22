@@ -16,27 +16,30 @@ export default function useAdminBiddingTracking() {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const [status, setStatus] = useState(
-        adminProductStatus(searchParams.get("status")),
+        adminProductStatus(parseInt(searchParams.get("status"))),
     );
-    console.log(status)
+    console.log(searchParams.get("status"))
 
     const parseData = useCallback((item) => {
         const adminBidData = item?.adminBiddingList?.map((data) => {
             return {
                 product_id : data?._id,
                 product_name: data?.product_name,
-                admin_status: data?.admin_status,
+                status: data?.status,
+                admin_belong:data?.admin_belong,
                 createdAt: formatDateTime(new Date(data?.createdAt)),
                 reserve_price: data?.reserve_price,
-                type_of_auction:data?.type_of_auction,
+                type_of_auction: data?.type_of_auction === 1 ? 'Đấu giá tăng' : 'Đấu giá giảm',
                 sale_price:data?.sale_price,
                 final_price: data?.final_price,
                 seller_name:data?.seller_id?.username,
                 phone: data?.seller_id?.phone,
+                phone_receiver : data?.product_delivery?.phone,
                 start_time:formatDateTime(new Date(data?.start_time)),
                 finish_time:formatDateTime(new Date(data?.finish_time)),
                 victory_time: formatDateTime(new Date(data?.victory_time)),
                 total_price: data?.final_price + data?.shipping_fee,
+                isDeliInfor:data?.isDeliInfor === 0 ? 'Chưa có thông tin giao hàng' : 'Đang đấu giá',
                 completed_at: formatDateTime(
                     new Date(data?.product_delivery?.completed_at),
                 ),
@@ -44,19 +47,18 @@ export default function useAdminBiddingTracking() {
         });
 
         const colTrackingData =
-            item.admin_status === 'N' || item.admin_status === '-N'
+            item.status === 2
                 ? AdminNewProductTrackingColumns
-                : item.admin_status === 'B'
+                : item.status === 3
                     ? AdminBiddingTrackingColumns
-                    : item.admin_status === 'S' || item.admin_status === 'C' || item.admin_status === 'D'
+                    : item.status === 5 || item.status === 6 || item.status === 7
                         ? AdminSuccessTrackingColumns
-                        : item.admin_status === 'E'
+                        : item.status === 8
                             ? AdminCompletedTrackingColumns
-                            : item.admin_status === 'R' ?
+                            : item.status === 11 ?
                                 AdminCancelTrackingColumns :
-                                item.admin_status === 'G' ?
+                                item.status === 9 ?
                                     AdminReturnTrackingColumns : AdminFailureTrackingColumns;
-        console.log(adminBidData , colTrackingData)
         return { adminBidData, colTrackingData };
     }, []);
 

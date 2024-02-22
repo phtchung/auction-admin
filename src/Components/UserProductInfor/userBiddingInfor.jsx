@@ -1,11 +1,12 @@
 import { formatDateTime } from "../../Utils/constant.js";
 import LayOut from "../Layout/layout.jsx";
 
-const AdminBiddingInfo = ({ data }) => {
+const UserBiddingInfo = ({ data }) => {
+    console.log(data)
     return (
         <>
             <div className="flex justify-between m-2.5 items-center px-2">
-                <div className="text-left text-sm font-semibold ">
+                <div className="text-left text-base font-semibold ">
                     Thông tin đấu giá
                 </div>
             </div>
@@ -17,7 +18,7 @@ const AdminBiddingInfo = ({ data }) => {
                         {data?.type_of_auction === 1 ? "Đấu giá tăng" : "Đấu giá giảm "}
                     </div>
                     {
-                        (data?.status === 2 || data?.status === 3 || data?.status === 11 ) &&
+                        ((data?.status === 2 || data?.status === 3 || data?.status === 11 ) && (data?.admin_belong !== 1)) &&
                         <>
                             <div> Thời gian duyệt :</div>
                             <div className="font-normal  col-span-2">
@@ -35,54 +36,54 @@ const AdminBiddingInfo = ({ data }) => {
                     <div className="font-normal col-span-2"> {data?.finish_time}</div>
                 </div>
 
-                {/*{data.status !== undefined &&*/}
-                {/*    data.status !== 2 &&*/}
-                {/*    data.status !== 3 &&*/}
-                {/*    data.status !== 10 &&*/}
-                {/*    data.status !== 11 && (*/}
-                {/*        <>*/}
-                {/*            <div className="grid grid-cols-6 text-left">*/}
-                {/*                <div> Giá trúng thầu :</div>*/}
-                {/*                <div className="font-normal  col-span-2">*/}
-                {/*                    {" "}*/}
-                {/*                    {data?.final_price} VND*/}
-                {/*                </div>*/}
-                {/*                <di> Thời gian trúng thầu :</di>*/}
-                {/*                <div className="font-normal col-span-2">*/}
-                {/*                    {data?.victory_time}{" "}*/}
-                {/*                </div>*/}
-                {/*            </div>*/}
+                {data.status !== undefined &&
+                    data.status !== 2 &&
+                    data.status !== 3 &&
+                    data.status !== 10 &&
+                    data.status !== 11 && (
+                        <>
+                            <div className="grid grid-cols-6 text-left">
+                                <div> Giá trúng thầu :</div>
+                                <div className="font-normal  col-span-2">
+                                    {" "}
+                                    {data?.final_price} VND
+                                </div>
+                                <di> Thời gian trúng thầu :</di>
+                                <div className="font-normal col-span-2">
+                                    {data?.victory_time}{" "}
+                                </div>
+                            </div>
 
-                {/*            <div className="grid grid-cols-6 text-left">*/}
-                {/*                <div> Tổng tiền :</div>*/}
-                {/*                <div className="font-normal col-span-2">*/}
-                {/*                    {" "}*/}
-                {/*                    {data?.final_price + data?.shipping_fee} VND*/}
-                {/*                </div>*/}
-                {/*                <div> Tổng tiền thực nhận :</div>*/}
-                {/*                <div className="font-normal  col-span-2">*/}
-                {/*                    {" "}*/}
-                {/*                    {(*/}
-                {/*                        (data?.final_price + data?.shipping_fee) **/}
-                {/*                        0.9*/}
-                {/*                    ).toLocaleString() + " VND"}*/}
-                {/*                </div>*/}
-                {/*            </div>*/}
+                            <div className="grid grid-cols-6 text-left">
+                                <div> Tổng tiền :</div>
+                                <div className="font-normal col-span-2">
+                                    {" "}
+                                    {data?.final_price + data?.shipping_fee} VND
+                                </div>
+                                <div> Tổng tiền thực nhận :</div>
+                                <div className="font-normal  col-span-2">
+                                    {" "}
+                                    {(
+                                        (data?.final_price + data?.shipping_fee) *
+                                        0.9
+                                    ).toLocaleString() + " VND"}
+                                </div>
+                            </div>
 
-                {/*            <div className="grid grid-cols-6 text-left">*/}
-                {/*                <div> Người trúng thầu :</div>*/}
-                {/*                <div className="font-normal col-span-2">*/}
-                {/*                    {" "}*/}
-                {/*                    {data?.deliData?.name}*/}
-                {/*                </div>*/}
-                {/*                <div> Phone Number :</div>*/}
-                {/*                <div className="font-normal col-span-2">*/}
-                {/*                    {" "}*/}
-                {/*                    {data?.deliData?.phone}*/}
-                {/*                </div>*/}
-                {/*            </div>*/}
-                {/*        </>*/}
-                {/*    )}*/}
+                            <div className="grid grid-cols-6 text-left">
+                                <div> Người trúng thầu :</div>
+                                <div className="font-normal col-span-2">
+                                    {" "}
+                                    {data?.deliData?.name}
+                                </div>
+                                <div> Phone Number :</div>
+                                <div className="font-normal col-span-2">
+                                    {" "}
+                                    {data?.deliData?.phone}
+                                </div>
+                            </div>
+                        </>
+                    )}
 
             </div>
             {/*{(data?.status === 7 || data?.status === 8 || data?.status === 9) && (*/}
@@ -131,4 +132,4 @@ const AdminBiddingInfo = ({ data }) => {
     );
 };
 
-export default AdminBiddingInfo;
+export default UserBiddingInfo;

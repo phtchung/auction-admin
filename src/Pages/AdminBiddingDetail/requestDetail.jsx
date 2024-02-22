@@ -1,6 +1,6 @@
 import {convertWinStatus, formatDateTime} from "../../Utils/constant.js";
-import ProductInfor from "../../Components/ProductInfor/productInfor.jsx";
-import AdminBiddingInfo from "../../Components/ProductInfor/adminBiddingInfor.jsx";
+import ProductInfor from "../../Components/AdminProductInfor/productInfor.jsx";
+import AdminBiddingInfo from "../../Components/AdminProductInfor/adminBiddingInfor.jsx";
 import useAdminReqDetail from "./useReqDetail.jsx";
 import {Button} from "@material-tailwind/react";
 import {useNavigate, useParams} from "react-router-dom";
@@ -10,6 +10,7 @@ import {useState} from "react";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
 import {Input, Form,Spin } from 'antd';
 import LayOut from "../../Components/Layout/layout.jsx";
+import UpdatePopup from "../../Components/UpdatePopup/UpdatePopup.jsx";
 
 const AdminRequestDetail = () => {
     const {reqData, isLoading, isSuccess,isError} = useAdminReqDetail();
@@ -51,9 +52,8 @@ const AdminRequestDetail = () => {
 
     if (isLoading) {
         return (
-            <LayOut>
-                <Spin className="text-center"  tip="Loading" size="large">
-
+            <LayOut >
+                <Spin className="text-center mt-60"  tip="Loading" size="large">
                 </Spin>
             </LayOut>
 
@@ -94,7 +94,7 @@ const AdminRequestDetail = () => {
                             }
 
                             {
-                                (reqData.admin_status === 'N' || reqData.admin_status === '-N')  &&
+                                (reqData.status === 1 && reqData.admin_belong === 1)  &&
                                 <>
                                     <div className="flex m-6 gap-5 justify-start mr-10">
                                         <Button
@@ -106,7 +106,7 @@ const AdminRequestDetail = () => {
                                     </div>
                                 </>
                             }
-
+                            {/*từ chối yc đấu giá*/}
                             <Dialog open={open} onClose={handleOpen}  maxWidth="md">
                                 <DialogTitle>
                                     <div className="flex items-center justify-between">
@@ -164,7 +164,7 @@ const AdminRequestDetail = () => {
                                 </DialogContent>
                             </Dialog>
 
-
+                            {/*Hủy yc đấu giá của admin */}
                             <Dialog open={openCancel} onClose={handleOpenCancel}  maxWidth="md">
                                 <DialogTitle>
                                     <div className="flex items-center justify-between">
@@ -201,25 +201,26 @@ const AdminRequestDetail = () => {
                             </Dialog>
 
 
-
+                            {/*Thông tin giao hàng của người win ấu giá , ng bán vào xác nhận */}
                             {isSuccess &&
-                                (reqData.status === 5 || reqData.status === 6)
+                                (reqData.status === 5 || reqData.status === 6 || reqData.status === 7 || reqData.status === 8)
                                 && (
                                     <>
                                         <div className="flex justify-between m-2.5 items-center px-2">
-                                            <div className="text-left text-sm font-semibold ">
+                                            <div className="text-left text-base font-semibold pt-8">
                                                 Thông tin giao hàng
                                             </div>
                                         </div>
-                                        <div className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
+                                        <div
+                                            className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Người nhận :</div>
                                                 <div className="font-normal col-span-2">
-                                                    {reqData?.deliData?.receiver}
+                                                    {reqData?.deliData?.name}
                                                 </div>
                                                 <div> Phone Number :</div>
                                                 <div className="font-normal col-span-2">
-                                                    {reqData?.deliData?.phone_receiver}
+                                                    {reqData?.deliData?.phone}
                                                 </div>
                                             </div>
                                             <div className="grid grid-cols-6 text-left">
@@ -234,17 +235,33 @@ const AdminRequestDetail = () => {
                                                     {reqData?.deliData?.note}
                                                 </div>
                                             </div>
+
+                                            <div className="grid grid-cols-6 text-left">
+                                                <div> Thời gian nhận :</div>
+                                                <div className="font-normal col-span-5">
+                                                    {reqData?.completed_time}
+                                                </div>
+                                            </div>
                                             <div className="grid grid-cols-6 text-left">
                                                 <div> Trạng thái đơn hiện tại :</div>
                                                 <div className="font-normal col-span-2 text-amber-400">
-                                                    {convertWinStatus(reqData?.deliData?.status)}
+                                                    {convertWinStatus(reqData?.status)}
                                                 </div>
                                             </div>
                                         </div>
                                     </>
                                 )}
 
-                            {reqData.status === 11 && (
+
+                            {(reqData.status !== undefined &&
+                                [5, 6].includes(reqData?.status) && reqData.admin_belong === 1) ? (
+                                <UpdatePopup state={reqData.status}/>
+                            ) : (
+                                <></>
+                            )}
+
+
+                            {(reqData.status === 11 )&& (
                                 <>
                                     <div className="flex justify-between m-2.5 items-center px-2">
                                         <div className="text-left text-sm font-medium pt-5">
@@ -267,38 +284,38 @@ const AdminRequestDetail = () => {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                            {reqData.status === 13 && (
-                                <>
-                                    <div className="flex justify-between m-2.5 items-center px-2">
-                                        <div className="text-left text-sm pt-5 font-medium ">
-                                            Lí do từ chối yêu cầu đấu giá sản phẩm
-                                        </div>
-                                    </div>
-                                    <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-sm space-y-6 ">
-                                        <div className="grid grid-cols-6 text-left">
-                                            <div> Thời gian từ chối :</div>
-                                            <div className="font-normal  col-span-2">
-                                                {reqData?.reject_time}
-                                            </div>
-                                        </div>
-                                        <div className="grid grid-cols-6 text-left">
-                                            <div> Từ chối bởi :</div>
-                                            <div className="font-normal col-span-2">
-                                                Quản trị viên
-                                            </div>
-                                        </div>
+                            )} {/*{reqData.status === 13 && (*/}
+                            {/*    <>*/}
+                            {/*        <div className="flex justify-between m-2.5 items-center px-2">*/}
+                            {/*            <div className="text-left text-sm pt-5 font-medium ">*/}
+                            {/*                Lí do từ chối yêu cầu đấu giá sản phẩm*/}
+                            {/*            </div>*/}
+                            {/*        </div>*/}
+                            {/*        <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-sm space-y-6 ">*/}
+                            {/*            <div className="grid grid-cols-6 text-left">*/}
+                            {/*                <div> Thời gian từ chối :</div>*/}
+                            {/*                <div className="font-normal  col-span-2">*/}
+                            {/*                    {reqData?.reject_time}*/}
+                            {/*                </div>*/}
+                            {/*            </div>*/}
+                            {/*            <div className="grid grid-cols-6 text-left">*/}
+                            {/*                <div> Từ chối bởi :</div>*/}
+                            {/*                <div className="font-normal col-span-2">*/}
+                            {/*                    Quản trị viên*/}
+                            {/*                </div>*/}
+                            {/*            </div>*/}
 
-                                        <div className="grid grid-cols-6 text-left">
-                                            <div> Lí do :</div>
-                                            <div className="font-normal  col-span-2">
-                                                {reqData?.reason}
-                                            </div>
-                                        </div>
+                            {/*            <div className="grid grid-cols-6 text-left">*/}
+                            {/*                <div> Lí do :</div>*/}
+                            {/*                <div className="font-normal  col-span-2">*/}
+                            {/*                    {reqData?.reason}*/}
+                            {/*                </div>*/}
+                            {/*            </div>*/}
 
-                                    </div>
-                                </>
-                            )}
+                            {/*        </div>*/}
+                            {/*    </>*/}
+                            {/*)}
+                           */}
                         </>
                     )}
                 </div>

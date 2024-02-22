@@ -1,12 +1,15 @@
-import {adminChangeStateToString} from "../../Utils/constant.js";
+
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import {useNavigate} from "react-router-dom";
 import {Image} from 'antd';
+import {adminChangeStateRequestFromUser} from "../../Utils/constant.js";
 
-const ProductInfor = ({data}) => {
+const UserProductInfor = ({data}) => {
     const navigate = useNavigate();
-    const stateStr = adminChangeStateToString(data.status);
+    const stateStr =  adminChangeStateRequestFromUser(data.status);
+
+    console.log(data)
     return (
         <>
             <div className="flex p-4 gap-2 items-center px-2 justify-between">
@@ -33,7 +36,7 @@ const ProductInfor = ({data}) => {
             </div>
             <div className="border-b border-gray-400  mx-5"></div>
             <div className="flex justify-between m-2.5 items-center px-2">
-                <div className="text-left text-sm font-semibold ">
+                <div className="text-left text-base font-semibold ">
                     Thông tin sản phẩm
                 </div>
                 <div className="text-base font-semibold mr-10 bg-amber-300 p-1 px-4">
@@ -50,12 +53,12 @@ const ProductInfor = ({data}) => {
                         {data?.request_id}
                     </div>
                     {
-                        isFinite(data?.status) &&
+                        (isFinite(data?.status) && data?.admin_belong !== 1) &&
                         <>
                             <di> Thời gian yêu cầu :</di>
                             <div className="font-normal col-span-2">
                                 {" "}
-                                {data?.status === 1 ? data?.createdAt : data?.request_time}
+                                {(data.status === 1 || data.status === 13 )? data?.createdAt : data?.request_time}
                             </div>
                         </>
                     }
@@ -141,4 +144,4 @@ const ProductInfor = ({data}) => {
         </>
     );
 };
-export default ProductInfor;
+export default UserProductInfor;
