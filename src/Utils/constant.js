@@ -97,6 +97,8 @@ export const tabDataAdmin = [
     {value: "3", name: "Bidding", top: "Bidding", color: "bg-indigo-800"},
     {value: "4", name: "Reject", top: "Reject", color: "bg-pink-900"},
     {value: "5", name: "Cancel", top: "Cancel", color: "bg-red-600"},
+    {value: "6", name: "Return", top: "Return", color: "bg-fuchsia-700"},
+
 ];
 
 export const tabDataBiddingAdmin = [
@@ -291,6 +293,8 @@ export const adminChangeStateToStringUser = (state) => {
             return "Đang Đấu Giá";
         case 4:
             return "Chờ thông tin giao hàng";
+        case 9:
+            return "Trả hàng";
         case 11:
             return "Hủy";
         case 13:
@@ -336,6 +340,8 @@ export const adminChangeStateRequestFromUser = (state) => {
             return "Đã duyệt";
         case 3:
             return "Đang đấu giá";
+        case 9:
+            return "Trả hàng";
         case 11:
             return "Hủy";
         case 13:
@@ -427,6 +433,7 @@ export function adminProcessStatus(status) {
         status === 2 ||
         status === 3 ||
         status === 13 ||
+        status === 9 ||
         status === 11
     ) {
         return status;
@@ -535,7 +542,7 @@ export function convertWinStatus(status) {
         case 5:
             return "Chờ xác nhận";
         case 6:
-            return "Đã được xác nhận bởi người bán";
+            return "Đã xác nhận";
         case 7:
             return "Đang giao hàng";
         case 8:
@@ -751,6 +758,58 @@ export const rejectColumns =
         {
             accessorKey: 'sale_price',
             header: 'Giá bán',
+            size: 100,
+            muiTableHeadCellProps: {
+                align: 'center',
+            },
+        },
+    ]
+
+export const returnColumns =
+    [
+        {
+            accessorKey: 'request_id', //access nested data with dot notation
+            header: 'Mã sản phẩm',
+            size: 170,
+            muiTableHeadCellProps: {
+                align: 'center',
+            },
+        },
+        {
+            accessorKey: 'seller_name', //access nested data with dot notation
+            header: 'Tên người bán',
+            size: 110,
+            muiTableHeadCellProps: {
+                align: 'center',
+            },
+        },
+        {
+            accessorKey: 'phone', //access nested data with dot notation
+            header: 'Số điện thoại',
+            size: 120,
+            muiTableHeadCellProps: {
+                align: 'center',
+            },
+        },
+        {
+            accessorKey: 'product_name',
+            header: 'Tên sản phẩm',
+            size: 170,
+            muiTableHeadCellProps: {
+                align: 'center',
+            },
+        },
+        {
+            accessorKey: 'reserve_price', //normal accessorKey
+            header: 'Giá khởi điểm',
+            size: 90,
+            muiTableHeadCellProps: {
+                align: 'center',
+            },
+        },
+        {
+            accessorKey: 'final_price',
+            header: 'Giá trúng thầu',
             size: 100,
             muiTableHeadCellProps: {
                 align: 'center',

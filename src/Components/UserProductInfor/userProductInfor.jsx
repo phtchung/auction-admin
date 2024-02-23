@@ -40,7 +40,6 @@ const UserProductInfor = ({data}) => {
                     Thông tin sản phẩm
                 </div>
                 <div className="text-base font-semibold mr-10 bg-amber-300 p-1 px-4">
-                    {" "}
                     {stateStr}
                 </div>
             </div>
@@ -49,7 +48,6 @@ const UserProductInfor = ({data}) => {
                 <div className="grid grid-cols-6 text-left">
                     <div> Mã yêu cầu :</div>
                     <div className="font-normal  col-span-2">
-                        {" "}
                         {data?.request_id}
                     </div>
                     {
@@ -58,11 +56,21 @@ const UserProductInfor = ({data}) => {
                             <di> Thời gian yêu cầu :</di>
                             <div className="font-normal col-span-2">
                                 {" "}
-                                {(data.status === 1 || data.status === 13 )? data?.createdAt : data?.request_time}
+                                {(data.status === 1 || data.status === 13) ? data?.createdAt : data?.request_time}
                             </div>
                         </>
                     }
 
+                </div>
+                <div className="grid grid-cols-6 text-left">
+                    <div> Người bán :</div>
+                    <div className="font-normal  col-span-2"> {data?.seller?.name}</div>
+                    <div>Điểm tích lũy :</div>
+                    <div className="font-normal  col-span-2"> {data?.seller?.point}</div>
+                </div>
+                <div className="grid grid-cols-6 text-left">
+                    <div> Trung bình đánh giá :</div>
+                    <div className="font-normal  col-span-5"> {data?.seller?.average_rating}</div>
                 </div>
 
                 <div className="grid grid-cols-6 text-left">
@@ -77,7 +85,6 @@ const UserProductInfor = ({data}) => {
                 <div className="grid grid-cols-6 text-left">
                     <div> Giá khởi điểm :</div>
                     <div className="font-normal col-span-2">
-                        {" "}
                         {data?.reserve_price} VND
                     </div>
                     <div> Giá bán trực tiếp :</div>

@@ -45,7 +45,6 @@ const AdminBiddingInfo = ({ data }) => {
                             <div className="grid grid-cols-6 text-left">
                                 <div> Giá trúng thầu :</div>
                                 <div className="font-normal  col-span-2">
-                                    {" "}
                                     {data?.final_price} VND
                                 </div>
                                 <di> Thời gian trúng thầu :</di>
@@ -57,12 +56,10 @@ const AdminBiddingInfo = ({ data }) => {
                             <div className="grid grid-cols-6 text-left">
                                 <div> Tổng tiền :</div>
                                 <div className="font-normal col-span-2">
-                                    {" "}
                                     {data?.final_price + data?.shipping_fee} VND
                                 </div>
                                 <div> Tổng tiền thực nhận :</div>
                                 <div className="font-normal  col-span-2">
-                                    {" "}
                                     {(
                                         (data?.final_price + data?.shipping_fee) *
                                         0.9
@@ -73,13 +70,11 @@ const AdminBiddingInfo = ({ data }) => {
                             <div className="grid grid-cols-6 text-left">
                                 <div> Người trúng thầu :</div>
                                 <div className="font-normal col-span-2">
-                                    {" "}
-                                    {data?.deliData?.name}
+                                    {data?.winner}
                                 </div>
                                 <div> Phone Number :</div>
                                 <div className="font-normal col-span-2">
-                                    {" "}
-                                    {data?.deliData?.phone}
+                                    {data?.phone}
                                 </div>
                             </div>
                         </>

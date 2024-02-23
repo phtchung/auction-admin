@@ -237,21 +237,24 @@ const AdminRequestDetail = () => {
                                             </div>
 
                                             <div className="grid grid-cols-6 text-left">
-                                                <div> Thời gian nhận :</div>
-                                                <div className="font-normal col-span-5">
-                                                    {reqData?.completed_time}
-                                                </div>
-                                            </div>
-                                            <div className="grid grid-cols-6 text-left">
                                                 <div> Trạng thái đơn hiện tại :</div>
                                                 <div className="font-normal col-span-2 text-amber-400">
-                                                    {convertWinStatus(reqData?.status)}
+                                                {convertWinStatus(reqData?.status)}
                                                 </div>
                                             </div>
+                                            {
+                                                reqData?.status === 8 && <>
+                                                    <div className="grid grid-cols-6 text-left">
+                                                        <div> Thời gian nhận :</div>
+                                                        <div className="font-normal col-span-5">
+                                                            {reqData?.completed_time}
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            }
                                         </div>
                                     </>
                                 )}
-
 
                             {(reqData.status !== undefined &&
                                 [5, 6].includes(reqData?.status) && reqData.admin_belong === 1) ? (
@@ -259,7 +262,6 @@ const AdminRequestDetail = () => {
                             ) : (
                                 <></>
                             )}
-
 
                             {(reqData.status === 11 )&& (
                                 <>
