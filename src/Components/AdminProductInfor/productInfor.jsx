@@ -38,7 +38,6 @@ const ProductInfor = ({data}) => {
                     Thông tin sản phẩm
                 </div>
                 <div className="text-base font-semibold mr-10 bg-amber-300 p-1 px-4">
-                    {" "}
                     {stateStr}
                 </div>
             </div>
