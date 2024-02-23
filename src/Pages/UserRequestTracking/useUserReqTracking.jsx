@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
     adminProcessStatus, approvedColumns, biddingColumns,
-    formatDateTime, newReqColumns, rejectColumns,
+    formatDateTime, newReqColumns, rejectColumns, returnColumns,
 } from "../../Utils/constant.js";
 import { useSearchParams } from "react-router-dom";
 import {AdminGetReqCount, AdminGetReqTracking} from "../../Services/requestService.jsx";
@@ -45,7 +45,8 @@ export default function useUserRequestTracking() {
                         ? biddingColumns
                         : item.status === 11
                             ? rejectColumns
-                            : rejectColumns;
+                            : item.status === 9 ?
+                                returnColumns : rejectColumns
 
         return { adminReqData, colTrackingData };
     }, []);

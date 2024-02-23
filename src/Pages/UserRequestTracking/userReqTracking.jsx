@@ -85,6 +85,12 @@ const RequestTracking = () => {
                                         onClick={() => handelClick(11)}
                                         isSelected={selectedTab === 11}
                                     ></TabItem>
+                                    <TabItem
+                                        data={tabDataAdmin[5]}
+                                        count={adminReqCount?.countReturn}
+                                        onClick={() => handelClick(9)}
+                                        isSelected={selectedTab === 9}
+                                    ></TabItem>
                                 </>
                             </div>
                         )}
@@ -150,7 +156,6 @@ const RequestTracking = () => {
                                             )
                                         },
                                     })}
-
                                 />
                             </div>
                         </>

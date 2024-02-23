@@ -21,6 +21,7 @@ export default function useUserReqDetail() {
             reserve_price: data?.reserve_price,
             final_price: data?.final_price,
             deliData: data?.product_delivery,
+            seller:data?.seller_id,
             category_name: data?.category_id?.name,
             victory_time: formatDateTime(new Date(data?.victory_time)),
             createdAt: formatDateTime(new Date(data?.createdAt)),
