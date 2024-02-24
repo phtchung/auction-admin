@@ -2,28 +2,25 @@ import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import {Button} from "@material-tailwind/react";
-
 import {useNavigate} from "react-router-dom";
-
-import useRequestHistory from "./useRequestHistory.jsx";
 import {useState} from "react";
-import {colReqHistory, pathReqHistory} from "../../Utils/constant.js";
+import { colUserAuctionHistory} from "../../Utils/constant.js";
 import LayOut from "../../Components/Layout/layout.jsx";
-import login from "../Login/login.jsx";
 import {Checkbox} from "antd";
 import {MaterialReactTable} from "material-react-table";
+import useUserAuctionCompleted from "./useUserAuctionCompleted.jsx";
 
-const RequestHistory = () => {
+const UserAuctionCompleted = () => {
     const [filter, setFilter] = useState({});
     const navigate = useNavigate();
     const {
-        reqHistoryData,
+        userAuctionHistoryData,
         isLoading,
         isSuccess,
         total,
         queryString,
         setQueryString,
-    } = useRequestHistory();
+    } = useUserAuctionCompleted();
 
     const handleFilter = (key, value) => {
         setFilter({...filter, [key]: value});
@@ -137,18 +134,21 @@ const RequestHistory = () => {
                                             fontSize: 12,
                                         }}
                                     >
-                                        <th>Tổng số yêu cầu</th>
-                                        <th>Đã duyệt</th>
-                                        <th>Đang duyệt</th>
-                                        <th>Từ chối</th>
+                                        <th className="w-1/3">Tổng số phiên đấu giá</th>
+                                        <th className="w-1/6">Thành công</th>
+                                        <th className="w-1/6">Thất bại</th>
+                                        <th className="w-1/6">Trả hàng</th>
+                                        <th className="w-1/6">Hủy</th>
+
                                     </tr>
                                     </thead>
                                     <tbody className="font-semibold">
                                     <tr style={{height: 40, fontSize: 16}}>
-                                        <td className="cursor-pointer">{total.total_request}</td>
-                                        <td>{total.total_approved}</td>
-                                        <td>{total.total_pending}</td>
-                                        <td>{total.total_rejected}</td>
+                                        <td className="cursor-pointer">{total?.total_product}</td>
+                                        <td>{total?.total_completed}</td>
+                                        <td>{total?.total_failure}</td>
+                                        <td>{total?.total_canceled}</td>
+                                        <td>{total?.total_returned}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -163,20 +163,28 @@ const RequestHistory = () => {
                                 <div className="border-b-2 border-gray-300 "></div>
                                 <MaterialReactTable
 
-                                    columns={colReqHistory}
-                                    data={(reqHistoryData)}
+                                    columns={colUserAuctionHistory}
+                                    data={(userAuctionHistoryData)}
                                     isloading={isLoading}
                                     enableDensityToggle={false}
                                     enableColumnFilters={false}
                                     enableHiding={false}
                                     showColumnFilters={true}
                                     enableColumnActions={false}
+                                    muiTableBodyProps={{
+
+                                        sx: {
+                                            '& td:last-child': {
+                                                color: 'red',
+                                            },
+                                        }
+                                    }}
+
                                     muiTablePaperProps={{
                                         sx: {
                                             margin: 0,
                                             padding: 0,
                                             maxWidth: '1258px',
-
                                         },
                                     }}
                                     muiTableHeadCellProps={({column}) => ({
@@ -186,8 +194,8 @@ const RequestHistory = () => {
                                         },
                                     })}
 
-
                                     muiTableBodyCellProps={({row}) => ({
+
                                         sx: {
                                             textAlign: 'center',
                                             textOverflow: 'ellipsis',
@@ -200,6 +208,7 @@ const RequestHistory = () => {
                                     })}
                                     muiTableBodyRowProps={({row}) => ({
                                         onClick: () => {
+                                            console.log(row)
                                             console.log(row.original);
                                             // navigate(
                                             //     `/reqTracking/userRequestDetail/${row.original.request_id}?status=${row.original.status}`,
@@ -210,16 +219,6 @@ const RequestHistory = () => {
                             </div>
                         </>
                     )}
-                    {/*table data*/}
-                    {/*{isSuccess && (*/}
-                    {/*    <>*/}
-                    {/*        <div className="border border-gray-300 mt-6 mx-7">*/}
-
-                    {/*            <TableDataHistory path={pathReqHistory} cols={colReqHistory}*/}
-                    {/*                              rows={reqHistoryData}></TableDataHistory>*/}
-                    {/*        </div>*/}
-                    {/*    </>*/}
-                    {/*)}*/}
                 </div>
             </LayOut>
 
@@ -228,4 +227,4 @@ const RequestHistory = () => {
     );
 };
 
-export default RequestHistory;
+export default UserAuctionCompleted;

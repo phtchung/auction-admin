@@ -8,6 +8,7 @@ import CreateProductAuction from "../Pages/CreateProductAuction/createProductAuc
 import ResultPage from "../Components/ResultPage/resultPage.jsx";
 import UserRequestDetail from "../Pages/UserRequestDetail/userRequestDetail.jsx";
 import RequestHistory from "../Pages/RequestHistory/requestHistory.jsx";
+import UserAuctionCompleted from "../Pages/UserAuctionCompleted/userAuctionCompleted.jsx";
 
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
@@ -23,5 +24,7 @@ export const UserRoutes = [
     { path: "/resultSuccess", element: <ResultPage /> },
     { path: "/createProductAuction", element: <CreateProductAuction /> },
     { path: "/requestHistory", element: <RequestHistory /> },
+    { path: "/userAuctionCompleted", element: <UserAuctionCompleted/> },
+
 
 ];
