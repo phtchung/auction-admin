@@ -90,3 +90,12 @@ export const getReqHistoryDetail = async (reqId) => {
         url: `/request/history/${reqId}`,
     });
 };
+
+
+export const adminGetAuctionHistoryList = async (params) => {
+    return privateHttp({
+        method: "POST",
+        url: "admin/auctionHistoryList",
+        params,
+    });
+};

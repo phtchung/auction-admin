@@ -969,3 +969,24 @@ export const colReqHistory =
         },
 
     ]
+
+export const colUserAuctionHistory =
+    [
+        {accessorKey: 'id', header: 'Mã sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',}},
+        {
+            accessorKey: 'start_time', header: 'Ngày đấu giá', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'finish_time', header: 'Ngày kết thúc', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'seller_name', header: 'Người bán', size: 100, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'status_name', header: 'Trạng thái', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+
+    ]
