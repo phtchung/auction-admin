@@ -225,13 +225,6 @@ export const colDlvWait = [
     {id: "status", name: "Trạng thái đơn"},
 ];
 
-export const colReqHistory = [
-    {id: "id", name: "Mã yêu cầu"},
-    {id: "createdAt", name: "Ngày yêu cầu"},
-    {id: "product_name", name: "Tên sản phẩm"},
-    {id: "rank", name: "Chất lượng"},
-    {id: "status", name: "Trạng thái"},
-];
 
 export const colSaleHistory = [
     {id: "request_id", name: "Mã yêu cầu"},
@@ -951,6 +944,28 @@ export const AdminFailureTrackingColumns =
         },
         {
             accessorKey: 'start_time', header: 'Thời gian bắt đầu', size: 140, muiTableHeadCellProps: {align: 'center',},
+        },
+
+    ]
+
+export const colReqHistory =
+    [
+        {accessorKey: 'id', header: 'Mã yêu cầu', size: 170, muiTableHeadCellProps: {align: 'center',}},
+        {
+            accessorKey: 'createdAt', header: 'Ngày yêu cầu', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'seller_name',header: 'Người bán', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'phone', header: 'Số điện thoại', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
+        },
+
+        {
+            accessorKey: 'status', header: 'Trạng thái', size: 140, muiTableHeadCellProps: {align: 'center',},
         },
 
     ]

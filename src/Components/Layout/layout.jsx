@@ -14,6 +14,7 @@ const items = [
     getItem('Quản lý đấu giá người dùng', "/reqTracking"),
     getItem('Quản lý đấu giá hệ thống', "/adminBidTracking"),
     getItem('Tạo phiên đấu giá', "/createProductAuction"),
+    getItem('Lịch sử yêu cầu', "/requestHistory"),
     getItem('Đăng xuất', '/logout'),
     // getItem('User', 'sub1', <UserOutlined />, [
     //     getItem('Tom', '3'),
@@ -23,22 +24,11 @@ const items = [
 
 ];
 
-
-
 const LayOut = ({ children }) => {
     const [collapsed, setCollapsed] = useState(false);
-    // useEffect(() => {
-    //     // Lấy path từ URL và chọn key tương ứng
-    //     const path = window.location.pathname
-    //     const selectedItem = items.find((item) => item.path === path)
-    //     if (selectedItem) {
-    //         setSelectedKey(selectedItem.key)
-    //     }
-    // }, [])
+
     const location = useLocation()
     const navigate = useNavigate()
-
-    const [selectedKey, setSelectedKey] = useState('1')
 
     return (
         <>

@@ -75,3 +75,18 @@ export const createProductAuction = async (productData) => {
         data: productData,
     });
 };
+
+export const adminGetRequestHistory = async (params) => {
+    return privateHttp({
+        method: "POST",
+        url: "admin/request",
+        params,
+    });
+};
+
+export const getReqHistoryDetail = async (reqId) => {
+    return privateHttp({
+        method: "GET",
+        url: `/request/history/${reqId}`,
+    });
+};
