@@ -66,11 +66,11 @@ const UserProductInfor = ({data}) => {
                     <div> Người bán :</div>
                     <div className="font-normal  col-span-2"> {data?.seller?.name}</div>
                     <div>Điểm tích lũy :</div>
-                    <div className="font-normal  col-span-2"> {data?.seller?.point}</div>
+                    <div className="font-normal  col-span-2"> {data?.seller?.point }</div>
                 </div>
                 <div className="grid grid-cols-6 text-left">
                     <div> Trung bình đánh giá :</div>
-                    <div className="font-normal  col-span-5"> {data?.seller?.average_rating}</div>
+                    <div className="font-normal  col-span-5"> {data?.seller?.average_rating ? data?.seller?.average_rating : 0}</div>
                 </div>
 
                 <div className="grid grid-cols-6 text-left">

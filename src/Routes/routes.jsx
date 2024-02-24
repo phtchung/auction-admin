@@ -7,6 +7,7 @@ import ConfirmApproved from "../Pages/ConfirmApprovedReq/confirmApproved.jsx";
 import CreateProductAuction from "../Pages/CreateProductAuction/createProductAuction.jsx";
 import ResultPage from "../Components/ResultPage/resultPage.jsx";
 import UserRequestDetail from "../Pages/UserRequestDetail/userRequestDetail.jsx";
+import RequestHistory from "../Pages/RequestHistory/requestHistory.jsx";
 
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
@@ -21,4 +22,6 @@ export const UserRoutes = [
     { path: "/reqTracking/requestDetail/approveRequest/:id", element: <ConfirmApproved /> },
     { path: "/resultSuccess", element: <ResultPage /> },
     { path: "/createProductAuction", element: <CreateProductAuction /> },
+    { path: "/requestHistory", element: <RequestHistory /> },
+
 ];

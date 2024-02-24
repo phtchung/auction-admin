@@ -1,8 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {
-
-    adminChangeStateToStringUser,
     adminProcessStatus,
     tabDataAdmin
 } from "../../Utils/constant.js";
@@ -14,7 +12,6 @@ import {CircularProgress} from "@mui/material";
 import {
     MaterialReactTable,
 } from 'material-react-table';
-import {Button} from "@material-tailwind/react";
 import useUserRequestTracking from "./useUserReqTracking.jsx";
 import LayOut from "../../Components/Layout/layout.jsx";
 
@@ -104,11 +101,6 @@ const RequestTracking = () => {
                     {isSuccess && (
                         <>
                             <div className="border border-gray-300 ">
-                                <div className="flex items-center justify-between  bg-white  p-2 text-base">
-                                    <div className="text-left font-medium my-2 ml-3 ">
-                                        Danh sách yêu cầu {adminChangeStateToStringUser(status)}
-                                    </div>
-                                </div>
 
                                 <div className="border-b-2 border-gray-300 "></div>
                                 <MaterialReactTable

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {useQueryClient} from "@tanstack/react-query";
-import {toast} from "react-toastify";
 import {useSearchParams} from "react-router-dom";
 import {reqConvertStatus} from "../../Utils/constant.js";
 
@@ -25,11 +24,11 @@ const CountdownTimer = ({ initialTimeInSeconds }) => {
     useEffect(() => {
         if (timeInSeconds === 0) {
             queryClient.invalidateQueries({
-                queryKey: ["getReqCount"],
+                queryKey: ["UserGetRequestTracking"],
             });
             setStatus(reqConvertStatus(parseInt(searchParams.get("status"))))
             queryClient.invalidateQueries({
-                queryKey: ["getReqTracking", status],
+                queryKey: ["UserGetRequestTracking", status],
             });
             queryClient.invalidateQueries({
                 queryKey: ["AdminGetBiddingCount"],
