@@ -5,6 +5,7 @@ import {NormalRoutes, UserRoutes} from "./Routes/routes.jsx";
 import RequireAuth from "./Components/context/requireAuth.jsx";
 import 'react-toastify/dist/ReactToastify.css';
 import '../src/Pages/Login/style.css'
+import {SearchProvider} from "./Components/context/SearchContext.jsx";
 
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
     return (
         <QueryClientProvider client={queryClient}>
             <ToastContainer/>
+            <SearchProvider>
             <BrowserRouter>
                 <Routes>
                     {NormalRoutes.map((route, index) => (
@@ -27,6 +29,7 @@ const App = () => {
                     ))}
                 </Routes>
             </BrowserRouter>
+            </SearchProvider>
         </QueryClientProvider>
 
     );

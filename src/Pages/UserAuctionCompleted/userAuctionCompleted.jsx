@@ -3,7 +3,7 @@ import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import {Button} from "@material-tailwind/react";
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { colUserAuctionHistory} from "../../Utils/constant.js";
 import LayOut from "../../Components/Layout/layout.jsx";
 import {Checkbox} from "antd";
@@ -24,14 +24,19 @@ const UserAuctionCompleted = () => {
 
     const handleFilter = (key, value) => {
         setFilter({...filter, [key]: value});
-        console.log(filter)
     };
+
+    useEffect(() => {
+        return () => {
+            window.scrollTo(0, 0);
+        };
+    }, []);
+
     const onSubmit = () => {
         const params = {
             ...queryString,
             ...filter,
         };
-        console.log(params)
         setQueryString(params);
     };
     return (
@@ -49,7 +54,6 @@ const UserAuctionCompleted = () => {
 
                             <div className="font-medium text-sm p-3 ">Số điện thoại :</div>
 
-
                         </div>
                         <div className="row-span-6">
                             <LocalizationProvider
@@ -57,7 +61,7 @@ const UserAuctionCompleted = () => {
                                 dateAdapter={AdapterDayjs}
                             >
                                 <DatePicker
-                                    defaultValue={dayjs(new Date()).subtract(1, "day")}
+                                    defaultValue={queryString.start_time ? dayjs(queryString.start_time) : dayjs(new Date()).subtract(1, "day")}
                                     sx={{
                                         margin: 3,
                                         "& .MuiInputBase-input": {width: 150, fontSize: 12},
@@ -73,7 +77,8 @@ const UserAuctionCompleted = () => {
                                 dateAdapter={AdapterDayjs}
                             >
                                 <DatePicker
-                                    defaultValue={dayjs(new Date()).subtract(1, "day")}
+                                    defaultValue={queryString.finish_time ? dayjs(queryString.finish_time) : dayjs(new Date()).subtract(1, "day")}
+
                                     sx={{
                                         margin: 3,
                                         "& .MuiInputBase-input": {width: 150, fontSize: 12},
@@ -172,7 +177,6 @@ const UserAuctionCompleted = () => {
                                     showColumnFilters={true}
                                     enableColumnActions={false}
                                     muiTableBodyProps={{
-
                                         sx: {
                                             '& td:last-child': {
                                                 color: 'red',
@@ -221,8 +225,6 @@ const UserAuctionCompleted = () => {
                     )}
                 </div>
             </LayOut>
-
-
         </>
     );
 };

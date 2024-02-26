@@ -10,6 +10,7 @@ import UserRequestDetail from "../Pages/UserRequestDetail/userRequestDetail.jsx"
 import RequestHistory from "../Pages/RequestHistory/requestHistory.jsx";
 import UserAuctionCompleted from "../Pages/UserAuctionCompleted/userAuctionCompleted.jsx";
 import UserAuctionCompletedDetail from "../Pages/UserAuctionCompletedDetail/userAuctionCompletedDetail.jsx";
+import RequestHistoryDetail from "../Pages/RequestHistoryDetail/requestHistoryDetail.jsx";
 
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
@@ -26,6 +27,6 @@ export const UserRoutes = [
     { path: "/requestHistory", element: <RequestHistory /> },
     { path: "/userAuctionCompleted", element: <UserAuctionCompleted/> },
     { path: "/userAuctionCompleted/detail/:id", element: <UserAuctionCompletedDetail/> },
-
+    { path: "/requestHistory/detail/:id", element: <RequestHistoryDetail/> },
 
 ];

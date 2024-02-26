@@ -358,26 +358,17 @@ export const billChangeStatus = (state) => {
             return "Hoàn thành";
     }
 };
-export const statusToString = (state) => {
+
+export const rqChangeStatus = (state) => {
     switch (state) {
-        case 4:
-            return "Auction Winning";
-        case 5:
-            return "Delivery Wait";
-        case 6:
-            return "Delivery Wait";
-        case 7:
-            return "Delivery Wait";
-        case 567:
-            return "Delivery Wait";
-        case 8:
-            return "Completed";
-        case 9:
-            return "Return";
-        case 11:
-            return "Cancel";
+        case 1:
+            return "Yêu cầu mới";
+        case 2:
+            return "Đã duyệt";
+        case 13:
+            return "Từ chối";
         default:
-            return "Auction Winning";
+            return "Yêu cầu mới";
     }
 };
 
@@ -982,7 +973,7 @@ export const colReqHistory =
         },
 
         {
-            accessorKey: 'status', header: 'Trạng thái', size: 140, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'status_string', header: 'Trạng thái', size: 140, muiTableHeadCellProps: {align: 'center',},
         },
 
     ]
