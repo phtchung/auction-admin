@@ -83,14 +83,6 @@ export const tabData = [
     },
 ];
 
-export const tabData1 = [
-    {value: "1", name: "Auction winning", top: "Win", color: "bg-yellow-500"},
-    {value: "2", name: "Delivery wait", top: "Wait", color: "bg-indigo-800"},
-    {value: "3", name: "Completed", top: "Completed", color: "bg-emerald-800"},
-    {value: "4", name: "Cancel", top: "Cancel", color: "bg-red-600"},
-    {value: "5", name: "Return", top: "Return", color: "bg-cyan-500"},
-];
-
 export const tabDataAdmin = [
     {value: "1", name: "New Request", top: "New", color: "bg-cyan-400"},
     {value: "2", name: "Approved", top: "Approved", color: "bg-amber-500"},
@@ -234,11 +226,6 @@ export const colSaleHistory = [
     {id: "completed_at", name: "Ngày hoàn thành"},
 ];
 
-export const pathReqHistory = "/reqHistory/reqHistoryDetail"
-
-export const pathSaleHistory = "/saleHistory/reqOrderDetail"
-
-
 export const pending = {
     value: "1",
     name: "Pending",
@@ -323,7 +310,6 @@ export const adminChangeStateToStringAdmin = (state) => {
             return "Mới";
     }
 };
-
 
 export const adminChangeStateRequestFromUser = (state) => {
     switch (state) {
@@ -555,7 +541,6 @@ export function convertWinStatus(status) {
     }
 }
 
-
 export const newReqColumns =
     [
         {
@@ -568,7 +553,7 @@ export const newReqColumns =
         },
         {
             accessorKey: 'seller_name', //access nested data with dot notation
-            header: 'Tên người bán',
+            header: 'Người bán',
             size: 110,
             muiTableHeadCellProps: {
                 align: 'center',
@@ -622,7 +607,7 @@ export const approvedColumns =
         },
         {
             accessorKey: 'seller_name', //access nested data with dot notation
-            header: 'Tên người bán',
+            header: 'Người bán',
             size: 110,
             muiTableHeadCellProps: {
                 align: 'center',
@@ -674,7 +659,7 @@ export const biddingColumns =
         },
         {
             accessorKey: 'seller_name', //access nested data with dot notation
-            header: 'Tên người bán',
+            header: 'Người bán',
             size: 110,
             muiTableHeadCellProps: {
                 align: 'center',
@@ -726,7 +711,7 @@ export const rejectColumns =
         },
         {
             accessorKey: 'seller_name', //access nested data with dot notation
-            header: 'Tên người bán',
+            header: 'Người bán',
             size: 110,
             muiTableHeadCellProps: {
                 align: 'center',
@@ -778,7 +763,7 @@ export const returnColumns =
         },
         {
             accessorKey: 'seller_name', //access nested data with dot notation
-            header: 'Tên người bán',
+            header: 'Người bán',
             size: 110,
             muiTableHeadCellProps: {
                 align: 'center',
@@ -996,5 +981,20 @@ export const colUserAuctionHistory =
         {
             accessorKey: 'status_name', header: 'Trạng thái', size: 120, muiTableHeadCellProps: {align: 'center',},
         },
-
+    ]
+export const colAdminAuctionHistory =
+    [
+        {accessorKey: 'id', header: 'Mã sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',}},
+        {
+            accessorKey: 'start_time', header: 'Ngày đấu giá', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'finish_time', header: 'Ngày kết thúc', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'status_name', header: 'Trạng thái', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
     ]

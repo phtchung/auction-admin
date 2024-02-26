@@ -4,23 +4,23 @@ import dayjs from "dayjs";
 import {Button} from "@material-tailwind/react";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import { colUserAuctionHistory} from "../../Utils/constant.js";
+import {colAdminAuctionHistory} from "../../Utils/constant.js";
 import LayOut from "../../Components/Layout/layout.jsx";
 import {Checkbox} from "antd";
 import {MaterialReactTable} from "material-react-table";
-import useUserAuctionCompleted from "./useUserAuctionCompleted.jsx";
+import useAdminAuctionCompleted from "./useAdminAuctionCompleted.jsx";
 
-const UserAuctionCompleted = () => {
+const AdminAuctionCompleted = () => {
     const [filter, setFilter] = useState({});
     const navigate = useNavigate();
     const {
-        userAuctionHistoryData,
+        adminAuctionCompletedData,
         isLoading,
         isSuccess,
         total,
         queryString,
         setQueryString,
-    } = useUserAuctionCompleted();
+    } = useAdminAuctionCompleted();
 
     const handleFilter = (key, value) => {
         setFilter({...filter, [key]: value});
@@ -167,9 +167,8 @@ const UserAuctionCompleted = () => {
 
                                 <div className="border-b-2 border-gray-300 "></div>
                                 <MaterialReactTable
-
-                                    columns={colUserAuctionHistory}
-                                    data={(userAuctionHistoryData)}
+                                    columns={colAdminAuctionHistory}
+                                    data={(adminAuctionCompletedData)}
                                     isloading={isLoading}
                                     enableDensityToggle={false}
                                     enableColumnFilters={false}
@@ -229,4 +228,4 @@ const UserAuctionCompleted = () => {
     );
 };
 
-export default UserAuctionCompleted;
+export default AdminAuctionCompleted;

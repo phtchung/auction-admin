@@ -51,8 +51,11 @@ const UserAuctionCompletedDetail = () => {
 
 
                         <div className="m-10 font-sans font-normal bg-white mb-10">
+                            <div className="text-base font-semibold text-neutral-600 mb-4 mx-8 pt-3 text-left">
+                                Thông tin sản phẩm
+                            </div>
                             <div
-                                className="grid  grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-t-2 border-t-gray-500 border-b-2 p-3 ">
+                                className="grid  grid-rows-1 grid-cols-6 grid-flow-col gap-4  border-b-2 p-3 ">
                                 <div className="col-start-1 font-semibold col-span-1 ">Mã yêu cầu :</div>
                                 <div className="col-start-2  text-left col-span-2 ">{reqData?.request_id}</div>
                                 <div className="col-start-4 font-semibold col-span-1 ...">Thời gian yêu cầu</div>

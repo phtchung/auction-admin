@@ -80,32 +80,19 @@ const UserRequestDetail = () => {
                                     <div className="flex m-6 gap-5 justify-end mr-10">
                                         <Button
                                             onClick={handleOpen}
-                                            className="p-2 px-6 py-2 right-0 bg-red-500 rounded text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
+                                            className="p-2 px-6 py-2 right-0 bg-white rounded text-amber-300 border-2 border-amber-300  text-sm hover:border-amber-500  font-medium focus:outline-0">
                                             Từ chối yêu cầu
                                         </Button>
 
                                         <Button
                                             onClick={() => navigate(`/reqTracking/requestDetail/approveRequest/${reqData?.request_id}`,{ state: reqData.status})}
-                                            className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
+                                            className="p-2 px-6 py-2 right-0 bg-amber-300 rounded text-white border-gray-400 border-none text-sm hover:border-amber-500  font-semibold focus:outline-0">
                                             Duyệt yêu cầu
                                         </Button>
                                     </div>
                                 </>
                             }
 
-                            {
-                                (reqData.status === 1 && reqData.admin_belong === 1)  &&
-                                <>
-                                    <div className="flex m-6 gap-5 justify-start mr-10">
-                                        <Button
-                                            onClick={handleOpenCancel}
-                                            className="p-2 px-6 py-2 right-0 bg-red-500 rounded text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
-                                            Hủy đấu giá
-                                        </Button>
-
-                                    </div>
-                                </>
-                            }
                             {/*từ chối yc đấu giá*/}
                             <Dialog open={open} onClose={handleOpen}  maxWidth="md">
                                 <DialogTitle>
@@ -149,7 +136,7 @@ const UserRequestDetail = () => {
                                         <div className="flex m-6 gap-5 justify-end mr-10">
                                             <Button
                                                 onClick={handleOpen}
-                                                className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm font-semibold focus:outline-0">
+                                                className="p-2 px-6 py-2 right-0 bg-white rounded text-red-500 border-2 border-red-500 hover:border-red-500 text-sm font-semibold focus:outline-0">
                                                 Hủy
                                             </Button>
 
@@ -163,43 +150,6 @@ const UserRequestDetail = () => {
                                     </Stack>
                                 </DialogContent>
                             </Dialog>
-
-                            {/*Hủy yc đấu giá của admin */}
-                            <Dialog open={openCancel} onClose={handleOpenCancel}  maxWidth="md">
-                                <DialogTitle>
-                                    <div className="flex items-center justify-between">
-                                    <span className="font-semibold text-sm">
-                                        Hủy đấu giá sản phẩm
-                                    </span>
-                                        <div
-                                            onClick={handleOpenCancel}
-                                            className="bg-gray-800 rounded cursor-pointer text-sm text-white hover:bg-neutral-600 border-none font-medium focus:outline-0"
-                                        >
-                                        </div>
-                                    </div>
-                                    <div className="border-b mt-2  border-gray-300"></div>
-                                </DialogTitle>
-                                <DialogContent>
-                                    <Stack spacing={2} margin={1}>
-
-                                        <div className="flex m-6 gap-5 justify-end mr-10">
-                                            <Button
-                                                onClick={handleOpenCancel}
-                                                className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm font-semibold focus:outline-0">
-                                                Không
-                                            </Button>
-
-                                            <Button
-                                                onClick={handleCancel}
-                                                className="p-2 px-6 py-2 right-0 bg-red-500  rounded text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
-                                                Chắc chắn
-                                            </Button>
-                                        </div>
-
-                                    </Stack>
-                                </DialogContent>
-                            </Dialog>
-
 
                             {/*Thông tin giao hàng của người win ấu giá , ng bán vào xác nhận */}
                             {isSuccess &&

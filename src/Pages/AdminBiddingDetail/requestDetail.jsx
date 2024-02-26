@@ -26,7 +26,7 @@ const AdminRequestDetail = () => {
 
     const handleRejectData = (key, value) => {
         setRejectData({...rejectData, [key]: value});
-        console.log({...rejectData,reject_time:formatDateTime(new Date())})
+
     };
     const handleReject = async () => {
         try {
