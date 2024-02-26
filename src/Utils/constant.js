@@ -343,6 +343,21 @@ export const adminChangeStateRequestFromUser = (state) => {
             return "Yêu Cầu Mới";
     }
 };
+
+export const billChangeStatus = (state) => {
+    switch (state) {
+        case 8:
+            return "Hoàn thành";
+        case 10:
+            return "Thất bại";
+        case 11:
+            return "Hủy";
+        case 14:
+            return "Trả hàng";
+        default:
+            return "Hoàn thành";
+    }
+};
 export const statusToString = (state) => {
     switch (state) {
         case 4:
@@ -540,6 +555,8 @@ export function convertWinStatus(status) {
             return "Đang giao hàng";
         case 8:
             return "Hoàn thành";
+        case 9:
+            return "Yêu cầu trả hàng";
         case 11 :
             return "Hủy thành công"
         default:
