@@ -24,7 +24,7 @@ export default function useUserRequestTracking() {
                 reserve_price: data?.reserve_price,
                 sale_price:data?.sale_price,
                 final_price: data?.final_price,
-                seller_name:data?.seller_id?.username,
+                seller_name:data?.seller_id?.name,
                 phone: data?.seller_id?.phone,
                 start_time:formatDateTime(new Date(data?.start_time)),
                 finish_time:formatDateTime(new Date(data?.finish_time)),

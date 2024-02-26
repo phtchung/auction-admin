@@ -16,6 +16,7 @@ const items = [
     getItem('Tạo phiên đấu giá', "/createProductAuction"),
     getItem('Lịch sử yêu cầu', "/requestHistory"),
     getItem('Lịch sử đấu giá User', "/userAuctionCompleted"),
+    getItem('Lịch sử đấu giá hệ thống', "/adminAuctionCompleted"),
     getItem('Đăng xuất', '/logout'),
     // getItem('User', 'sub1', <UserOutlined />, [
     //     getItem('Tom', '3'),

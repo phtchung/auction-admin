@@ -99,3 +99,11 @@ export const adminGetAuctionHistoryList = async (params) => {
         params,
     });
 };
+
+export const adminGetAdminAuctionCompletedList = async (params) => {
+    return privateHttp({
+        method: "POST",
+        url: "admin/adminAuctionCompletedList",
+        params,
+    });
+};
