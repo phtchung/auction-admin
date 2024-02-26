@@ -203,7 +203,7 @@ const UserRequestDetail = () => {
 
                             {/*Thông tin giao hàng của người win ấu giá , ng bán vào xác nhận */}
                             {isSuccess &&
-                                (reqData.status === 5 || reqData.status === 6 || reqData.status === 7 || reqData.status === 8)
+                                (reqData.status === 5 || reqData.status === 6 || reqData.status === 7 || reqData.status === 8 || reqData.status === 9)
                                 && (
                                     <>
                                         <div className="flex justify-between m-2.5 items-center px-2">

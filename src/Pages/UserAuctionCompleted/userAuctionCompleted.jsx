@@ -210,9 +210,9 @@ const UserAuctionCompleted = () => {
                                         onClick: () => {
                                             console.log(row)
                                             console.log(row.original);
-                                            // navigate(
-                                            //     `/reqTracking/userRequestDetail/${row.original.request_id}?status=${row.original.status}`,
-                                            // )
+                                            navigate(
+                                                `/userAuctionCompleted/detail/${row.original.id}?status=${row.original.status}`,
+                                            )
                                         },
                                     })}
                                 />

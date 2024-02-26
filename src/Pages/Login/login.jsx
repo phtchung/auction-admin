@@ -38,7 +38,7 @@ const Login = () => {
         localStorage.setItem("id", id);
       }
       toast.success("Login success");
-      navigate("/");
+      navigate("/reqTracking");
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }

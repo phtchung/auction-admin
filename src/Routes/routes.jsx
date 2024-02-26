@@ -9,13 +9,13 @@ import ResultPage from "../Components/ResultPage/resultPage.jsx";
 import UserRequestDetail from "../Pages/UserRequestDetail/userRequestDetail.jsx";
 import RequestHistory from "../Pages/RequestHistory/requestHistory.jsx";
 import UserAuctionCompleted from "../Pages/UserAuctionCompleted/userAuctionCompleted.jsx";
+import UserAuctionCompletedDetail from "../Pages/UserAuctionCompletedDetail/userAuctionCompletedDetail.jsx";
 
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
 
 export const UserRoutes = [
     { path: "/404", element: <PageNotFound /> },
-    { path: "/", element: <RequestTracking /> },
     { path: "/reqTracking", element: <RequestTracking /> },
     { path: "/adminBidTracking", element: <AdminBiddingTracking /> },
     { path: "/reqTracking/requestDetail/:id", element: <AdminRequestDetail /> },
@@ -25,6 +25,7 @@ export const UserRoutes = [
     { path: "/createProductAuction", element: <CreateProductAuction /> },
     { path: "/requestHistory", element: <RequestHistory /> },
     { path: "/userAuctionCompleted", element: <UserAuctionCompleted/> },
+    { path: "/userAuctionCompleted/detail/:id", element: <UserAuctionCompletedDetail/> },
 
 
 ];
