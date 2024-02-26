@@ -25,6 +25,7 @@ export default function useUserAuctionCompletedDetail() {
             category_name: data?.category_id?.name,
             victory_time: formatDateTime(new Date(data?.victory_time)),
             createdAt: formatDateTime(new Date(data?.createdAt)),
+            updatedAt: formatDateTime(new Date(data?.updatedAt)),
             approved_at:formatDateTime(new Date(data?.updatedAt)),
             start_time: formatDateTime(new Date(data?.start_time)),
             finish_time: formatDateTime(new Date(data?.finish_time)),
@@ -42,7 +43,7 @@ export default function useUserAuctionCompletedDetail() {
         return { detail };
     }, []);
 
-    const { data, isSuccess, isLoading,isError } = useQuery({
+    const { data, isSuccess, isLoading,isError, } = useQuery({
         queryKey: ["AdminGetReqDetail", id, status],
         queryFn: () => AdminGetReqDetail(id, status),
         staleTime: 20 * 1000,

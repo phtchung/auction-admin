@@ -2,14 +2,11 @@ import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import {Button} from "@material-tailwind/react";
-
 import {useNavigate} from "react-router-dom";
-
 import useRequestHistory from "./useRequestHistory.jsx";
-import {useState} from "react";
-import {colReqHistory, pathReqHistory} from "../../Utils/constant.js";
+import {useEffect, useState} from "react";
+import {colReqHistory} from "../../Utils/constant.js";
 import LayOut from "../../Components/Layout/layout.jsx";
-import login from "../Login/login.jsx";
 import {Checkbox} from "antd";
 import {MaterialReactTable} from "material-react-table";
 
@@ -27,16 +24,19 @@ const RequestHistory = () => {
 
     const handleFilter = (key, value) => {
         setFilter({...filter, [key]: value});
-        console.log(filter)
     };
     const onSubmit = () => {
         const params = {
             ...queryString,
             ...filter,
         };
-        console.log(params)
         setQueryString(params);
     };
+    useEffect(() => {
+        return () => {
+            window.scrollTo(0, 0);
+        };
+    }, []);
     return (
         <>
 
@@ -60,7 +60,7 @@ const RequestHistory = () => {
                                 dateAdapter={AdapterDayjs}
                             >
                                 <DatePicker
-                                    defaultValue={dayjs(new Date()).subtract(1, "day")}
+                                    defaultValue={queryString.start_time ? dayjs(queryString.start_time) : dayjs(new Date()).subtract(1, "day")}
                                     sx={{
                                         margin: 3,
                                         "& .MuiInputBase-input": {width: 150, fontSize: 12},
@@ -76,11 +76,12 @@ const RequestHistory = () => {
                                 dateAdapter={AdapterDayjs}
                             >
                                 <DatePicker
-                                    defaultValue={dayjs(new Date()).subtract(1, "day")}
+                                    defaultValue={queryString.finish_time ? dayjs(queryString.finish_time) : dayjs(new Date()).subtract(1, "day")}
                                     sx={{
                                         margin: 3,
                                         "& .MuiInputBase-input": {width: 150, fontSize: 12},
                                     }}
+
                                     onChange={(newValue) =>
                                         handleFilter("finish_time", dayjs(newValue).endOf('day').toDate().toISOString())
                                     }
@@ -114,7 +115,6 @@ const RequestHistory = () => {
                                 Search
                             </Button>
 
-
                             <Button
                                 size="md"
                                 className=" block text-xs w-24 bg-blue-800 h-9 py-1 rounded m-2  px-4"
@@ -145,10 +145,10 @@ const RequestHistory = () => {
                                     </thead>
                                     <tbody className="font-semibold">
                                     <tr style={{height: 40, fontSize: 16}}>
-                                        <td className="cursor-pointer">{total.total_request}</td>
-                                        <td>{total.total_approved}</td>
-                                        <td>{total.total_pending}</td>
-                                        <td>{total.total_rejected}</td>
+                                        <td className="cursor-pointer">{total?.total_request}</td>
+                                        <td>{total?.total_approved}</td>
+                                        <td>{total?.total_pending}</td>
+                                        <td>{total?.total_rejected}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -162,7 +162,6 @@ const RequestHistory = () => {
 
                                 <div className="border-b-2 border-gray-300 "></div>
                                 <MaterialReactTable
-
                                     columns={colReqHistory}
                                     data={(reqHistoryData)}
                                     isloading={isLoading}
@@ -171,6 +170,13 @@ const RequestHistory = () => {
                                     enableHiding={false}
                                     showColumnFilters={true}
                                     enableColumnActions={false}
+                                    muiTableBodyProps={{
+                                        sx: {
+                                            '& td:last-child': {
+                                                color: 'red',
+                                            },
+                                        }
+                                    }}
                                     muiTablePaperProps={{
                                         sx: {
                                             margin: 0,
@@ -201,25 +207,16 @@ const RequestHistory = () => {
                                     muiTableBodyRowProps={({row}) => ({
                                         onClick: () => {
                                             console.log(row.original);
-                                            // navigate(
-                                            //     `/reqTracking/userRequestDetail/${row.original.request_id}?status=${row.original.status}`,
-                                            // )
+                                            navigate(
+                                                `/requestHistory/detail/${row.original.id}?status=${row.original.status}`,
+                                            )
                                         },
                                     })}
                                 />
                             </div>
                         </>
                     )}
-                    {/*table data*/}
-                    {/*{isSuccess && (*/}
-                    {/*    <>*/}
-                    {/*        <div className="border border-gray-300 mt-6 mx-7">*/}
 
-                    {/*            <TableDataHistory path={pathReqHistory} cols={colReqHistory}*/}
-                    {/*                              rows={reqHistoryData}></TableDataHistory>*/}
-                    {/*        </div>*/}
-                    {/*    </>*/}
-                    {/*)}*/}
                 </div>
             </LayOut>
 

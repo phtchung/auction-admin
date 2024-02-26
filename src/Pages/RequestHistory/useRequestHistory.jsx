@@ -1,33 +1,13 @@
-import { useCallback, useState } from "react";
+import {useCallback, useContext, useState} from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import {adminGetRequestHistory} from "../../Services/requestService.jsx";
 import { formatDateTime } from "../../Utils/constant.js";
+import {SearchContext} from "../../Components/context/SearchContext.jsx";
 
 export default function useRequestHistory() {
-  const currentDateTime = new Date();
-  const [df, setDf] = useState(false);
-  const [phone, setPhone] = useState('');
-  const [finish_time, setFinishTime] = useState(() => {
-    const oneDaysAgo = new Date(currentDateTime);
-    oneDaysAgo.setDate(oneDaysAgo.getDate() - 1);
-    oneDaysAgo.setHours(23, 59, 59, 999);
-    return oneDaysAgo.toISOString();
-  });
+  const { queryString, setQueryString } = useContext(SearchContext);
 
-  const [start_time, setStartTime] = useState(() => {
-    const sevenDaysAgo = new Date(currentDateTime);
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 1);
-    sevenDaysAgo.setHours(0, 0, 0, 0);
-    return sevenDaysAgo.toISOString();
-  });
-
-  const [queryString, setQueryString] = useState({
-    start_time: start_time,
-    finish_time: finish_time,
-    phone: phone,
-    df:df
-  });
 
   const parseData = useCallback((item) => {
     const reqHis = item?.requests.map((data) => {
@@ -39,6 +19,7 @@ export default function useRequestHistory() {
         createdAt: formatDateTime(new Date(data?.createdAt)),
         seller_name:data?.seller_id?.name,
         phone:data?.seller_id?.phone,
+        status_string:data?.status === 1 ? 'Yêu cầu mới' : data?.status === 2 ? 'Đã duyệt' : 'Từ chối'
       };
     });
 
@@ -51,7 +32,7 @@ export default function useRequestHistory() {
     queryFn: () => adminGetRequestHistory(queryString),
     staleTime: 20 * 1000,
     select: (data) => parseData(data.data),
-    enabled: !!start_time && !!finish_time  ,
+    enabled: !!queryString ,
   });
 
   return {

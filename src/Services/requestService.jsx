@@ -84,10 +84,10 @@ export const adminGetRequestHistory = async (params) => {
     });
 };
 
-export const getReqHistoryDetail = async (reqId) => {
+export const adminGetReqHistoryDetail = async (reqId) => {
     return privateHttp({
         method: "GET",
-        url: `/request/history/${reqId}`,
+        url: `/admin/request/history/${reqId}`,
     });
 };
 
