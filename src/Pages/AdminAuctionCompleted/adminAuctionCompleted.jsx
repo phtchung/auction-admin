@@ -214,7 +214,7 @@ const AdminAuctionCompleted = () => {
                                             console.log(row)
                                             console.log(row.original);
                                             navigate(
-                                                `/userAuctionCompleted/detail/${row.original.id}?status=${row.original.status}`,
+                                                `/adminAuctionCompleted/detail/${row.original.id}?status=${row.original.status}`,
                                             )
                                         },
                                     })}
