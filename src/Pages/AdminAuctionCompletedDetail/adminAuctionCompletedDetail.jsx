@@ -2,12 +2,12 @@ import {billChangeStatus} from "../../Utils/constant.js";
 import {useNavigate} from "react-router-dom";
 import { Spin, Image} from 'antd';
 import LayOut from "../../Components/Layout/layout.jsx";
-import useUserAuctionCompletedDetail from "./useUserAuctionCompletedDetail.jsx";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import useAdminAuctionCompletedDetail from "./useAdminAuctionCompletedDetail.jsx";
 
 const UserAuctionCompletedDetail = () => {
-    const {reqData, isLoading, isSuccess, isError} = useUserAuctionCompletedDetail();
+    const {reqData, isLoading, isSuccess, isError} = useAdminAuctionCompletedDetail();
     const navigate = useNavigate();
 
     if (isLoading) {
@@ -58,26 +58,9 @@ const UserAuctionCompletedDetail = () => {
                                 className="grid  grid-rows-1 grid-cols-6 grid-flow-col gap-4  border-b-2 p-3 ">
                                 <div className="col-start-1 font-semibold col-span-1 ">Mã sản phẩm :</div>
                                 <div className="col-start-2  text-left col-span-2 ">{reqData?.request_id}</div>
-                                <div className="col-start-4 font-semibold col-span-1 ...">Thời gian yêu cầu</div>
-                                <div
-                                    className="col-start-5 text-left col-span-2 ..."> {(reqData.status === 1 || reqData.status === 13) ? reqData?.createdAt : reqData?.request_time}</div>
+
                             </div>
-                            <div
-                                className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
-                                <div className="col-start-1 font-semibold col-span-1 ">Người bán :</div>
-                                <div className="col-start-2 text-left col-span-2 ">{reqData?.seller?.name}</div>
-                                <div className="col-start-4 font-semibold col-span-1 ...">Đánh giá :</div>
-                                <div
-                                    className="col-start-5 text-left col-span-2 ...">{reqData?.seller?.average_rating ? reqData?.seller?.average_rating : 0}</div>
-                            </div>
-                            <div
-                                className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
-                                <div className="col-start-1 font-semibold col-span-1 ">Số điện thoại :</div>
-                                <div className="col-start-2 text-left col-span-2 ">{reqData?.seller?.phone}</div>
-                                <div className="col-start-4 font-semibold col-span-1 ...">Điểm tích lũy :</div>
-                                <div
-                                    className="col-start-5 text-left col-span-2 ...">{reqData?.seller?.point}</div>
-                            </div>
+
                             <div
                                 className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
                                 <div className="col-start-1 font-semibold col-span-1 ">Tên sản phẩm :</div>

@@ -107,3 +107,10 @@ export const adminGetAdminAuctionCompletedList = async (params) => {
         params,
     });
 };
+
+export const AdminGeAuctionCompletedDetail = async (reqId) => {
+    return privateHttp({
+        method: "GET",
+        url: `/admin/auctionCompletedDetail/${reqId}`,
+    });
+};
