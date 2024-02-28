@@ -3,24 +3,25 @@ import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import {Button} from "@material-tailwind/react";
 import {useNavigate} from "react-router-dom";
-import useRequestHistory from "./useRequestHistory.jsx";
+
 import {useEffect, useState} from "react";
-import {colReqHistory} from "../../Utils/constant.js";
+import { colReturnFromUser} from "../../Utils/constant.js";
 import LayOut from "../../Components/Layout/layout.jsx";
 import {Checkbox} from "antd";
 import {MaterialReactTable} from "material-react-table";
+import useReturnProductUser from "./useReturnProductUser.jsx";
 
-const RequestHistory = () => {
+const ReturnProductUser = () => {
     const [filter, setFilter] = useState({});
     const navigate = useNavigate();
     const {
-        reqHistoryData,
+        returnProUserData,
         isLoading,
         isSuccess,
         total,
-        queryString,
-        setQueryString,
-    } = useRequestHistory();
+        queryReturn,
+        setQueryReturn,
+    } = useReturnProductUser();
 
     const handleFilter = (key, value) => {
         setFilter({...filter, [key]: value});
@@ -31,10 +32,10 @@ const RequestHistory = () => {
 
     const onSubmit = () => {
         const params = {
-            ...queryString,
+            ...queryReturn,
             ...filter,
         };
-        setQueryString(params);
+        setQueryReturn(params);
     };
     useEffect(() => {
         return () => {
@@ -47,16 +48,17 @@ const RequestHistory = () => {
             <LayOut>
                 <div className="home-right">
                     <div className="text-left px-5 pt-3 pb-3 text-xl font-bold text-neutral-600  bg-white">
-                        Lịch sử yêu cầu
+                        Yêu cầu trả hàng đấu giá từ người dùng
                     </div>
                     <div className="border-b border-neutral-300 "></div>
-                    <div className="bg-white p-3 my-7 border-gray-300 border grid grid-rows-4 grid-flow-col h-56 text-sm gap-7 ">
+                    <div style={{
+                        fontFamily: '"Roboto","Helvetica","Arial",sans-serif',
+                        color: '#000000DE',
+                    }}
+                         className="bg-white p-3 my-7 border-gray-300 border grid grid-rows-4 grid-flow-col h-56 text-sm gap-7 ">
                         <div className="col-span-3">
-                            <div className="font-medium text-sm p-3 pb-9 ">Tìm kiếm ngày :</div>
-
-                            <div className="font-medium text-sm p-3 ">Số điện thoại :</div>
-
-
+                            <div className="font-semibold text-sm p-3 pb-9 ">Tìm kiếm ngày :</div>
+                            <div className="font-semibold text-sm p-3 ">Số điện thoại :</div>
                         </div>
                         <div className="row-span-6">
                             <LocalizationProvider
@@ -64,7 +66,7 @@ const RequestHistory = () => {
                                 dateAdapter={AdapterDayjs}
                             >
                                 <DatePicker
-                                    defaultValue={queryString.start_time ? dayjs(queryString.start_time) : dayjs(new Date()).subtract(1, "day")}
+                                    defaultValue={queryReturn.start_time ? dayjs(queryReturn.start_time) : dayjs(new Date()).subtract(1, "day")}
                                     sx={{
                                         margin: 3,
                                         "& .MuiInputBase-input": {width: 150, fontSize: 12},
@@ -80,7 +82,7 @@ const RequestHistory = () => {
                                 dateAdapter={AdapterDayjs}
                             >
                                 <DatePicker
-                                    defaultValue={queryString.finish_time ? dayjs(queryString.finish_time) : dayjs(new Date()).subtract(1, "day")}
+                                    defaultValue={queryReturn.finish_time ? dayjs(queryReturn.finish_time) : dayjs(new Date()).subtract(1, "day")}
                                     sx={{
                                         margin: 3,
                                         "& .MuiInputBase-input": {width: 150, fontSize: 12},
@@ -106,7 +108,7 @@ const RequestHistory = () => {
                                 </div>
                             </div>
                             <div className="justify-start pt-3 ml-2 flex items-center pl-14">
-                                <Checkbox onClick={(e) => handleFilter('df',e.target.checked)}/>
+                                <Checkbox onClick={(e) => handleFilter('df', e.target.checked)}/>
                                 <div className="font-medium text-xs px-2   "> Chỉ tìm kiếm theo số điện thoại</div>
                             </div>
                         </div>
@@ -138,30 +140,21 @@ const RequestHistory = () => {
 
                     {isSuccess && (
                         <>
-                            <div className="bg-white   border-gray-300 border p-2 my-7 text-base h-24">
+                            <div className="bg-white py-1  my-6  font-sans  h-12">
                                 <table style={{width: "100%"}}>
                                     <thead>
                                     <tr
                                         style={{
-                                            borderBottom: "1px solid #e5e7eb",
+                                            fontFamily: '"Roboto","Helvetica","Arial",sans-serif',
+                                            color: '#000000DE',
                                             height: 40,
-                                            fontSize: 12,
+                                            fontSize: 14,
                                         }}
                                     >
-                                        <th>Tổng số yêu cầu</th>
-                                        <th>Đã duyệt</th>
-                                        <th>Đang duyệt</th>
-                                        <th>Từ chối</th>
+                                        <th className=" border-r-2">Tổng số yêu cầu</th>
+                                        <th className="w-1/3">{total?.total_reqReturn}</th>
                                     </tr>
                                     </thead>
-                                    <tbody className="font-semibold">
-                                    <tr style={{height: 40, fontSize: 16}}>
-                                        <td className="cursor-pointer">{total?.total_request}</td>
-                                        <td>{total?.total_approved}</td>
-                                        <td>{total?.total_pending}</td>
-                                        <td>{total?.total_rejected}</td>
-                                    </tr>
-                                    </tbody>
                                 </table>
                             </div>
                         </>
@@ -170,24 +163,15 @@ const RequestHistory = () => {
                     {isSuccess && (
                         <>
                             <div className="border border-gray-300 ">
-
-                                <div className="border-b-2 border-gray-300 "></div>
                                 <MaterialReactTable
-                                    columns={colReqHistory}
-                                    data={(reqHistoryData)}
+                                    columns={colReturnFromUser}
+                                    data={(returnProUserData)}
                                     isloading={isLoading}
                                     enableDensityToggle={false}
                                     enableColumnFilters={false}
                                     enableHiding={false}
                                     showColumnFilters={true}
                                     enableColumnActions={false}
-                                    muiTableBodyProps={{
-                                        sx: {
-                                            '& td:last-child': {
-                                                color: 'red',
-                                            },
-                                        }
-                                    }}
                                     muiTablePaperProps={{
                                         sx: {
                                             margin: 0,
@@ -203,7 +187,6 @@ const RequestHistory = () => {
                                         },
                                     })}
 
-
                                     muiTableBodyCellProps={({row}) => ({
                                         sx: {
                                             textAlign: 'center',
@@ -217,10 +200,10 @@ const RequestHistory = () => {
                                     })}
                                     muiTableBodyRowProps={({row}) => ({
                                         onClick: () => {
-                                            console.log(row.original);
-                                            navigate(
-                                                `/requestHistory/detail/${row.original.id}?status=${row.original.status}`,
-                                            )
+                                            //
+                                            // navigate(
+                                            //     `/requestHistory/detail/${row.original.id}?status=${row.original.status}`,
+                                            // )
                                         },
                                     })}
                                 />
@@ -236,4 +219,4 @@ const RequestHistory = () => {
     );
 };
 
-export default RequestHistory;
+export default ReturnProductUser;

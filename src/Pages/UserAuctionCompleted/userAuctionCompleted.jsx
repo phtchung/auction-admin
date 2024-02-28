@@ -22,6 +22,9 @@ const UserAuctionCompleted = () => {
         setQueryString,
     } = useUserAuctionCompleted();
 
+    const handleReload = () => {
+        window.location.reload();
+    };
     const handleFilter = (key, value) => {
         setFilter({...filter, [key]: value});
     };
@@ -48,7 +51,7 @@ const UserAuctionCompleted = () => {
                         Lịch sử đấu giá User
                     </div>
                     <div className="border-b border-neutral-300 "></div>
-                    <div className="bg-white p-3 my-7 border-gray-300 border grid grid-rows-4 grid-flow-col h-48 text-sm gap-7 ">
+                    <div className="bg-white p-3 my-7 border-gray-300 border grid grid-rows-4 grid-flow-col h-56 text-sm gap-7 ">
                         <div className="col-span-3">
                             <div className="font-medium text-sm p-3 pb-9 ">Tìm kiếm ngày :</div>
 
@@ -122,6 +125,14 @@ const UserAuctionCompleted = () => {
                                 className=" block text-xs w-24 bg-blue-800 h-9 py-1 rounded m-2  px-4"
                             >
                                 Xuất Excel
+                            </Button>
+
+                            <Button
+                                onClick={handleReload}
+                                size="md"
+                                className=" block text-xs w-24 bg-blue-800 h-9 py-1 rounded m-2  px-4"
+                            >
+                                Reset
                             </Button>
                         </div>
 

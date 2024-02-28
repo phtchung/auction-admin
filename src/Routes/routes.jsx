@@ -13,6 +13,7 @@ import UserAuctionCompletedDetail from "../Pages/UserAuctionCompletedDetail/user
 import RequestHistoryDetail from "../Pages/RequestHistoryDetail/requestHistoryDetail.jsx";
 import AdminAuctionCompleted from "../Pages/AdminAuctionCompleted/adminAuctionCompleted.jsx";
 import AdminAuctionCompletedDetail from "../Pages/AdminAuctionCompletedDetail/adminAuctionCompletedDetail.jsx";
+import ReturnProductUser from "../Pages/ReturnProductUser/returnProductUser.jsx";
 
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
@@ -32,5 +33,6 @@ export const UserRoutes = [
     { path: "/requestHistory/detail/:id", element: <RequestHistoryDetail/> },
     { path: "/adminAuctionCompleted", element: <AdminAuctionCompleted/> },
     { path: "/adminAuctionCompleted/detail/:id", element: <AdminAuctionCompletedDetail/> },
+    { path: "/returnProductUser", element: <ReturnProductUser/> },
 
 ];

@@ -998,3 +998,23 @@ export const colAdminAuctionHistory =
             accessorKey: 'status_name', header: 'Trạng thái', size: 120, muiTableHeadCellProps: {align: 'center',},
         },
     ]
+
+export const colReturnFromUser =
+    [
+        {accessorKey: 'id', header: 'Mã sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',}},
+        {
+            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'seller_name',header: 'Người bán', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'winner_name',header: 'Người mua', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'winner_phone', header: 'Số điện thoại', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'return_time', header: 'Thời gian trả', size: 140, muiTableHeadCellProps: {align: 'center',},
+        },
+    ]
