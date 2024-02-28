@@ -114,3 +114,12 @@ export const AdminGeAuctionCompletedDetail = async (reqId) => {
         url: `/admin/auctionCompletedDetail/${reqId}`,
     });
 };
+
+
+export const returnProductOfUser = async (params) => {
+    return privateHttp({
+        method: "POST",
+        url: "/admin/returnOfUser",
+        params,
+    });
+};

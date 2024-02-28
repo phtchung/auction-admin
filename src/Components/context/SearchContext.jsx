@@ -5,6 +5,20 @@ export const SearchContext = createContext();
 
 export const SearchProvider = ({ children }) => {
     const currentDateTime = new Date();
+
+    const [finish, setFinish] = useState(() => {
+        const today = new Date(currentDateTime);
+        today.setHours(23, 59, 59, 999);
+        return today.toISOString();
+    });
+    const [start, setStart] = useState(() => {
+        const oneMonthAgo = new Date(currentDateTime);
+        oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+        oneMonthAgo.setHours(0, 0, 0, 0);
+        return oneMonthAgo.toISOString();
+    });
+
+
     const [finish_time, setFinishTime] = useState(() => {
         const oneDaysAgo = new Date(currentDateTime);
         oneDaysAgo.setDate(oneDaysAgo.getDate() - 1);
@@ -28,8 +42,17 @@ export const SearchProvider = ({ children }) => {
         df:df
     });
 
+    const [queryReturn, setQueryReturn] = useState({
+        start_time: start,
+        finish_time: finish,
+        phone: phone,
+        df:df
+    });
+
+
+
     return (
-        <SearchContext.Provider value={{ queryString, setQueryString }}>
+        <SearchContext.Provider value={{ queryString, setQueryString,queryReturn,setQueryReturn }}>
             {children}
         </SearchContext.Provider>
     );
