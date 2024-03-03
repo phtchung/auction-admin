@@ -200,10 +200,9 @@ const ReturnProductUser = () => {
                                     })}
                                     muiTableBodyRowProps={({row}) => ({
                                         onClick: () => {
-                                            //
-                                            // navigate(
-                                            //     `/requestHistory/detail/${row.original.id}?status=${row.original.status}`,
-                                            // )
+                                            navigate(
+                                                `/returnProductUser/detail/${row.original.id}?status=${row.original.status}`,
+                                            )
                                         },
                                     })}
                                 />
