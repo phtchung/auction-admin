@@ -14,6 +14,7 @@ import RequestHistoryDetail from "../Pages/RequestHistoryDetail/requestHistoryDe
 import AdminAuctionCompleted from "../Pages/AdminAuctionCompleted/adminAuctionCompleted.jsx";
 import AdminAuctionCompletedDetail from "../Pages/AdminAuctionCompletedDetail/adminAuctionCompletedDetail.jsx";
 import ReturnProductUser from "../Pages/ReturnProductUser/returnProductUser.jsx";
+import ReturnProductAdmin from "../Pages/ReturnProductAdmin/returnProductAdmin.jsx";
 
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
@@ -34,5 +35,6 @@ export const UserRoutes = [
     { path: "/adminAuctionCompleted", element: <AdminAuctionCompleted/> },
     { path: "/adminAuctionCompleted/detail/:id", element: <AdminAuctionCompletedDetail/> },
     { path: "/returnProductUser", element: <ReturnProductUser/> },
+    { path: "/returnProductAdmin", element: <ReturnProductAdmin/> },
 
 ];

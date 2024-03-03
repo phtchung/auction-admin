@@ -18,6 +18,8 @@ const items = [
     getItem('Lịch sử đấu giá User', "/userAuctionCompleted"),
     getItem('Lịch sử đấu giá hệ thống', "/adminAuctionCompleted"),
     getItem('Yêu cầu trả hàng của User', "/returnProductUser"),
+    getItem('Yêu cầu trả hàng của hệ thống', "/returnProductAdmin"),
+
     getItem('Đăng xuất', '/logout'),
     // getItem('User', 'sub1', <UserOutlined />, [
     //     getItem('Tom', '3'),
@@ -35,9 +37,8 @@ const LayOut = ({ children }) => {
 
     return (
         <>
-            <Layout>
-                <Sider style={{
-                    minHeight: '100vh'}}  className="fixed-sider " onCollapse={(value) => setCollapsed(value)}  >
+            <Layout style={{ minHeight: '100vh' }}>
+                <Sider style={{ position: 'fixed', height: '100%', left: 0 }}  onCollapse={(value) => setCollapsed(value)}  >
                     <div className="demo-logo-vertical" />
                     <Menu style={{fontSize:12}} theme="dark" mode="inline" defaultSelectedKeys={[location.pathname]}  >
                         {items.map((item) => (
@@ -48,18 +49,20 @@ const LayOut = ({ children }) => {
                         ))}
                     </Menu>
                 </Sider>
-                <Layout>
+                <Layout style={{ marginLeft: collapsed ? 80 : 200 }}>
                     <Header
                         style={{
                             padding: 0,
                         }}
-                    />
+                    >
+                    </Header>
                     <Content
                         style={{
                             margin: '0 32px 32px',
-                            width:1260,
+                            width: '78.75rem',
                             minHeight:300,
-                            textAlign:'center'
+                            textAlign:'center',
+                            overflow: 'auto',
                         }}
                     >
                     <div>

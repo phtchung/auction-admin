@@ -1018,3 +1018,20 @@ export const colReturnFromUser =
             accessorKey: 'return_time', header: 'Thời gian trả', size: 140, muiTableHeadCellProps: {align: 'center',},
         },
     ]
+
+export const colReturnFromAdmin =
+    [
+        {accessorKey: 'id', header: 'Mã sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',}},
+        {
+            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'winner_name',header: 'Người mua', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'winner_phone', header: 'Số điện thoại', size: 120, muiTableHeadCellProps: {align: 'center',},
+        },
+        {
+            accessorKey: 'return_time', header: 'Thời gian trả hàng', size: 140, muiTableHeadCellProps: {align: 'center',},
+        },
+    ]

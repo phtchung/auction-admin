@@ -3,25 +3,24 @@ import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import {Button} from "@material-tailwind/react";
 import {useNavigate} from "react-router-dom";
-
 import {useEffect, useState} from "react";
-import { colReturnFromUser} from "../../Utils/constant.js";
+import {colReturnFromAdmin, colReturnFromUser} from "../../Utils/constant.js";
 import LayOut from "../../Components/Layout/layout.jsx";
 import {Checkbox} from "antd";
 import {MaterialReactTable} from "material-react-table";
-import useReturnProductUser from "./useReturnProductUser.jsx";
+import useReturnProductAdmin from "./useReturnProductAdmin.jsx";
 
-const ReturnProductUser = () => {
+const ReturnProductAdmin = () => {
     const [filter, setFilter] = useState({});
     const navigate = useNavigate();
     const {
-        returnProUserData,
+        returnProAdminData,
         isLoading,
         isSuccess,
         total,
         queryReturn,
         setQueryReturn,
-    } = useReturnProductUser();
+    } = useReturnProductAdmin();
 
     const handleFilter = (key, value) => {
         setFilter({...filter, [key]: value});
@@ -48,7 +47,7 @@ const ReturnProductUser = () => {
             <LayOut>
                 <div className="home-right">
                     <div className="text-left px-5 pt-3 pb-3 text-xl font-bold text-neutral-600  bg-white">
-                        Yêu cầu trả hàng đấu giá từ người dùng
+                        Yêu cầu trả hàng đấu giá từ hệ thống
                     </div>
                     <div className="border-b border-neutral-300 "></div>
                     <div style={{
@@ -164,8 +163,8 @@ const ReturnProductUser = () => {
                         <>
                             <div className="border border-gray-300 ">
                                 <MaterialReactTable
-                                    columns={colReturnFromUser}
-                                    data={(returnProUserData)}
+                                    columns={colReturnFromAdmin}
+                                    data={(returnProAdminData)}
                                     isloading={isLoading}
                                     enableDensityToggle={false}
                                     enableColumnFilters={false}
@@ -219,4 +218,4 @@ const ReturnProductUser = () => {
     );
 };
 
-export default ReturnProductUser;
+export default ReturnProductAdmin;

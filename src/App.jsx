@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../src/Pages/Login/style.css'
 import {SearchProvider} from "./Components/context/SearchContext.jsx";
 
-
 const App = () => {
     const queryClient = new QueryClient();
     return (

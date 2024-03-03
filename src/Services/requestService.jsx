@@ -123,3 +123,12 @@ export const returnProductOfUser = async (params) => {
         params,
     });
 };
+
+
+export const returnProductOfAdmin = async (params) => {
+    return privateHttp({
+        method: "POST",
+        url: "/admin/returnOfAdmin",
+        params,
+    });
+};
