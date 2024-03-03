@@ -2,12 +2,13 @@ import {billChangeStatus} from "../../Utils/constant.js";
 import {useNavigate} from "react-router-dom";
 import { Spin, Image} from 'antd';
 import LayOut from "../../Components/Layout/layout.jsx";
-import useUserAuctionCompletedDetail from "./useUserAuctionCompletedDetail.jsx";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import NewProductInfor from "../../Components/DetailComponent/newProductInfor.jsx";
+import useUserAuctionCompletedDetail from "../UserAuctionCompletedDetail/useUserAuctionCompletedDetail.jsx";
+import {Button} from "@material-tailwind/react";
 
-const UserAuctionCompletedDetail = () => {
+const ReturnProductUserDetail = () => {
     const {reqData, isLoading, isSuccess, isError} = useUserAuctionCompletedDetail();
     const navigate = useNavigate();
 
@@ -40,7 +41,7 @@ const UserAuctionCompletedDetail = () => {
                             </div>
 
                             <div className="flex items-center gap-2">
-                                <div className="text-left text-base ">Danh Sách</div>
+                                <div className="text-left text-base ">Yêu cầu trả hàng</div>
                                 <ArrowForwardIosOutlinedIcon
                                     sx={{fontSize: 18}}
                                     fontSize="small"
@@ -51,11 +52,22 @@ const UserAuctionCompletedDetail = () => {
                         </div>
 
                         <NewProductInfor reqData={reqData}></NewProductInfor>
+                        <div className="flex m-6 gap-5 justify-end mr-10">
+                            <Button
+                                className="p-2 px-6 py-2 right-0 bg-white rounded text-red-500 border-gray-400 border-red-500 hover:border-red-500 text-sm  font-medium focus:outline-0">
+                                Từ chối trả hàng
+                            </Button>
 
+                            <Button
+
+                                className="p-2 px-6 py-2 right-0 bg-red-500 rounded text-white border-gray-400 border-none text-sm  font-semibold focus:outline-0">
+                                Đồng ý trả hàng
+                            </Button>
+                        </div>
                     </>
                 )}
             </div>
         </LayOut>
     );
 };
-export default UserAuctionCompletedDetail;
+export default ReturnProductUserDetail;

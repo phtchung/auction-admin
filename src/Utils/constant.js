@@ -334,6 +334,8 @@ export const billChangeStatus = (state) => {
     switch (state) {
         case 8:
             return "Hoàn thành";
+        case 9:
+            return "Yêu cầu trả hàng";
         case 10:
             return "Thất bại";
         case 11:
