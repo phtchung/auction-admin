@@ -1,4 +1,4 @@
-import {billChangeStatus} from "../../Utils/constant.js";
+import {billChangeStatus, checkStatus} from "../../Utils/constant.js";
 import {useNavigate} from "react-router-dom";
 import { Spin, Image} from 'antd';
 import LayOut from "../../Components/Layout/layout.jsx";
@@ -19,7 +19,7 @@ const UserAuctionCompletedDetail = () => {
             </LayOut>
         )
     }
-    if (isError) {
+    if (isError || !checkStatus(reqData.status) ) {
         return navigate('/404')
     }
     return (

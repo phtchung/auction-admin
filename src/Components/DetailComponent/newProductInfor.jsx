@@ -287,72 +287,7 @@ const NewProductInfor = ({reqData}) => {
                 </>
             )}
 
-            {reqData.status === 9 && <>
-                <div className="grid grid-cols-3 bg-white pt-8 gap-4 m-10 ">
-                    <div className="col-span-2  relative">
-                        {/*{reqData.status === 9 &&*/}
-                        {/*    <>*/}
-                        {/*        <div*/}
-                        {/*            className="text-base font-semibold mr-10 bg-amber-300 right-0 p-1 px-4 absolute">*/}
-                        {/*            {billChangeStatus(reqData.status)}*/}
-                        {/*        </div>*/}
-                        {/*    </>}*/}
 
-                        <div className="mx-3 pb-2">
-                            <div className="text-base font-semibold text-neutral-600 ml-3 mb-3 text-left">
-                                Thông tin trả hàng
-                            </div>
-                            <div className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4  p-3 ">
-                                <div className="col-start-1 text-left col-span-5 ">
-                                    {
-                                        reqData.deliData.return_image_list &&
-                                        <>
-                                            <div className="grid grid-cols-6 text-left ">
-                                                <Image.PreviewGroup
-                                                    preview={{
-                                                        onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
-                                                    }}>
-                                                    {reqData?.deliData?.return_image_list.map((imageUrl, index) => (
-                                                        <>
-                                                            <div className="font-normal col-span-1">
-                                                                <Image key={index} height={150} width={150}
-                                                                       src={imageUrl}/>
-                                                            </div>
-                                                        </>
-                                                    ))}
-                                                </Image.PreviewGroup>
-                                            </div>
-                                        </>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div className="text-sm text-left font-light  text-neutral-600 mx-6 relative ">
-                        <div className="flex-col mt-6 mx-6 font-normal ">
-                            <div
-                                className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 py-2 border-b-2 pb-4">
-                                <div className="col-start-1 font-semibold col-span-6 ">Thời gian yêu cầu trả
-                                    hàng
-                                </div>
-                                <div className="col-start-1 text-left col-span-6 ">
-                                    {formatDateTime(reqData?.deliData?.return_time)}
-                                </div>
-                            </div>
-                            <div
-                                className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 py-2 border-b-2 pb-4">
-                                <div className="col-start-1 font-semibold col-span-6 "> Lí do trả hàng
-                                </div>
-                                <div className="col-start-1 text-left col-span-6 ">
-                                    {reqData?.deliData?.return_reason}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </>}
 
 
         </>
