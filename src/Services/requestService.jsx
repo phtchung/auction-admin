@@ -132,3 +132,11 @@ export const returnProductOfAdmin = async (params) => {
         params,
     });
 };
+
+export const acceptReturnProduct = async (returnDataAdmin) => {
+    return privateHttp({
+        method: "POST",
+        url: "/admin/acceptReturn",
+        data: returnDataAdmin,
+    });
+};

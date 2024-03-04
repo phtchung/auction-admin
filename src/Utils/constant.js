@@ -23,65 +23,6 @@ export const colSuccess = [
     {id: "final_price", name: "Giá trúng thầu"},
     {id: "victory_time", name: "Thời gian thắng"},
 ];
-export const tabData = [
-    {
-        value: "2",
-        name: "Approved",
-        top: "Approved",
-        count: 3,
-        color: "bg-orange-400",
-    },
-    {
-        value: "3",
-        name: "Bidding",
-        top: "Bidding",
-        count: 4,
-        color: "bg-lime-500",
-    },
-    {
-        value: "4",
-        name: "Success",
-        top: "Success",
-        count: 5,
-        color: "bg-green-700",
-    },
-    {
-        value: "5",
-        name: "Failure",
-        top: "Failure",
-        count: 6,
-        color: "bg-fuchsia-700",
-    },
-    {
-        value: "6",
-        name: "Confirm ",
-        top: "Confirm ",
-        count: 2,
-        color: "bg-yellow-300",
-    },
-    {
-        value: "7",
-        name: "Delivery start",
-        top: "Departure",
-        count: 3,
-        color: "bg-indigo-800",
-    },
-    {
-        value: "8",
-        name: "Completed",
-        top: "Completion",
-        count: 2,
-        color: "bg-emerald-800",
-    },
-    {value: "9", name: "Cancel", top: "Cancel", count: 2, color: "bg-red-600"},
-    {
-        value: "10",
-        name: "Reject",
-        top: "Reject",
-        count: 3,
-        color: "bg-rose-900",
-    },
-];
 
 export const tabDataAdmin = [
     {value: "1", name: "New Request", top: "New", color: "bg-cyan-400"},
@@ -427,6 +368,13 @@ export function adminProcessStatus(status) {
     } else {
         return 1;
     }
+}
+
+export function checkStatus(status){
+    return status === 8 ||
+        status === 10 ||
+        status === 11 ||
+        status === 14;
 }
 
 export function adminProductStatus(status) {

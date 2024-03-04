@@ -23,6 +23,10 @@ const ResultPage = () => {
             setTitle('Tạo phiên đấu giá cho sản phẩm thành công');
             setSubTitle(`Sản phẩm sẽ sớm được đưa ra đấu giá .`);
         }
+        else if(state === 14){
+            setTitle('Duyệt yêu cầu trả hàng thành công');
+            setSubTitle(`Sản phẩm sẽ được trả lại cho người bán hàng.`);
+        }
     }, [state]);
   return(
       <LayOut>

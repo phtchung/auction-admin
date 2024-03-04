@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import {Button} from "@material-tailwind/react";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {colReturnFromAdmin, colReturnFromUser} from "../../Utils/constant.js";
+import {colReturnFromAdmin} from "../../Utils/constant.js";
 import LayOut from "../../Components/Layout/layout.jsx";
 import {Checkbox} from "antd";
 import {MaterialReactTable} from "material-react-table";
@@ -199,17 +199,15 @@ const ReturnProductAdmin = () => {
                                     })}
                                     muiTableBodyRowProps={({row}) => ({
                                         onClick: () => {
-                                            //
-                                            // navigate(
-                                            //     `/requestHistory/detail/${row.original.id}?status=${row.original.status}`,
-                                            // )
+                                            navigate(
+                                                `/returnProductAdmin/detail/${row.original.id}?status=${row.original.status}`,
+                                            )
                                         },
                                     })}
                                 />
                             </div>
                         </>
                     )}
-
                 </div>
             </LayOut>
 
