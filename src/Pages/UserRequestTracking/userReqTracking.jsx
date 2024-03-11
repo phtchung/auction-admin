@@ -143,9 +143,15 @@ const RequestTracking = () => {
                                     muiTableBodyRowProps={({row}) => ({
                                         onClick: () => {
                                             console.log(row.original);
-                                            navigate(
-                                                `/reqTracking/userRequestDetail/${row.original.request_id}?status=${row.original.status}`,
-                                            )
+                                            if(row.original.status === 9){
+                                                navigate(
+                                                    `/returnProductUser/detail/${row.original.request_id}?status=${row.original.status}`,
+                                                )
+                                            }else {
+                                                navigate(
+                                                    `/reqTracking/userRequestDetail/${row.original.request_id}?status=${row.original.status}`,
+                                                )
+                                            }
                                         },
                                     })}
                                 />

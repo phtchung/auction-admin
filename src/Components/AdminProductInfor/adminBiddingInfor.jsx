@@ -15,7 +15,7 @@ const AdminBiddingInfo = ({ data }) => {
                 <div className="grid grid-cols-6 text-left">
                     <div> Hình thức :</div>
                     <div className="font-normal  col-span-2">
-                        {data?.type_of_auction === 1 ? "Đấu giá tăng" : "Đấu giá giảm "}
+                        {data?.type_of_auction}
                     </div>
                     {
                         ((data?.status === 2 || data?.status === 3 || data?.status === 11 ) && (data?.admin_belong !== 1)) &&
@@ -72,7 +72,7 @@ const AdminBiddingInfo = ({ data }) => {
                                 <div className="font-normal col-span-2">
                                     {data?.winner}
                                 </div>
-                                <div> Phone Number :</div>
+                                <div> Số điện thoại :</div>
                                 <div className="font-normal col-span-2">
                                     {data?.phone}
                                 </div>

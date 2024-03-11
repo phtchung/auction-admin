@@ -70,10 +70,7 @@ const CreateProductAuction = () => {
                 return;
             }
             const res = await createProductAuction({...adminAuctionData});
-            toast.success("Gửi yêu cầu thành công", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 1000,
-            });
+
             navigate('/resultSuccess',{state : 200})
             handleOpen()
             setAdminAuctionData(null);
@@ -100,7 +97,6 @@ const CreateProductAuction = () => {
 
                     </div>
                     <div className="items-center bg font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
-
                         <Form
                             {...formItemLayout}
 
@@ -230,6 +226,41 @@ const CreateProductAuction = () => {
                                     treeData={treeSelectData}
                                 />
                             </Form.Item>
+                            <Form.Item
+                                name="brand"
+                                label="Thương hiệu sản phẩm"
+                                rules={[
+                                    {
+                                        required: false,
+                                        message: 'Có thể bỏ trống nếu không có!',
+                                        whitespace: true,
+                                    },
+                                ]}
+                            >
+                                <Input
+                                    onChange={(e) => handleAdminAuctionData('brand', e.target.value)}
+                                    placeholder="Thương hiệu "/>
+                            </Form.Item>
+
+                            <Form.Item
+                                name="is_used"
+                                label="Tình trạng sản phẩm"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Hãy điền tình trạng của sản phẩm (Đã sử dụng/ Chưa sử dụng )',
+                                        whitespace: true,
+                                    },
+                                ]}
+                            >
+                                <Select
+                                    onChange={(value) => handleAdminAuctionData('is_used', value)}
+                                    style={{textAlign: "left"}}
+                                    placeholder="Tình trạng sản phẩm">
+                                    <Option value="0">Chưa sử dụng</Option>
+                                    <Option value="1">Đã sử dụng</Option>
+                                </Select>
+                            </Form.Item>
 
                             <Form.Item
                                 name="sale_price"
@@ -271,16 +302,16 @@ const CreateProductAuction = () => {
 
                             <Form.Item
                                 name="step_price"
-                                label="Bước nhảy giá"
+                                label="Bước giá"
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Hãy điền bước nhảy giá!',
+                                        message: 'Hãy điền bước giá!',
                                     },
                                 ]}
                             >
                                 <Input
-                                    placeholder="Bước nhảy giá"
+                                    placeholder="Bước giá"
                                     onChange={(e) => handleAdminAuctionData('step_price', e.target.value)}
                                     suffix="VNĐ"
                                     style={{
@@ -308,6 +339,40 @@ const CreateProductAuction = () => {
                                         textAlign: 'center'
                                     }}
                                 />
+                            </Form.Item>
+                            <Form.Item
+                                name="can_return"
+                                label="Có thể trả sản phẩm"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Hãy điền khả năng trả lại sản phẩm (Không/Có thể )',
+                                        whitespace: true,
+                                    },
+                                ]}
+                            >
+                                <Select
+                                    onChange={(value) => handleAdminAuctionData('can_return', value)}
+                                    style={{textAlign: "left"}}
+                                    placeholder="Trả sản phẩm">
+                                    <Option value="0">Không</Option>
+                                    <Option value="1">Có thể</Option>
+                                </Select>
+                            </Form.Item>
+                            <Form.Item
+                                name="delivery_from"
+                                label="Nơi gửi sản phẩm"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Điền nơi gửi sản phẩm!',
+                                        whitespace: true,
+                                    },
+                                ]}
+                            >
+                                <Input
+                                    onChange={(e) => handleAdminAuctionData('delivery_from', e.target.value)}
+                                    placeholder="Nơi gửi sản phẩm "/>
                             </Form.Item>
 
                             <Form.Item
