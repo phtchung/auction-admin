@@ -16,7 +16,7 @@ const NewProductInfor = ({reqData}) => {
                     {
                         reqData.admin_belong !== 1 &&
                         <>
-                            <div className="col-start-4 font-semibold col-span-1 ...">Thời gian yêu cầu</div>
+                            <div className="col-start-4 font-semibold col-span-1 ">Thời gian yêu cầu</div>
                             <div
                                 className="col-start-5 text-left col-span-2 "> {(reqData.status === 1 || reqData.status === 13) ? reqData?.createdAt : reqData?.request_time}
                             </div>
@@ -57,6 +57,13 @@ const NewProductInfor = ({reqData}) => {
                 </div>
                 <div
                     className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
+                    <div className="col-start-1 font-semibold col-span-1 ">Thương hiệu :</div>
+                    <div className="col-start-2 text-left col-span-2 ">{reqData?.brand}</div>
+                    <div className="col-start-4 font-semibold col-span-1 ">Tình trạng :</div>
+                    <div className="col-start-5 text-left col-span-2 "> {reqData?.is_used}</div>
+                </div>
+                <div
+                    className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
                     <div className="col-start-1 font-semibold col-span-1 ">Giá khởi điểm :</div>
                     <div className="col-start-2 text-left col-span-2 "> {reqData?.reserve_price} VND
                     </div>
@@ -66,11 +73,18 @@ const NewProductInfor = ({reqData}) => {
                 </div>
                 <div
                     className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
-                    <div className="col-start-1 font-semibold col-span-1 ">Bước nhảy giá :</div>
+                    <div className="col-start-1 font-semibold col-span-1 ">Bước giá :</div>
                     <div className="col-start-2 text-left col-span-2 "> {reqData?.step_price} VND</div>
                     <div className="col-start-4 font-semibold col-span-1 ">Phí vận chuyển :</div>
                     <div className="col-start-5 text-left col-span-2 ">{reqData?.shipping_fee} VND
                     </div>
+                </div>
+                <div
+                    className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
+                    <div className="col-start-1 font-semibold col-span-1 ">Trả hàng :</div>
+                    <div className="col-start-2 text-left col-span-2 ">{reqData?.can_return}</div>
+                    <div className="col-start-4 font-semibold col-span-1 ">Nơi gửi hàng :</div>
+                    <div className="col-start-5 text-left col-span-2 "> {reqData?.delivery_from}</div>
                 </div>
                 <div
                     className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
@@ -136,7 +150,7 @@ const NewProductInfor = ({reqData}) => {
                     </div>
                     {
                         (reqData.status !== 10 && reqData.status !== 11) && <>
-                            <div className="text-base font-semibold text-neutral-600 mx-6">
+                        <div className="text-base font-semibold text-neutral-600 mx-6">
                                 Thông tin giao hàng
                             </div>
                             <div className="flex-col mt-4 mx-6 font-normal ">
@@ -173,7 +187,7 @@ const NewProductInfor = ({reqData}) => {
                         className="text-base font-semibold mr-10 bg-amber-300 right-0 p-1 px-4 absolute">
                         {billChangeStatus(reqData.status)}
                     </div>
-                    <div className="mx-3 pb-2">
+                    <div className="mx-3 ">
                         <div className="text-base font-semibold text-neutral-600 mb-4 text-left">
                             Thông tin đấu giá sản phẩm
                         </div>

@@ -66,11 +66,12 @@ const UserProductInfor = ({data}) => {
                     <div> Người bán :</div>
                     <div className="font-normal  col-span-2"> {data?.seller?.name}</div>
                     <div>Điểm tích lũy :</div>
-                    <div className="font-normal  col-span-2"> {data?.seller?.point }</div>
+                    <div className="font-normal  col-span-2"> {data?.seller?.point}</div>
                 </div>
                 <div className="grid grid-cols-6 text-left">
                     <div> Trung bình đánh giá :</div>
-                    <div className="font-normal  col-span-5"> {data?.seller?.average_rating ? data?.seller?.average_rating : 0}</div>
+                    <div
+                        className="font-normal  col-span-5"> {data?.seller?.average_rating ? data?.seller?.average_rating : 0}</div>
                 </div>
 
                 <div className="grid grid-cols-6 text-left">
@@ -80,6 +81,12 @@ const UserProductInfor = ({data}) => {
                 <div className="grid grid-cols-6 text-left">
                     <div> Chất lượng :</div>
                     <div className="font-normal col-span-2"> {data?.rank}</div>
+                </div>
+                <div className="grid grid-cols-6 text-left font-medium">
+                    <div> Thương hiệu:</div>
+                    <div className="font-normal col-span-2"> {data?.brand}</div>
+                    <div> Tình trạng :</div>
+                    <div className="font-normal col-span-2"> {data?.is_used === 0 ? 'Chưa sử dụng' : 'Đã sử dụng'}</div>
                 </div>
 
                 <div className="grid grid-cols-6 text-left">
@@ -91,10 +98,16 @@ const UserProductInfor = ({data}) => {
                     <div className="font-normal col-span-2"> {data?.sale_price} VND</div>
                 </div>
                 <div className="grid grid-cols-6 text-left font-medium">
-                    <div> Step Price :</div>
+                    <div> Bước giá :</div>
                     <div className="font-normal col-span-2"> {data?.step_price} VND</div>
                     <div> Phí vận chuyển :</div>
                     <div className="font-normal col-span-2"> {data?.shipping_fee} VND</div>
+                </div>
+                <div className="grid grid-cols-6 text-left font-medium">
+                    <div> Trả hàng :</div>
+                    <div className="font-normal col-span-2"> {data?.can_return === 0 ? 'Không' : 'Có thể'}</div>
+                    <div> Nơi gửi hàng :</div>
+                    <div className="font-normal col-span-2"> {data?.delivery_from}</div>
                 </div>
 
                 <div className="grid grid-cols-6 text-left">

@@ -282,7 +282,7 @@ export const billChangeStatus = (state) => {
         case 11:
             return "Hủy";
         case 14:
-            return "Trả hàng";
+            return "Đã trả hàng";
         default:
             return "Hoàn thành";
     }

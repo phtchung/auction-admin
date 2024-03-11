@@ -22,8 +22,6 @@ const UserRequestDetail = () => {
 
     const handleOpen = () => setOpen(!open);
 
-    const handleOpenCancel = () => setOpenCancel(!openCancel);
-
     const handleRejectData = (key, value) => {
         setRejectData({...rejectData, [key]: value});
         console.log({...rejectData,reject_time:formatDateTime(new Date())})
@@ -31,17 +29,6 @@ const UserRequestDetail = () => {
     const handleReject = async () => {
         try {
             const res = await rejectRequest({...rejectData,reject_time:formatDateTime(new Date())})
-            handleOpen()
-            navigate("/resultSuccess", { state: 13});
-
-        } catch (error) {
-            toast.error(error?.response?.data?.message);
-        }
-    };
-
-    const handleCancel = async () => {
-        try {
-            const res = await cancelProduct({...rejectData,reject_time:formatDateTime(new Date())})
             handleOpen()
             navigate("/resultSuccess", { state: 13});
 
@@ -80,13 +67,13 @@ const UserRequestDetail = () => {
                                     <div className="flex m-6 gap-5 justify-end mr-10">
                                         <Button
                                             onClick={handleOpen}
-                                            className="p-2 px-6 py-2 right-0 bg-white rounded text-amber-300 border-2 border-amber-300  text-sm hover:border-amber-500  font-medium focus:outline-0">
+                                            className="p-2 px-6 py-2 right-0 bg-white rounded text-orange-500 border-2 border-orange-500  text-sm hover:border-orange-500  font-medium focus:outline-0">
                                             Từ chối yêu cầu
                                         </Button>
 
                                         <Button
                                             onClick={() => navigate(`/reqTracking/requestDetail/approveRequest/${reqData?.request_id}`,{ state: reqData.status})}
-                                            className="p-2 px-6 py-2 right-0 bg-amber-300 rounded text-white border-gray-400 border-none text-sm hover:border-amber-500  font-semibold focus:outline-0">
+                                            className="p-2 px-6 py-2 right-0 bg-orange-500 rounded text-white border-gray-400 border-none text-sm hover:bg-orange-500  font-semibold focus:outline-0">
                                             Duyệt yêu cầu
                                         </Button>
                                     </div>

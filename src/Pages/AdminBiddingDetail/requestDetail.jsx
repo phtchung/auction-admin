@@ -218,7 +218,7 @@ const AdminRequestDetail = () => {
                                                 <div className="font-normal col-span-2">
                                                     {reqData?.deliData?.name}
                                                 </div>
-                                                <div> Phone Number :</div>
+                                                <div> Số điện thoại :</div>
                                                 <div className="font-normal col-span-2">
                                                     {reqData?.deliData?.phone}
                                                 </div>
@@ -227,12 +227,6 @@ const AdminRequestDetail = () => {
                                                 <div> Địa chỉ :</div>
                                                 <div className="font-normal col-span-5">
                                                     {reqData?.deliData?.address}
-                                                </div>
-                                            </div>
-                                            <div className="grid grid-cols-6 text-left">
-                                                <div> Ghi chú :</div>
-                                                <div className="font-normal col-span-5">
-                                                    {reqData?.deliData?.note}
                                                 </div>
                                             </div>
 
