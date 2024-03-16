@@ -8,7 +8,6 @@ const ResultPage = () => {
     const navigate = useNavigate()
     const {state} = useLocation()
 
-    console.log(state)
     const [title, setTitle] = useState('');
     const [subTitle, setSubTitle] = useState('');
     useEffect(() => {
@@ -26,6 +25,12 @@ const ResultPage = () => {
         else if(state === 14){
             setTitle('Duyệt yêu cầu trả hàng thành công');
             setSubTitle(`Sản phẩm sẽ được trả lại cho người bán hàng.`);
+        }else if(state === 15){
+            setTitle('Từ chối cầu trả hàng thành công');
+            setSubTitle(``);
+        }else if(state === 17){
+            setTitle('Tạo bài viết thành công');
+            setSubTitle(``);
         }
     }, [state]);
   return(

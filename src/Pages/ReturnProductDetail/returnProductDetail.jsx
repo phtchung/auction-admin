@@ -9,7 +9,7 @@ import {Button} from "@material-tailwind/react";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
 import {useState} from "react";
 import {toast} from "react-toastify";
-import {acceptReturnProduct} from "../../Services/requestService.jsx";
+import {acceptReturnProduct,denyReturnProduct} from "../../Services/requestService.jsx";
 import {formatDateTime} from "../../Utils/constant.js";
 
 const ReturnProductDetail = () => {
@@ -38,6 +38,17 @@ const ReturnProductDetail = () => {
             const res = await acceptReturnProduct({...returnDataAdmin});
             handleOpen()
             navigate("/resultSuccess", { state: 14});
+            setReturnDataAdmin({product_id:id});
+        } catch (error) {
+            toast.error(error?.response?.data?.message);
+        }
+    };
+
+    const  handleDeny = async () => {
+        try {
+            const res = await denyReturnProduct({...returnDataAdmin});
+            handleOpen1()
+            navigate("/resultSuccess", { state: 15});
             setReturnDataAdmin({product_id:id});
         } catch (error) {
             toast.error(error?.response?.data?.message);
@@ -183,6 +194,7 @@ const ReturnProductDetail = () => {
                                 </Stack>
                             </DialogContent>
                         </Dialog>
+
                         {/*từ choois trả hàng dioalog */}
                         <Dialog open={open1} onClose={handleOpen1} maxWidth="md">
                             <DialogTitle>
@@ -213,8 +225,9 @@ const ReturnProductDetail = () => {
                                         </Button>
 
                                         <Button
+                                            onClick={handleDeny}
                                             className="p-2 px-6 py-2 right-0 bg-red-500 rounded text-white  border-none text-sm  font-semibold focus:outline-0">
-                                            Từ chối
+                                            Từ chối nè
                                         </Button>
                                     </div>
 

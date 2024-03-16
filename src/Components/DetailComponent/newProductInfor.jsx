@@ -195,7 +195,7 @@ const NewProductInfor = ({reqData}) => {
                             className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 py-2 ">
                             <div className="col-start-1 font-semibold col-span-1 ">Hình thức</div>
                             <div
-                                className="col-start-2 text-left col-span-2 ">{reqData?.type_of_auction === 1 ? "Đấu giá tăng" : "Đấu giá giảm "}</div>
+                                className="col-start-2 text-left col-span-2 ">{reqData?.type_of_auction }</div>
                         </div>
                         <div
                             className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 py-2 ">
@@ -215,11 +215,11 @@ const NewProductInfor = ({reqData}) => {
                                     <div className="col-start-1 font-semibold col-span-1 ">Người trúng thầu
                                     </div>
                                     <div
-                                        className="col-start-2 text-left col-span-2 ">  {reqData?.deliData?.name}</div>
+                                        className="col-start-2 text-left col-span-2 ">  {reqData?.seller?.name}</div>
                                     <div className="col-start-4 font-semibold col-span-1 ...">Số điện thoại
                                     </div>
                                     <div className="col-start-5 text-left col-span-2 ...">
-                                        {reqData?.deliData?.phone}
+                                        {reqData?.seller?.phone}
                                     </div>
                                 </div>
 

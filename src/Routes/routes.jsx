@@ -16,6 +16,7 @@ import AdminAuctionCompletedDetail from "../Pages/AdminAuctionCompletedDetail/ad
 import ReturnProductUser from "../Pages/ReturnProductUser/returnProductUser.jsx";
 import ReturnProductAdmin from "../Pages/ReturnProductAdmin/returnProductAdmin.jsx";
 import ReturnProductDetail from "../Pages/ReturnProductDetail/returnProductDetail.jsx";
+import CreateBlog from "../Pages/CreateBlog/createBlog.jsx";
 
 
 
@@ -23,6 +24,7 @@ export const NormalRoutes = [{ path: "/login", element: <Login /> }];
 
 export const UserRoutes = [
     { path: "/404", element: <PageNotFound /> },
+    { path: "/", element: <RequestTracking /> },
     { path: "/reqTracking", element: <RequestTracking /> },
     { path: "/adminBidTracking", element: <AdminBiddingTracking /> },
     { path: "/reqTracking/requestDetail/:id", element: <AdminRequestDetail /> },
@@ -30,6 +32,7 @@ export const UserRoutes = [
     { path: "/reqTracking/requestDetail/approveRequest/:id", element: <ConfirmApproved /> },
     { path: "/resultSuccess", element: <ResultPage /> },
     { path: "/createProductAuction", element: <CreateProductAuction /> },
+    { path: "/createBlog", element: <CreateBlog /> },
     { path: "/requestHistory", element: <RequestHistory /> },
     { path: "/userAuctionCompleted", element: <UserAuctionCompleted/> },
     { path: "/userAuctionCompleted/detail/:id", element: <UserAuctionCompletedDetail/> },

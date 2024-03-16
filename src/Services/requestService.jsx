@@ -76,6 +76,15 @@ export const createProductAuction = async (productData) => {
     });
 };
 
+export const createBlog = async (blogData) => {
+    return privateHttp1({
+        method: "POST",
+        url: "/admin/createBlog",
+        data: blogData,
+    });
+};
+
+
 export const adminGetRequestHistory = async (params) => {
     return privateHttp({
         method: "POST",
@@ -137,6 +146,14 @@ export const acceptReturnProduct = async (returnDataAdmin) => {
     return privateHttp({
         method: "POST",
         url: "/admin/acceptReturn",
+        data: returnDataAdmin,
+    });
+};
+
+export const denyReturnProduct = async (returnDataAdmin) => {
+    return privateHttp({
+        method: "POST",
+        url: "/admin/denyReturn",
         data: returnDataAdmin,
     });
 };
