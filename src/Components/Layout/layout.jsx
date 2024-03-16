@@ -19,7 +19,7 @@ const items = [
     getItem('Lịch sử đấu giá hệ thống', "/adminAuctionCompleted"),
     getItem('Yêu cầu trả hàng của User', "/returnProductUser"),
     getItem('Yêu cầu trả hàng của hệ thống', "/returnProductAdmin"),
-
+    getItem('Tạo blog', "/createBlog"),
     getItem('Đăng xuất', '/logout'),
     // getItem('User', 'sub1', <UserOutlined />, [
     //     getItem('Tom', '3'),
