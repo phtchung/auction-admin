@@ -84,6 +84,14 @@ export const createBlog = async (blogData) => {
     });
 };
 
+export const createCategories = async (cateData) => {
+    return privateHttp1({
+        method: "POST",
+        url: "/admin/createCategories",
+        data: cateData,
+    });
+};
+
 
 export const adminGetRequestHistory = async (params) => {
     return privateHttp({

@@ -17,7 +17,8 @@ import ReturnProductUser from "../Pages/ReturnProductUser/returnProductUser.jsx"
 import ReturnProductAdmin from "../Pages/ReturnProductAdmin/returnProductAdmin.jsx";
 import ReturnProductDetail from "../Pages/ReturnProductDetail/returnProductDetail.jsx";
 import CreateBlog from "../Pages/CreateBlog/createBlog.jsx";
-
+import CreateCategories from "../Pages/CreateCategories/createCategories.jsx";
+import CategoryDetail from "../Pages/CategoryDetail/categoryDetail.jsx";
 
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
@@ -33,6 +34,8 @@ export const UserRoutes = [
     { path: "/resultSuccess", element: <ResultPage /> },
     { path: "/createProductAuction", element: <CreateProductAuction /> },
     { path: "/createBlog", element: <CreateBlog /> },
+    { path: "/categories", element: <CreateCategories /> },
+    { path: "/categories/:id", element: <CategoryDetail /> },
     { path: "/requestHistory", element: <RequestHistory /> },
     { path: "/userAuctionCompleted", element: <UserAuctionCompleted/> },
     { path: "/userAuctionCompleted/detail/:id", element: <UserAuctionCompletedDetail/> },
