@@ -76,7 +76,7 @@ const UserProductInfor = ({data}) => {
 
                 <div className="grid grid-cols-6 text-left">
                     <div> Tên sản phẩm :</div>
-                    <div className="font-normal  col-span-5"> {data?.product_name}</div>
+                    <div className=" font-semibold text-base  col-span-5"> {data?.product_name}</div>
                 </div>
                 <div className="grid grid-cols-6 text-left">
                     <div> Chất lượng :</div>
@@ -129,7 +129,7 @@ const UserProductInfor = ({data}) => {
                                 }}
                             >
                                 <div className="font-normal col-span-1 mb-2">
-                                    <Image height={150} width={150}
+                                    <Image height={170} width={170}
                                            src={data.main_image}/>
                                 </div>
 

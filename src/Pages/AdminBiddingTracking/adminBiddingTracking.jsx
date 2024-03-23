@@ -125,7 +125,11 @@ const AdminBiddingTracking = () => {
                             <div className="border border-gray-300 mt-6">
 
                                 <MaterialReactTable
-
+                                    enableColumnResizing={true}
+                                    defaultColumn= {{
+                                        minSize: 80,
+                                        maxSize: 600,
+                                    }}
                                     columns={columns}
                                     data={(data)}
                                     isloading={isLoading}
