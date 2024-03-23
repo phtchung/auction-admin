@@ -404,6 +404,7 @@ const CreateProductAuction = () => {
 
                             <Form.Item
                                 name="description"
+
                                 label="Mô tả sản phẩm"
                                 rules={[
                                     {
@@ -413,6 +414,7 @@ const CreateProductAuction = () => {
                                 ]}
                             >
                                 <Input.TextArea
+                                    className="hover:border-none"
                                     placeholder="Mô tả sản phẩm"
                                     onChange={(e) => handleAdminAuctionData('description', e.target.value)}
                                     maxLength={300}/>

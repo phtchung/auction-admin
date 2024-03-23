@@ -104,8 +104,12 @@ const RequestTracking = () => {
 
                                 <div className="border-b-2 border-gray-300 "></div>
                                 <MaterialReactTable
-
+                                    enableColumnResizing={true}
                                     columns={columns}
+                                    defaultColumn= {{
+                                    minSize: 80,
+                                    maxSize: 440,
+                                }}
                                     data={(data)}
                                     isloading={isLoading}
                                     enableDensityToggle={false}
@@ -118,16 +122,15 @@ const RequestTracking = () => {
                                             margin: 0,
                                             padding: 0,
                                             maxWidth: '1258px',
-
                                         },
                                     }}
                                     muiTableHeadCellProps={({column}) => ({
                                         sx: {
                                             textAlign: 'right',
                                             fontSize: '14px',
+                                            maxWidth:'300px'
                                         },
                                     })}
-
 
                                     muiTableBodyCellProps={({row}) => ({
                                         sx: {
@@ -137,12 +140,11 @@ const RequestTracking = () => {
                                             whiteSpace: 'nowrap',
                                             fontSize: '13px',
                                             cursor: 'pointer',
-                                            paddingX: '12px'
+                                            paddingX: '12px',
                                         },
                                     })}
                                     muiTableBodyRowProps={({row}) => ({
                                         onClick: () => {
-                                            console.log(row.original);
                                             if(row.original.status === 9){
                                                 navigate(
                                                     `/returnProductUser/detail/${row.original.request_id}?status=${row.original.status}`,

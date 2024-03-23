@@ -56,7 +56,6 @@ const RequestHistory = () => {
 
                             <div className="font-medium text-sm p-3 ">Số điện thoại :</div>
 
-
                         </div>
                         <div className="row-span-6">
                             <LocalizationProvider
@@ -173,8 +172,13 @@ const RequestHistory = () => {
 
                                 <div className="border-b-2 border-gray-300 "></div>
                                 <MaterialReactTable
+                                    enableColumnResizing={true}
                                     columns={colReqHistory}
                                     data={(reqHistoryData)}
+                                    defaultColumn= {{
+                                        minSize: 80,
+                                        maxSize: 430,
+                                    }}
                                     isloading={isLoading}
                                     enableDensityToggle={false}
                                     enableColumnFilters={false}
@@ -193,7 +197,6 @@ const RequestHistory = () => {
                                             margin: 0,
                                             padding: 0,
                                             maxWidth: '1258px',
-
                                         },
                                     }}
                                     muiTableHeadCellProps={({column}) => ({
@@ -202,7 +205,6 @@ const RequestHistory = () => {
                                             fontSize: '14px',
                                         },
                                     })}
-
 
                                     muiTableBodyCellProps={({row}) => ({
                                         sx: {
@@ -217,7 +219,6 @@ const RequestHistory = () => {
                                     })}
                                     muiTableBodyRowProps={({row}) => ({
                                         onClick: () => {
-                                            console.log(row.original);
                                             navigate(
                                                 `/requestHistory/detail/${row.original.id}?status=${row.original.status}`,
                                             )
