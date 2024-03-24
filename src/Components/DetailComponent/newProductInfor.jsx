@@ -215,11 +215,11 @@ const NewProductInfor = ({reqData}) => {
                                     <div className="col-start-1 font-semibold col-span-1 ">Người trúng thầu
                                     </div>
                                     <div
-                                        className="col-start-2 text-left col-span-2 ">  {reqData?.seller?.name}</div>
+                                        className="col-start-2 text-left col-span-2 ">  {reqData?.winner?.name}</div>
                                     <div className="col-start-4 font-semibold col-span-1 ...">Số điện thoại
                                     </div>
                                     <div className="col-start-5 text-left col-span-2 ...">
-                                        {reqData?.seller?.phone}
+                                        {reqData?.winner?.phone}
                                     </div>
                                 </div>
 
@@ -266,7 +266,7 @@ const NewProductInfor = ({reqData}) => {
                                     </div>
                                     <div
                                         className="border-b border-gray-200  text-gray-600 font-bold p-4">
-                                        {reqData?.final_price + reqData?.shipping_fee}đ
+                                        {reqData?.total_price}đ
                                     </div>
                                 </div>
                             </div>
