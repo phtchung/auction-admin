@@ -46,7 +46,6 @@ const ProductInfor = ({data}) => {
                 <div className="grid grid-cols-6 text-left">
                     <div> Mã sản phẩm :</div>
                     <div className="font-normal  col-span-2">
-                        {" "}
                         {data?.request_id}
                     </div>
                     {
@@ -69,6 +68,8 @@ const ProductInfor = ({data}) => {
                 <div className="grid grid-cols-6 text-left">
                     <div> Chất lượng :</div>
                     <div className="font-normal col-span-2"> {data?.rank}</div>
+                    <div> Danh mục :</div>
+                    <div className="font-normal col-span-2"> {data?.category_name}</div>
                 </div>
                 <div className="grid grid-cols-6 text-left">
                     <div> Thương hiệu :</div>

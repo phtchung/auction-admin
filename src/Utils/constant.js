@@ -829,6 +829,10 @@ export const treeSelectData = [
     },
 ]
 
+export const formatMoney = (number) => {
+    number = parseInt(number)
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 export const AdminNewProductTrackingColumns =
     [
         {accessorKey: 'product_id', header: 'Mã sản phẩm', enableResizing: false, size: 220, muiTableHeadCellProps: {align: 'center',}},

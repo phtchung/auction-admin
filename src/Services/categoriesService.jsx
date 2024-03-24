@@ -1,4 +1,5 @@
 import privateHttp from "./Http/privateHttp.config.js";
+import publicHttp from "./Http/publicHttp.config.js";
 
 export const getCategories = async () => {
     return privateHttp({
@@ -43,3 +44,10 @@ export const deleteCategory = async ({ category_id }) => {
         url: `/admin/category/${category_id}`,
     });
 }
+
+export const getCategoriesTreeSelect = async () => {
+    return publicHttp({
+        method: "GET",
+        url: `/categories`,
+    });
+};

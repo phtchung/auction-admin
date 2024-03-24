@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useSearchParams } from "react-router-dom";
-import { formatDateTime } from "../../Utils/constant.js";
+import {formatDateTime, formatMoney} from "../../Utils/constant.js";
 import {AdminGeAuctionCompletedDetail, AdminGetReqDetail} from "../../Services/requestService.jsx";
 
 export default function useAdminAuctionCompletedDetail() {
@@ -15,13 +15,15 @@ export default function useAdminAuctionCompletedDetail() {
             request_id: data?._id,
             product_name: data?.product_name,
             description: data?.description,
-            step_price: data?.step_price,
-            shipping_fee: data?.shipping_fee,
-            sale_price: data?.sale_price,
-            reserve_price: data?.reserve_price,
-            final_price: data?.final_price,
+            step_price: formatMoney(data?.step_price),
+            shipping_fee: formatMoney(data?.shipping_fee),
+            sale_price: formatMoney(data?.sale_price),
+            reserve_price: formatMoney(data?.reserve_price),
+            final_price: formatMoney(data?.final_price),
+            total_price: formatMoney(data?.final_price + data?.shipping_fee),
             deliData: data?.product_delivery,
             seller:data?.seller_id,
+            winner:data?.winner_id,
             category_name: data?.category_id?.name,
             victory_time: formatDateTime(new Date(data?.victory_time)),
             createdAt: formatDateTime(new Date(data?.createdAt)),

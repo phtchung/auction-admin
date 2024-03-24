@@ -63,7 +63,7 @@ const LayOut = ({ children }) => {
                             width: '78.75rem',
                             minHeight:300,
                             textAlign:'center',
-                            overflow: 'auto',
+
                         }}
                     >
                     <div>
