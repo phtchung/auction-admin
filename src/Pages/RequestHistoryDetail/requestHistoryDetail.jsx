@@ -99,7 +99,7 @@ const RequestHistoryDetail = () => {
                             <div
                                 className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
                                 <div className="col-start-1 font-semibold col-span-1 ">Danh mục :</div>
-                                <div className="col-start-2 text-left col-span-2 ">trống</div>
+                                <div className="col-start-2 text-left col-span-2 ">{reqData?.category_name}</div>
                                 <div className="col-start-4 font-semibold col-span-1 ...">Chất lượng :</div>
                                 <div className="col-start-5 text-left col-span-2 ..."> {reqData?.rank}</div>
                             </div>
@@ -195,7 +195,7 @@ const RequestHistoryDetail = () => {
                                                     duyệt
                                                 </div>
                                                 <div
-                                                    className="col-start-5 text-left col-span-2 ...">{reqData.finish_time}</div>
+                                                    className="col-start-5 text-left col-span-2 ...">{reqData.approved_at}</div>
                                             </div>
                                             <div
                                                 className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 py-2 ">

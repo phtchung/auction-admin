@@ -1,5 +1,5 @@
 import {Image} from "antd";
-import {billChangeStatus, formatDateTime} from "../../Utils/constant.js";
+import {billChangeStatus, formatDateTime, formatMoney} from "../../Utils/constant.js";
 
 const NewProductInfor = ({reqData}) => {
     console.log(reqData)
@@ -51,7 +51,7 @@ const NewProductInfor = ({reqData}) => {
                 <div
                     className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
                     <div className="col-start-1 font-semibold col-span-1 ">Danh mục :</div>
-                    <div className="col-start-2 text-left col-span-2 ">trống</div>
+                    <div className="col-start-2 text-left col-span-2 ">{reqData?.category_name}</div>
                     <div className="col-start-4 font-semibold col-span-1 ...">Chất lượng :</div>
                     <div className="col-start-5 text-left col-span-2 ..."> {reqData?.rank}</div>
                 </div>
@@ -65,18 +65,18 @@ const NewProductInfor = ({reqData}) => {
                 <div
                     className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
                     <div className="col-start-1 font-semibold col-span-1 ">Giá khởi điểm :</div>
-                    <div className="col-start-2 text-left col-span-2 "> {reqData?.reserve_price} VND
+                    <div className="col-start-2 text-left col-span-2 "> {formatMoney(reqData?.reserve_price)} VND
                     </div>
                     <div className="col-start-4 font-semibold col-span-1 ...">Giá bán trực tiếp :</div>
-                    <div className="col-start-5 text-left col-span-2 ">{reqData?.sale_price} VND
+                    <div className="col-start-5 text-left col-span-2 ">{formatMoney(reqData?.sale_price)} VND
                     </div>
                 </div>
                 <div
                     className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
                     <div className="col-start-1 font-semibold col-span-1 ">Bước giá :</div>
-                    <div className="col-start-2 text-left col-span-2 "> {reqData?.step_price} VND</div>
+                    <div className="col-start-2 text-left col-span-2 "> {formatMoney(reqData?.step_price)} VND</div>
                     <div className="col-start-4 font-semibold col-span-1 ">Phí vận chuyển :</div>
-                    <div className="col-start-5 text-left col-span-2 ">{reqData?.shipping_fee} VND
+                    <div className="col-start-5 text-left col-span-2 ">{formatMoney(reqData?.shipping_fee)} VND
                     </div>
                 </div>
                 <div
@@ -202,7 +202,7 @@ const NewProductInfor = ({reqData}) => {
                             <div className="col-start-1 font-semibold col-span-1 "> Bắt đầu</div>
                             <div
                                 className="col-start-2 text-left col-span-2 ">{reqData?.start_time}</div>
-                            <div className="col-start-4 font-semibold col-span-1 ..."> Kết thúc
+                            <div className="col-start-4 font-semibold col-span-1 "> Kết thúc
                             </div>
                             <div
                                 className="col-start-5 text-left col-span-2 ...">{reqData.finish_time}</div>
@@ -256,17 +256,17 @@ const NewProductInfor = ({reqData}) => {
                                 <div className="col-1 text-right mr-6">
                                     <div className="border-b bor        der-gray-200 "></div>
                                     <div className="border-b border-gray-200  p-3">
-                                        {reqData?.reserve_price}đ
+                                        {formatMoney(reqData?.reserve_price)}đ
                                     </div>
                                     <div className="border-b border-gray-200 p-3">
-                                        {reqData?.final_price}đ
+                                        {formatMoney(reqData?.final_price)}đ
                                     </div>
                                     <div className="border-b border-gray-200 p-3">
-                                        {reqData?.shipping_fee}đ
+                                        {formatMoney(reqData?.shipping_fee)}đ
                                     </div>
                                     <div
                                         className="border-b border-gray-200  text-gray-600 font-bold p-4">
-                                        {reqData?.total_price}đ
+                                        {formatMoney(reqData?.final_price + reqData?.shipping_fee)}đ
                                     </div>
                                 </div>
                             </div>

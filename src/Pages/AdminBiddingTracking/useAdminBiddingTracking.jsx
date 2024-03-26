@@ -4,7 +4,7 @@ import {
     AdminBiddingTrackingColumns, AdminCancelTrackingColumns, AdminCompletedTrackingColumns, AdminFailureTrackingColumns,
     AdminNewProductTrackingColumns,
     adminProductStatus, AdminReturnTrackingColumns, AdminSuccessTrackingColumns,
-    formatDateTime,
+    formatDateTime, formatMoney,
 } from "../../Utils/constant.js";
 import { useSearchParams } from "react-router-dom";
 import {
@@ -28,10 +28,11 @@ export default function useAdminBiddingTracking() {
                 status: data?.status,
                 admin_belong:data?.admin_belong,
                 createdAt: formatDateTime(new Date(data?.createdAt)),
-                reserve_price: data?.reserve_price,
+                reserve_price:formatMoney(data?.reserve_price),
+                cancel_time:formatDateTime(data?.cancel_time),
                 type_of_auction: data?.type_of_auction === 1 ? 'Đấu giá tăng' : 'Đấu giá giảm',
-                sale_price:data?.sale_price,
-                final_price: data?.final_price,
+                sale_price:formatMoney(data?.sale_price),
+                final_price: formatMoney(data?.final_price),
                 seller_name:data?.seller_id?.username,
                 phone: data?.seller_id?.phone,
                 phone_receiver : data?.product_delivery?.phone,

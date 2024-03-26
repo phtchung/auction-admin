@@ -136,21 +136,6 @@ export const colReject = [
     {id: "reject_time", name: "Thời gian từ chối"},
     {id: "action_by", name: "Tác nhân"},
 ];
-export const colWinCancel = [
-    {id: "product_id", name: "Mã sản phẩm"},
-    {id: "product_name", name: "Tên sản phẩm"},
-    {id: "final_price", name: "Giá trúng thầu"},
-    {id: "victory_time", name: "Thời gian thắng"},
-    {id: "status", name: "Trạng thái"},
-];
-export const colAuctionWin = [
-    {id: "product_id", name: "Mã sản phẩm"},
-    {id: "product_name", name: "Tên sản phẩm"},
-    {id: "reserve_price", name: "Giá khởi điểm"},
-    {id: "final_price", name: "Giá trúng thầu"},
-    {id: "victory_time", name: "Thời gian thắng"},
-];
-
 export const colDlvWait = [
     {id: "product_id", name: "Mã sản phẩm"},
     {id: "product_name", name: "Tên sản phẩm"},
@@ -166,43 +151,6 @@ export const colSaleHistory = [
     {id: "final_price", name: "Thành tiền"},
     {id: "completed_at", name: "Ngày hoàn thành"},
 ];
-
-export const pending = {
-    value: "1",
-    name: "Pending",
-    top: "Pending",
-    count: 2,
-    color: "bg-cyan-400",
-};
-
-export const numberToString = (state) => {
-    switch (state) {
-        case 1:
-            return "Pending";
-        case 2:
-            return "Approved";
-        case 3:
-            return "Bidding";
-        case 4:
-            return "Bidding";
-        case 5:
-            return "Success";
-        case 6:
-            return "Confirm";
-        case 7:
-            return "Delivery start";
-        case 8:
-            return "Completed";
-        case 10:
-            return "Failure";
-        case 11:
-            return "Cancel";
-        case 13:
-            return "Reject";
-        default:
-            return "Pending";
-    }
-};
 
 export const adminChangeStateToStringUser = (state) => {
     switch (state) {
@@ -411,65 +359,6 @@ export function reqConvertStatus(status) {
     } else {
         return 1;
     }
-}
-
-export const rankItems = [
-    {value: "S", label: "S"},
-    {value: "A", label: "A"},
-    {value: "B", label: "B"},
-    {value: "C", label: "C"},
-    {value: "D", label: "D"},
-];
-
-export const categories = [
-    {value: "6590eeb91a599365d4b68951", label: "Điện tử"},
-    {value: "65c1ffb748844c67a80a2156", label: "Đồ gia dụng"},
-  {value: "65c1ffcb48844c67a80a2157", label: "Tài liệu học tập"},
-  {value: "65c1ffe248844c67a80a2158", label: "Đồ chơi"},
-  {value: "65c1fff048844c67a80a2159", label: "Dụng cụ thể thao"},
-  {value: "65c2000d48844c67a80a215a", label: "Đồ trang trí"},
-  {value: "65c2001b48844c67a80a215b", label: "Đồ dùng cá nhân"},
-  {value: "65c2003e48844c67a80a215c", label: "Vật dụng cá nhân"},
-  {value: "65c2007748844c67a80a215d", label: "Phụ kiện thời trang"},
-  {value: "65c2009e48844c67a80a215e", label: "Quần áo"},
-  {value: "65c200ad48844c67a80a215f", label: "Giày dép"},
-  {value: "65c200bc48844c67a80a2160", label: "Nội thất"},
-
-];
-
-export function hideCharacters(username) {
-    var hiddenPart = "";
-    var visiblePart = "";
-
-    if (username.length < 5) {
-        hiddenPart = "*".repeat(2);
-        visiblePart = username.slice(0, username.length - 2);
-    } else {
-        var hiddenCount = Math.floor(username.length / 2);
-        var hiddenPositions = getRandomPositions(username.length, hiddenCount);
-
-        hiddenPart = "";
-        for (var i = 0; i < username.length; i++) {
-            hiddenPart += hiddenPositions.includes(i) ? "*" : username[i];
-        }
-
-        visiblePart = "";
-    }
-
-    var hiddenUsername = visiblePart + hiddenPart;
-    return hiddenUsername;
-}
-
-function getRandomPositions(length, count) {
-    var positions = [];
-    for (var i = 0; i < count; i++) {
-        var randomPosition;
-        do {
-            randomPosition = Math.floor(Math.random() * length);
-        } while (positions.includes(randomPosition));
-        positions.push(randomPosition);
-    }
-    return positions;
 }
 
 export function convertWinStatus(status) {

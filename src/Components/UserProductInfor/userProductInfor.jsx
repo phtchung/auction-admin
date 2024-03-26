@@ -3,7 +3,7 @@ import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutl
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import {useNavigate} from "react-router-dom";
 import {Image} from 'antd';
-import {adminChangeStateRequestFromUser} from "../../Utils/constant.js";
+import {adminChangeStateRequestFromUser, formatMoney} from "../../Utils/constant.js";
 
 const UserProductInfor = ({data}) => {
     const navigate = useNavigate();
@@ -81,6 +81,14 @@ const UserProductInfor = ({data}) => {
                 <div className="grid grid-cols-6 text-left">
                     <div> Chất lượng :</div>
                     <div className="font-normal col-span-2"> {data?.rank}</div>
+                    {
+                        data?.status !== 1 &&
+                        <>
+                            <div> Danh mục:</div>
+                            <div className="font-normal col-span-2"> {data?.category_name}</div>
+                        </>
+                    }
+
                 </div>
                 <div className="grid grid-cols-6 text-left font-medium">
                     <div> Thương hiệu:</div>
@@ -92,16 +100,16 @@ const UserProductInfor = ({data}) => {
                 <div className="grid grid-cols-6 text-left">
                     <div> Giá khởi điểm :</div>
                     <div className="font-normal col-span-2">
-                        {data?.reserve_price} VND
+                        {formatMoney(data?.reserve_price)} VND
                     </div>
                     <div> Giá bán trực tiếp :</div>
-                    <div className="font-normal col-span-2"> {data?.sale_price} VND</div>
+                    <div className="font-normal col-span-2"> {formatMoney(data?.sale_price)} VND</div>
                 </div>
                 <div className="grid grid-cols-6 text-left font-medium">
                     <div> Bước giá :</div>
-                    <div className="font-normal col-span-2"> {data?.step_price} VND</div>
+                    <div className="font-normal col-span-2"> {formatMoney(data?.step_price)} VND</div>
                     <div> Phí vận chuyển :</div>
-                    <div className="font-normal col-span-2"> {data?.shipping_fee} VND</div>
+                    <div className="font-normal col-span-2"> {formatMoney(data?.shipping_fee)} VND</div>
                 </div>
                 <div className="grid grid-cols-6 text-left font-medium">
                     <div> Trả hàng :</div>
