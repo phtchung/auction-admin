@@ -150,10 +150,11 @@ const UserAuctionCompleted = () => {
                                             fontSize: 12,
                                         }}
                                     >
-                                        <th className="w-1/3">Tổng số phiên đấu giá</th>
+                                        <th className="w-1/5">Tổng số phiên đấu giá</th>
                                         <th className="w-1/6">Thành công</th>
                                         <th className="w-1/6">Thất bại</th>
-                                        <th className="w-1/6">Trả hàng</th>
+                                        <th className="w-1/6">Trả hàng thành công</th>
+                                        <th className="w-1/6">Từ chối trả hàng</th>
                                         <th className="w-1/6">Hủy</th>
 
                                     </tr>
@@ -164,6 +165,7 @@ const UserAuctionCompleted = () => {
                                         <td>{total?.total_completed}</td>
                                         <td>{total?.total_failure}</td>
                                         <td>{total?.total_returned}</td>
+                                        <td>chưa làm</td>
                                         <td>{total?.total_canceled}</td>
                                     </tr>
                                     </tbody>

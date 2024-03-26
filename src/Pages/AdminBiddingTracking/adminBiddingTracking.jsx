@@ -165,9 +165,15 @@ const AdminBiddingTracking = () => {
                                     })}
                                     muiTableBodyRowProps={({row}) => ({
                                         onClick: () => {
-                                            navigate(
-                                                `/reqTracking/requestDetail/${row.original.product_id}?status=${row.original.status}`,
-                                            )
+                                            if(row.original.status === 9){
+                                                navigate(
+                                                    `/returnProductAdmin/detail/${row.original.product_id}?status=${row.original.status}`,
+                                                )
+                                            }else {
+                                                navigate(
+                                                    `/reqTracking/requestDetail/${row.original.product_id}?status=${row.original.status}`,
+                                                )
+                                            }
                                         },
                                     })}
                                 />

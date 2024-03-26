@@ -162,8 +162,8 @@ const AdminAuctionCompleted = () => {
                                         <td className="cursor-pointer">{total?.total_product}</td>
                                         <td>{total?.total_completed}</td>
                                         <td>{total?.total_failure}</td>
-                                        <td>{total?.total_canceled}</td>
                                         <td>{total?.total_returned}</td>
+                                        <td>{total?.total_canceled}</td>
                                     </tr>
                                     </tbody>
                                 </table>

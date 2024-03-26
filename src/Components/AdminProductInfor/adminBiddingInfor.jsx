@@ -1,4 +1,4 @@
-import { formatDateTime } from "../../Utils/constant.js";
+import {formatDateTime, formatMoney} from "../../Utils/constant.js";
 import LayOut from "../Layout/layout.jsx";
 
 const AdminBiddingInfo = ({ data }) => {
@@ -45,25 +45,25 @@ const AdminBiddingInfo = ({ data }) => {
                             <div className="grid grid-cols-6 text-left">
                                 <div> Giá trúng thầu :</div>
                                 <div className="font-normal  col-span-2">
-                                    {data?.final_price} VND
+                                    {formatMoney(data?.final_price)} VND
                                 </div>
                                 <di> Thời gian trúng thầu :</di>
                                 <div className="font-normal col-span-2">
-                                    {data?.victory_time}{" "}
+                                    {data?.victory_time}
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-6 text-left">
                                 <div> Tổng tiền :</div>
                                 <div className="font-normal col-span-2">
-                                    {data?.final_price + data?.shipping_fee} VND
+                                    {formatMoney(data?.final_price + data?.shipping_fee)} VND
                                 </div>
                                 <div> Tổng tiền thực nhận :</div>
                                 <div className="font-normal  col-span-2">
-                                    {(
+                                    {formatMoney((
                                         (data?.final_price + data?.shipping_fee) *
                                         0.9
-                                    ).toLocaleString() + " VND"}
+                                    )).toLocaleString() + " VND"}
                                 </div>
                             </div>
 

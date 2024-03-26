@@ -9,9 +9,11 @@ import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
 import {toast} from "react-toastify";
 import { sendApproveData} from "../../Services/requestService.jsx";
 import LayOut from "../../Components/Layout/layout.jsx";
-
+import useTreeCategories from "../CreateProductAuction/useCategories.jsx";
 const { Option } = Select;
 const ConfirmApproved = () => {
+    const {categories , isLoading, isSuccess} = useTreeCategories()
+    const [cate_name, setCate_name] = useState(null);
     const navigate = useNavigate();
     const {id} = useParams()
     const {state} = useLocation()
@@ -19,11 +21,13 @@ const ConfirmApproved = () => {
     const [open, setOpen] = useState(false);
     const handleapproveData = (key, value) => {
         setApproveData({...approveData, [key]: value});
+        console.log(approveData)
     };
-    const handleTreeSelect = (value, label) => {
-        handleapproveData('category',value)
-        handleapproveData('category_label',label)
+    const handleTreeSelect = (value,label ) => {
+        handleapproveData('category', value)
+        setCate_name(label[0])
     };
+
     if(state !== 1){
         navigate('/404')
     }
@@ -134,32 +138,35 @@ const ConfirmApproved = () => {
                       </div>
 
                       <div className="grid grid-cols-6  items-center">
-                          <div className="font-normal text-left col-span-2">
-                              <Form.Item
-                                  label="Danh mục sản phẩm"
-                                  name="TreeSelect"
-                                  hasFeedback
-                                  className="font-semibold "
-                                  rules={[
-                                      {
-                                          required: true,
-                                          message: 'Chọn danh mục sản phẩm!',
-                                      },
-                                  ]}
-                              >
-                                  <TreeSelect
-                                      style={{
-                                          maxWidth: 176,
-                                      }}
-                                      onChange={handleTreeSelect}
-                                      // onChange={(value) => handleapproveData('category',value)}
-                                      treeData={treeSelectData}
-                                  />
-                              </Form.Item>
-                          </div>
-                          <div className="font-normal text-left col-span-1">
+                          {
+                           categories &&
+                              <>
+                                  <div className="font-normal text-left col-span-2">
+                                      <Form.Item
+                                          label="Danh mục sản phẩm"
+                                          name="TreeSelect"
+                                          hasFeedback
+                                          className="font-semibold "
+                                          rules={[
+                                              {
+                                                  required: true,
+                                                  message: 'Chọn danh mục sản phẩm!',
+                                              },
+                                          ]}
+                                      >
+                                          <TreeSelect
+                                              style={{
+                                                  maxWidth: 176,
+                                              }}
+                                              onChange={handleTreeSelect}
+                                              treeData={categories}
+                                          />
+                                      </Form.Item>
+                                  </div>
+                              </>
+                          }
 
-                          </div>
+                          <div className="font-normal text-left col-span-1"></div>
                           <div className="font-normal col-span-3 text-left">
                               <Form.Item name="date-time-picker"
                                          className="font-semibold"
@@ -172,7 +179,7 @@ const ConfirmApproved = () => {
                                              },
                                              ]}>
                                   <DatePicker
-                                      onChange={(value) => handleapproveData('finish_time',formatDateTime(value))}
+                                      onChange={(value) => handleapproveData('finish_time', formatDateTime(value))}
                                       showTime format="YYYY-MM-DD HH:mm:ss"/>
                               </Form.Item>
                           </div>
@@ -213,7 +220,7 @@ const ConfirmApproved = () => {
                                       <div className="flex pt-1  gap-6 text-right">
                                           <div className=" w-1/5"> Danh mục sản phẩm :</div>
                                           <div className="col-span-2">
-                                              {approveData?.category_label || null}
+                                              {cate_name}
                                           </div>
                                       </div>
 

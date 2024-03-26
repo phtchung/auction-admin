@@ -35,6 +35,7 @@ export default function useUserAuctionCompletedDetail() {
             is_used:data?.is_used === 0 ? 'Chưa sử dụng' : 'Đã sử dụng',
             brand:data?.brand,
             can_return:data?.can_return === 0 ? 'Không' : 'Có thể',
+            winner:data?.winner_id,
             delivery_from:data?.delivery_from,
             reason:data?.reason,
             reject_time:formatDateTime(new Date(data?.reject_time)),

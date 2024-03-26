@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
     adminProcessStatus, approvedColumns, biddingColumns,
-    formatDateTime, newReqColumns, rejectColumns, returnColumns,
+    formatDateTime, formatMoney, newReqColumns, rejectColumns, returnColumns,
 } from "../../Utils/constant.js";
 import { useSearchParams } from "react-router-dom";
 import {AdminGetReqCount, AdminGetReqTracking} from "../../Services/requestService.jsx";
@@ -21,9 +21,9 @@ export default function useUserRequestTracking() {
                 product_name: data?.product_name,
                 status: data?.status,
                 createdAt: formatDateTime(new Date(data?.createdAt)),
-                reserve_price: data?.reserve_price,
-                sale_price:data?.sale_price,
-                final_price: data?.final_price,
+                reserve_price:formatMoney( data?.reserve_price),
+                sale_price:formatMoney(data?.sale_price),
+                final_price:formatMoney(data?.final_price),
                 seller_name:data?.seller_id?.name,
                 phone: data?.seller_id?.phone,
                 start_time:formatDateTime(new Date(data?.start_time)),
