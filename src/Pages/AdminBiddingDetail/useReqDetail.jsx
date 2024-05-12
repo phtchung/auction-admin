@@ -32,6 +32,7 @@ export default function useAdminReqDetail() {
             main_image:data?.main_image,
             reason:data?.reason,
             is_used:data?.is_used === 0 ? 'Chưa sử dụng' : 'Đã sử dụng',
+            auction_live:data?.auction_live === 0 ? 'Đấu giá thông thường' : 'Đấu giá trực tuyến',
             brand:data?.brand,
             can_return:data?.can_return === 0 ? 'Không' : 'Có thể',
             delivery_from:data?.delivery_from,

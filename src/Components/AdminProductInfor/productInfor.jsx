@@ -53,12 +53,10 @@ const ProductInfor = ({data}) => {
                         <>
                             <di> Thời gian yêu cầu :</di>
                             <div className="font-normal col-span-2">
-                                {" "}
                                 {data?.status === 1 ? data?.createdAt : data?.request_time}
                             </div>
                         </>
                     }
-
                 </div>
 
                 <div className="grid grid-cols-6 text-left">
