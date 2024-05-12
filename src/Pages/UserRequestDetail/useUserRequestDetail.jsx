@@ -23,6 +23,7 @@ export default function useUserReqDetail() {
             deliData: data?.product_delivery,
             seller:data?.seller_id,
             category_name: data?.category_id?.name,
+            aution_live  : data?.aution_live === 1 ? 'Đấu giá trực tuyến' : 'Đấu giá thông thường',
             victory_time: formatDateTime(new Date(data?.victory_time)),
             createdAt: formatDateTime(new Date(data?.createdAt)),
             approved_at:formatDateTime(new Date(data?.updatedAt)),

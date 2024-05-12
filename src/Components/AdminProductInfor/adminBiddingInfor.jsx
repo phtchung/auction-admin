@@ -15,10 +15,26 @@ const AdminBiddingInfo = ({ data }) => {
                 <div className="grid grid-cols-6 text-left">
                     <div> Hình thức :</div>
                     <div className="font-normal  col-span-2">
+                        {data?.auction_live}
+                    </div>
+                    {
+                        ((data?.status === 2 || data?.status === 3 || data?.status === 11) && (data?.admin_belong !== 1)) &&
+                        <>
+                            <div> Thời gian duyệt :</div>
+                            <div className="font-normal  col-span-2">
+                                {data?.approved_at}
+                            </div>
+                        </>
+                    }
+                </div>
+
+                <div className="grid grid-cols-6 text-left">
+                    <div>Phương thức :</div>
+                    <div className="font-normal  col-span-2">
                         {data?.type_of_auction}
                     </div>
                     {
-                        ((data?.status === 2 || data?.status === 3 || data?.status === 11 ) && (data?.admin_belong !== 1)) &&
+                        ((data?.status === 2 || data?.status === 3 || data?.status === 11) && (data?.admin_belong !== 1)) &&
                         <>
                             <div> Thời gian duyệt :</div>
                             <div className="font-normal  col-span-2">

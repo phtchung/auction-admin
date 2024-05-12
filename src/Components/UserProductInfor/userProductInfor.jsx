@@ -60,8 +60,13 @@ const UserProductInfor = ({data}) => {
                             </div>
                         </>
                     }
-
                 </div>
+                <div className="grid grid-cols-6 text-left">
+                    <div> Hình thức đấu giá :</div>
+                    <div
+                        className="font-normal underline  col-span-5"> {data?.aution_live}</div>
+                </div>
+
                 <div className="grid grid-cols-6 text-left">
                     <div> Người bán :</div>
                     <div className="font-normal  col-span-2"> {data?.seller?.name}</div>
@@ -88,7 +93,6 @@ const UserProductInfor = ({data}) => {
                             <div className="font-normal col-span-2"> {data?.category_name}</div>
                         </>
                     }
-
                 </div>
                 <div className="grid grid-cols-6 text-left font-medium">
                     <div> Thương hiệu:</div>
