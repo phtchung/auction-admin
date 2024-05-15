@@ -12,14 +12,14 @@ export default function useReturnProductAdmin() {
     const returnProAdmin = item?.returnProducts.map((data) => {
       return {
         id: data?._id,
-        product_name: data.product_name,
-        rank: data?.rank,
+        product_name: data?.product_id?.product_name,
+        rank: data?.product_id?.rank,
         status: data?.status,
         createdAt: formatDateTime(new Date(data?.createdAt)),
         seller_name:data?.seller_id?.name,
         winner_phone:data?.winner_id?.phone,
         winner_name:data?.winner_id?.name,
-        return_time:formatDateTime(new Date(data?.product_delivery?.return_time)),
+        return_time:formatDateTime(new Date(data?.delivery?.return_time)),
       };
     });
 

@@ -89,7 +89,7 @@ const RequestHistoryDetail = () => {
                                 <div className="col-start-2 text-left col-span-2 ">{reqData?.seller?.phone}</div>
                                 <div className="col-start-4 font-semibold col-span-1 ...">Điểm tích lũy :</div>
                                 <div
-                                    className="col-start-5 text-left col-span-2 ...">{reqData?.seller?.point }</div>
+                                    className="col-start-5 text-left col-span-2 ...">{reqData?.seller?.shop_point }</div>
                             </div>
                             <div
                                 className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
@@ -177,7 +177,7 @@ const RequestHistoryDetail = () => {
                             (reqData.status === 2) &&
                             <>
                                 <div className="grid grid-cols-3 bg-white pt-8 gap-4 m-10 ">
-                                    <div className="col-span-3 border-l border-gray-300 relative">
+                                    <div className="col-span-3 relative">
                                         <div
                                             className="text-base font-semibold mr-10 bg-amber-300 right-0 p-1 px-4 absolute">
                                             {rqChangeStatus(reqData.status)}

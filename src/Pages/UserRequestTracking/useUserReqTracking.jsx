@@ -18,7 +18,7 @@ export default function useUserRequestTracking() {
         const adminReqData = item?.adminRequestList?.map((data) => {
             return {
                 request_id : data?._id,
-                product_name: data?.product_name,
+                product_name: data?.product_id?.product_name,
                 status: data?.status,
                 createdAt: formatDateTime(new Date(data?.createdAt)),
                 reserve_price:formatMoney( data?.reserve_price),
@@ -31,7 +31,7 @@ export default function useUserRequestTracking() {
                 victory_time: formatDateTime(new Date(data?.victory_time)),
                 total_price: data?.final_price + data?.shipping_fee,
                 completed_at: formatDateTime(
-                    new Date(data?.product_delivery?.completed_at),
+                    new Date(data?.delivery?.completed_at),
                 ),
             };
         });

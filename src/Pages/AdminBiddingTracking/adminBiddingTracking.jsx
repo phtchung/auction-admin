@@ -154,7 +154,6 @@ const AdminBiddingTracking = () => {
 
                                     muiTableBodyCellProps={({row}) => ({
                                         sx: {
-                                            textAlign: 'center',
                                             textOverflow: 'ellipsis',
                                             overflow: 'hidden !important',
                                             whiteSpace: 'nowrap',

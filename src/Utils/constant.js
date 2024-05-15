@@ -339,7 +339,7 @@ export function adminProductStatus(status) {
     ) {
         return status;
     } else {
-        return 3;
+        return 2;
     }
 }
 export function reqConvertStatus(status) {
@@ -726,19 +726,16 @@ export const AdminNewProductTrackingColumns =
     [
         {accessorKey: 'product_id', header: 'Mã sản phẩm', enableResizing: false, size: 220, muiTableHeadCellProps: {align: 'center',}},
         {
-            accessorKey: 'product_name', header: 'Tên sản phẩm', enableResizing: false, size: 440, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'product_name', header: 'Tên sản phẩm', enableResizing: false, size: 500, muiTableHeadCellProps: {align: 'center',},
         },
         {
             accessorKey: 'type_of_auction', header: 'Hính thức', enableResizing: false, size: 130, muiTableHeadCellProps: {align: 'left',},
         },
         {
-            accessorKey: 'reserve_price',header: 'Giá khởi điểm', enableResizing: false, size: 145, muiTableHeadCellProps: {align: 'left',},muiTableBodyCellProps: {align: 'center',}
+            accessorKey: 'reserve_price',header: 'Giá khởi điểm', enableResizing: false, size: 165, muiTableHeadCellProps: {align: 'center',},muiTableBodyCellProps: {align: 'center',}
         },
         {
-            accessorKey: 'sale_price', header: 'Giá bán', size: 145, enableResizing: false, muiTableHeadCellProps: {align: 'center',},muiTableBodyCellProps: {align: 'center',}
-        },
-        {
-            accessorKey: 'start_time', header: 'Thời gian đấu giá', enableResizing: false, size: 175, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'start_time', header: 'Thời gian đấu giá', enableResizing: false, size: 195, muiTableHeadCellProps: {align: 'center',},
         },
     ]
 
@@ -746,16 +743,13 @@ export const AdminBiddingTrackingColumns =
     [
         {accessorKey: 'product_id', header: 'Mã sản phẩm',enableResizing: false ,size: 230, muiTableHeadCellProps: {align: 'center',}},
         {
-            accessorKey: 'type_of_auction', header: 'Hình thức',enableResizing: false, size: 140, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'type_of_auction', header: 'Hình thức',enableResizing: false, size: 140, muiTableHeadCellProps: {align: 'center'},
         },
         {
             accessorKey: 'product_name', header: 'Tên sản phẩm',enableResizing: false, size: 470, muiTableHeadCellProps: {align: 'center',},
         },
         {
             accessorKey: 'reserve_price',header: 'Giá khởi điểm',enableResizing: false ,size: 150, muiTableHeadCellProps: {align: 'center',},
-        },
-        {
-            accessorKey: 'sale_price', header: 'Giá bán', size: 145,enableResizing: false, muiTableHeadCellProps: {align: 'center',},
         },
         {
             accessorKey: 'start_time', header: 'Thời gian đấu giá',enableResizing: false, size: 180, muiTableHeadCellProps: {align: 'center',},
