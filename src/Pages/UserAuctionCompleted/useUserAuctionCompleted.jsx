@@ -9,10 +9,10 @@ export default function useUserAuctionCompleted() {
   const { queryString, setQueryString } = useContext(SearchContext);
 
   const parseData = useCallback((item) => {
-    const userAuctionHistoryData = item?.products.map((data) => {
+    const userAuctionHistoryData = item?.auctions.map((data) => {
       return {
         id: data?._id,
-        product_name: data?.product_name,
+        product_name: data?.product_id?.product_name,
         status: data?.status,
         status_name : data?.status === 8 ? 'Hoàn thành' :  data?.status === 10 ? 'Thất bại' : data?.status === 11 ? 'Hủy' : 'Đã trả hàng',
         start_time: formatDateTime(new Date(data?.start_time)),

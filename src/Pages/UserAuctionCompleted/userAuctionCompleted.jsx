@@ -140,7 +140,7 @@ const UserAuctionCompleted = () => {
 
                     {isSuccess && (
                         <>
-                            <div className="bg-white   border-gray-300 border p-2 my-7 text-base h-24">
+                            <div className="bg-white  border-gray-300 border p-2 my-7 text-base h-24">
                                 <table style={{width: "100%"}}>
                                     <thead>
                                     <tr

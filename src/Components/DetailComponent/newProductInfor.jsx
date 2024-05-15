@@ -39,7 +39,7 @@ const NewProductInfor = ({reqData}) => {
                         <div className="col-start-2 text-left col-span-2 ">{reqData?.seller?.phone}</div>
                         <div className="col-start-4 font-semibold col-span-1 ...">Điểm tích lũy :</div>
                         <div
-                            className="col-start-5 text-left col-span-2 ...">{reqData?.seller?.point}</div>
+                            className="col-start-5 text-left col-span-2 ...">{reqData?.seller?.shop_point}</div>
                     </div>
                 </>}
 

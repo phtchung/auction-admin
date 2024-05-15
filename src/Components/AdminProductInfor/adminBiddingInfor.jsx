@@ -45,6 +45,18 @@ const AdminBiddingInfo = ({ data }) => {
 
                 </div>
 
+                {
+                    data?.auction_live === 'Đấu giá livestream' &&
+                    <>
+                        <div className="grid grid-cols-6 text-left">
+                            <div> Bắt đầu đăng ký :</div>
+                            <div className="font-normal  col-span-2"> {data?.register_start}</div>
+                            <di> Kết thúc đăng ký :</di>
+                            <div className="font-normal col-span-2"> {data?.register_finish}</div>
+                        </div>
+                    </>
+                }
+
                 <div className="grid grid-cols-6 text-left">
                     <div> Thời gian bắt đầu :</div>
                     <div className="font-normal  col-span-2"> {data?.start_time}</div>

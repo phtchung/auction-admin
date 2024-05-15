@@ -24,7 +24,7 @@ export default function useAdminBiddingTracking() {
         const adminBidData = item?.adminBiddingList?.map((data) => {
             return {
                 product_id : data?._id,
-                product_name: data?.product_name,
+                product_name: data?.auction_name,
                 status: data?.status,
                 admin_belong:data?.admin_belong,
                 createdAt: formatDateTime(new Date(data?.createdAt)),
@@ -35,14 +35,14 @@ export default function useAdminBiddingTracking() {
                 final_price: formatMoney(data?.final_price),
                 seller_name:data?.seller_id?.username,
                 phone: data?.seller_id?.phone,
-                phone_receiver : data?.product_delivery?.phone,
+                phone_receiver : data?.delivery?.phone,
                 start_time:formatDateTime(new Date(data?.start_time)),
                 finish_time:formatDateTime(new Date(data?.finish_time)),
                 victory_time: formatDateTime(new Date(data?.victory_time)),
                 total_price: data?.final_price + data?.shipping_fee,
-                isDeliInfor:data?.isDeliInfor === 0 ? 'Chưa có thông tin giao hàng' : 'Đang đấu giá',
+                isDeliInfor:data?.status === 4 ? 'Chưa có thông tin giao hàng' : 'Đang đấu giá',
                 completed_at: formatDateTime(
-                    new Date(data?.product_delivery?.completed_at),
+                    new Date(data?.delivery?.completed_at),
                 ),
             };
         });

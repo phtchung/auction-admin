@@ -13,8 +13,8 @@ export default function useRequestHistory() {
     const reqHis = item?.requests.map((data) => {
       return {
         id: data?._id,
-        product_name: data.product_name,
-        rank: data?.rank,
+        product_name: data?.product_id?.product_name,
+        rank: data?.product_id?.rank,
         status: data?.status,
         createdAt: formatDateTime(new Date(data?.createdAt)),
         seller_name:data?.seller_id?.name,

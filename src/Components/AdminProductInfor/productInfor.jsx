@@ -82,8 +82,13 @@ const ProductInfor = ({data}) => {
                     <div className="font-normal col-span-2">
                         {formatMoney(data?.reserve_price)} VND
                     </div>
-                    <div> Giá bán trực tiếp :</div>
-                    <div className="font-normal col-span-2"> {formatMoney(data?.sale_price)} VND</div>
+                    {
+                        data?.auction_live === 'Đấu giá thông thường' &&
+                        <>
+                            <div> Giá bán trực tiếp :</div>
+                            <div className="font-normal col-span-2"> {formatMoney(data?.sale_price)} VND</div>
+                        </>
+                    }
                 </div>
                 <div className="grid grid-cols-6 text-left font-medium">
                     <div> Bước giá :</div>

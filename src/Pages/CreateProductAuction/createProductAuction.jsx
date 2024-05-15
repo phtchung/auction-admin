@@ -72,6 +72,7 @@ const CreateProductAuction = () => {
     };
     const handleAdminAuctionData = (key, value) => {
         setAdminAuctionData({...adminAuctionData, [key]: value});
+        console.log(adminAuctionData)
     };
 
     const handleAdminAucStreamData = (key, value) => {
