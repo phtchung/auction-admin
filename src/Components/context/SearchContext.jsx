@@ -35,11 +35,18 @@ export const SearchProvider = ({ children }) => {
 
     const [df, setDf] = useState(false);
     const [phone, setPhone] = useState('');
+    const [room, setRoom] = useState('');
+
     const [queryString, setQueryString] = useState({
         start_time: start_time,
         finish_time: finish_time,
         phone: phone,
         df:df
+    });
+
+    const [queryStream, setQueryStream] = useState({
+        phone: phone,
+        room : room
     });
 
     const [queryReturn, setQueryReturn] = useState({
@@ -52,7 +59,7 @@ export const SearchProvider = ({ children }) => {
 
 
     return (
-        <SearchContext.Provider value={{ queryString, setQueryString,queryReturn,setQueryReturn }}>
+        <SearchContext.Provider value={{ queryString, setQueryString,queryReturn,setQueryReturn, queryStream, setQueryStream }}>
             {children}
         </SearchContext.Provider>
     );

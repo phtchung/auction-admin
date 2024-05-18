@@ -125,6 +125,14 @@ export const adminGetAdminAuctionCompletedList = async (params) => {
     });
 };
 
+export const getStreamAuctionTracking = async (params) => {
+    return privateHttp({
+        method: "POST",
+        url: "/admin/streamAuction",
+        params,
+    });
+};
+
 export const AdminGeAuctionCompletedDetail = async (reqId) => {
     return privateHttp({
         method: "GET",
@@ -165,3 +173,19 @@ export const denyReturnProduct = async (returnDataAdmin) => {
         data: returnDataAdmin,
     });
 };
+
+export const reSendCode = async (data) => {
+    return privateHttp({
+        method: 'POST',
+        url: `/admin/resendCode`,
+        data
+    });
+}
+
+export const SendCodeToEmail = async (data) => {
+    return privateHttp({
+        method: 'POST',
+        url: `/admin/sendCodeToEmail`,
+        data
+    });
+}
