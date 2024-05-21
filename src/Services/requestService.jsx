@@ -133,6 +133,14 @@ export const getStreamAuctionTracking = async (params) => {
     });
 };
 
+export const adminStreamTracking = async (params) => {
+    return privateHttp({
+        method: "POST",
+        url: "/admin/streamTracking",
+        params,
+    });
+};
+
 export const AdminGeAuctionCompletedDetail = async (reqId) => {
     return privateHttp({
         method: "GET",

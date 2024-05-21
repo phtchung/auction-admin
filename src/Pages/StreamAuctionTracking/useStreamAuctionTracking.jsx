@@ -1,42 +1,45 @@
-import {useCallback, useContext, useState} from "react";
+import {useCallback, useContext} from "react";
 import { useQuery } from "@tanstack/react-query";
-import {adminGetAdminAuctionCompletedList, getStreamAuctionTracking} from "../../Services/requestService.jsx";
+import {
+    adminStreamTracking,
+} from "../../Services/requestService.jsx";
 import {SearchContext} from "../../Components/context/SearchContext.jsx";
+import {formatDateTime} from "../../Utils/constant.js";
 
 export default function useStreamAuctionTracking() {
 
-    const {queryStream, setQueryStream} = useContext(SearchContext);
+    const { queryTracking, setQueryTracking} = useContext(SearchContext);
 
     const parseData = useCallback((item) => {
-        const adminAuctionCompletedData = item?.data?.map((data) => {
+        const dataTracking = item?.auction?.map((data) => {
             console.log(data)
             return {
                 id: data?._id,
-                name: data?.user_id?.name,
-                room: data?.auction_id?.room_id,
-                email : data?.user_id?.email,
-                phone:data?.user_id?.phone,
-                user_id : data?.user_id?._id,
-                auction_id : data?.auction_id?._id
+                room: data?.room_id,
+                start_time : formatDateTime(data?.start_time),
+                finish_time : formatDateTime(data?.finish_time),
+                register_finish : formatDateTime(data?.register_finish),
+                url_stream:data?.url_stream,
+                state : data?.status === 3 ? 'Đang đấu giá' : data?.register_finish < new Date() ? 'Sắp bắt đầu'  : 'Đăng ký',
+                register_count : data?.code_access.length,
             };
         });
 
-        return { adminAuctionCompletedData };
+        return { dataTracking };
     }, []);
 
     const { data, isSuccess, isLoading } = useQuery({
-        queryKey: ["getStreamAuctionTracking", queryStream],
-        queryFn: () => getStreamAuctionTracking(queryStream),
+        queryKey: ["adminStreamTracking", queryTracking],
+        queryFn: () => adminStreamTracking(queryTracking),
         staleTime: 20 * 1000,
         select: (data) => parseData(data.data),
-        enabled: !!queryStream  ,
+        enabled: !!queryTracking  ,
     });
 
     return {
-        adminAuctionCompletedData: data?.adminAuctionCompletedData,
+        data: data?.dataTracking,
         isSuccess,
         isLoading,
-        queryStream,
-        setQueryStream,
+        queryTracking, setQueryTracking
     };
 }
