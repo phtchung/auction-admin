@@ -20,6 +20,7 @@ import CreateBlog from "../Pages/CreateBlog/createBlog.jsx";
 import CreateCategories from "../Pages/CreateCategories/createCategories.jsx";
 import CategoryDetail from "../Pages/CategoryDetail/categoryDetail.jsx";
 import StreamAuctionTracking from "../Pages/StreamAuctionTracking/streamAuctionTracking.jsx";
+import StreamRegisterTracking from "../Pages/StreamRegisterTracking/streamRegisterTracking.jsx";
 
 
 export const NormalRoutes = [{ path: "/login", element: <Login /> }];
@@ -48,5 +49,6 @@ export const UserRoutes = [
     { path: "/returnProductUser/detail/:id", element: <ReturnProductDetail/> },
     { path: "/returnProductAdmin/detail/:id", element: <ReturnProductDetail/> },
     { path: "/streamAuctionTracking", element: <StreamAuctionTracking/> },
+    { path: "/streamRegisterTracking", element: <StreamRegisterTracking/> },
 
 ];

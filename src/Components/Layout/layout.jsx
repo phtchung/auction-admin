@@ -13,7 +13,8 @@ function getItem(label, key,children) {
 const items = [
     getItem('Quản lý đấu giá người dùng', "/reqTracking"),
     getItem('Quản lý đấu giá hệ thống', "/adminBidTracking"),
-    getItem('Quản lý đấu Livestream', "/streamAuctionTracking"),
+    getItem('Quản lý đấu giá Livestream', "/streamAuctionTracking"),
+    getItem('Quản lý đăng ký đấu giá', "/streamRegisterTracking"),
     getItem('Tạo phiên đấu giá', "/createProductAuction"),
     getItem('Lịch sử yêu cầu', "/requestHistory"),
     getItem('Lịch sử đấu giá User', "/userAuctionCompleted"),

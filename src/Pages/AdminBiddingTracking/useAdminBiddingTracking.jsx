@@ -18,7 +18,6 @@ export default function useAdminBiddingTracking() {
     const [status, setStatus] = useState(
         adminProductStatus(parseInt(searchParams.get("status"))),
     );
-    console.log(searchParams.get("status"))
 
     const parseData = useCallback((item) => {
         const adminBidData = item?.adminBiddingList?.map((data) => {

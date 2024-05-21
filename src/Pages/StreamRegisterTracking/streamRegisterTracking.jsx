@@ -2,10 +2,10 @@ import {Button} from "@material-tailwind/react";
 import {useEffect, useState} from "react";
 import LayOut from "../../Components/Layout/layout.jsx";
 import {Form, Input, Modal, Popconfirm, Space, Table, Tooltip} from "antd";
-import {DeleteOutlined, EditOutlined, SendOutlined} from "@ant-design/icons";
+import { EditOutlined, SendOutlined} from "@ant-design/icons";
 import {toast} from "react-toastify";
-import useStreamAuctionTracking from "./useStreamAuctionTracking.jsx";
 import {reSendCode, SendCodeToEmail} from "../../Services/requestService.jsx";
+import useStreamRegisterTracking from "./useStreamRegisterTracking.jsx";
 
 const AddCategoryModal = ({visible, onCancel, onAdd,loading, selectedOutput}) => {
     const [form] = Form.useForm()
@@ -13,8 +13,8 @@ const AddCategoryModal = ({visible, onCancel, onAdd,loading, selectedOutput}) =>
     return (
         <Modal
             open={visible}
-            title="Nhập đường dẫn stream cho phiên đấu giá"
-            okText={"Xác nhận"}
+            title="Nhập email gửi mã mới"
+            okText={"Gửi"}
             cancelText="Hủy"
             destroyOnClose={true}
             okButtonProps={{
@@ -45,8 +45,8 @@ const AddCategoryModal = ({visible, onCancel, onAdd,loading, selectedOutput}) =>
             }}
         >
             <Form form={form} layout="vertical">
-                <Form.Item style={{width: '90%'}} className="mx-4 mt-4" name="email" label='Stream URL'
-                           rules={[{required: true, message: 'Vui lòng nhập đường dẫn stream'}]}>
+                <Form.Item style={{width: '90%'}} className="mx-4 mt-4" name="email" label="Email"
+                           rules={[{required: true, message: 'Vui lòng nhập email'}]}>
                     <Input/>
                 </Form.Item>
             </Form>
@@ -54,18 +54,19 @@ const AddCategoryModal = ({visible, onCancel, onAdd,loading, selectedOutput}) =>
     )
 }
 
-const StreamAuctionTracking = () => {
+const StreamRegisterTracking = () => {
     const [filter, setFilter] = useState({});
     const [selectedData, setSelectedData] = useState(null)
     const [modalUpdateVisible, setModalUpdateVisible] = useState(false)
     const [loading, setLoading] = useState(false)
 
     const {
-        data,
+        adminAuctionCompletedData,
         isLoading,
         isSuccess,
-        queryTracking, setQueryTracking
-    } = useStreamAuctionTracking();
+        queryStream,
+        setQueryStream,
+    } = useStreamRegisterTracking();
     const onChange = (pagination, filters, sorter, extra) => {
         console.log('params', pagination, filters, sorter, extra);
     };
@@ -82,10 +83,10 @@ const StreamAuctionTracking = () => {
 
     const onSubmit = () => {
         const params = {
-            ...queryTracking,
+            ...queryStream,
             ...filter,
         };
-        setQueryTracking(params);
+        setQueryStream(params);
     };
 
     const handleReSend = async ({userId, auctionId}) => {
@@ -124,10 +125,20 @@ const StreamAuctionTracking = () => {
     }
     const columns = [
         {
-            title: 'Hạn đăng ký',
-            dataIndex: 'register_finish',
+            title: 'Họ tên',
+            dataIndex: 'name',
+            sorter: {
+                compare: (a, b) => a.name - b.name,
+                multiple: 1,
+            },
             align: 'center',
-            width: 170,
+            width: 200,
+        },
+        {
+            title: 'Số điện thoại',
+            dataIndex: 'phone',
+            width: 140,
+            align: 'center'
         },
         {
             title: 'Phòng đấu giá',
@@ -136,68 +147,44 @@ const StreamAuctionTracking = () => {
                 compare: (a, b) => a.room - b.room,
                 multiple: 2,
             },
-            width: 130,
+            width: 140,
             align: 'center'
         },
         {
-            title: 'Đăng ký',
-            dataIndex: 'register_count',
-            width: 90,
-            align: 'center'
-        },
-        {
-            title: 'Trạng thái',
-            dataIndex: 'state',
-            width: 110,
-            align: 'center'
-        },
-        {
-            title: 'Stream URL',
-            dataIndex: 'url_stream',
-            width: 150,
-            align: 'center'
-        },
-        {
-            title: 'Bắt đầu',
-            dataIndex: 'start_time',
-            width: 170,
-            align: 'center'
-        },
-        {
-            title: 'Kết thúc',
-            dataIndex: 'finish_time',
+            title: 'Email',
+            dataIndex: 'email',
             width: 170,
             align: 'center'
         },
         {
             title: 'Thao tác',
             fixed: 'right',
-            width: 150,
+            width: 200,
             align: 'center',
             render: (text, record) => (
                 <Space size="middle">
-                    {/*<Popconfirm*/}
-                    {/*    title={`Gửi lại mã truy cập phiên đấu giá?`}*/}
-                    {/*    onConfirm={() => handleReSend({*/}
-                    {/*        userId: record.user_id,*/}
-                    {/*        auctionId: record.auction_id*/}
-                    {/*    })}*/}
-                    {/*    okText="Gửi"*/}
-                    {/*    okButtonProps={{*/}
-                    {/*        style: {backgroundColor: 'rgb(59 130 246)'},*/}
-                    {/*    }}*/}
-                    {/*    cancelText="Không"*/}
-                    {/*    key="update-statuss"*/}
-                    {/*>*/}
-                    {/*    <span onClick={(e) => e.stopPropagation()}>*/}
-                    {/*      <Tooltip title="Gửi lại mã truy cập">*/}
-                    {/*       <SendOutlined />*/}
-                    {/*      </Tooltip>*/}
-                    {/*    </span>*/}
-                    {/*</Popconfirm>*/}
+                    <Popconfirm
+                        title={`Gửi lại mã truy cập phiên đấu giá?`}
+                        onConfirm={() => handleReSend({
+                            userId: record.user_id,
+                            auctionId: record.auction_id
+                        })}
+                        okText="Gửi"
+                        okButtonProps={{
+                            style: {backgroundColor: 'rgb(59 130 246)'},
+                        }}
+                        cancelText="Không"
+                        key="update-statuss"
+                    >
+                        <span onClick={(e) => e.stopPropagation()}>
+                          <Tooltip title="Gửi lại mã truy cập">
+                           <SendOutlined />
+                          </Tooltip>
+                        </span>
+                    </Popconfirm>
 
                     <Tooltip
-                        title="Nhập Stream URL"
+                        title="Gửi vào email khác"
                         onClick={() => {
                             setSelectedData(record)
                             setModalUpdateVisible(true)
@@ -205,27 +192,6 @@ const StreamAuctionTracking = () => {
                     >
                         <EditOutlined/>
                     </Tooltip>
-
-                    <Popconfirm
-                        title="Chắc muốn hủy phiên đấu giá?"
-                        // onConfirm={() => handleDeleteCategory({category_id: record.categoryChild_id})}
-                        okText="Yes"
-                        okButtonProps={{
-                            style: {backgroundColor: 'rgb(59 130 246)'},
-                        }}
-                        cancelText="No"
-                        disabled={record.register_count !== 0}
-                    >
-                        <Tooltip
-                            title={
-                                record.register_count !== 0
-                                    ? 'Không thể hủy bỏ phiên đấu giá vì có đã có người đăng ký tham gia!'
-                                    : 'Hủy'
-                            }
-                        >
-                            <DeleteOutlined/>
-                        </Tooltip>
-                    </Popconfirm>
                 </Space>
             )
         },
@@ -243,28 +209,29 @@ const StreamAuctionTracking = () => {
                         <div className="grid-cols-4 grid">
                             <div className="col-span-3 p-8 flex flex-col gap-12 px-24">
                                 <div className="grid grid-cols-3 gap-20 items-center">
-                                    <div className="font-medium col-span-1 text-sm  "> Trạng thái :</div>
+                                    <div className="font-medium col-span-1 text-sm  ">Thông tin :</div>
                                     <div className="flex  col-span-2 px-8  items-center text-right">
-                                        <select id="countries"
-                                                onChange={(e) => handleFilter('state', e.target.value)}
-                                                className=" border border-gray-300 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  ">
-                                            <option selected>Trạng thái phiên đấu giá</option>
-                                            <option value="S">Đăng ký</option>
-                                            <option value="O">Đang đấu giá</option>
-                                            <option value="R">Sắp bắt đầu</option>
-                                        </select>
+                                            <input
+                                                placeholder="Nhập số điện thoại, email tìm kiếm"
+                                                type="text"
+                                                name="phone"
+                                                id="phone"
+                                                onChange={(e) => handleFilter('inFor', e.target.value)}
+                                                style={{height: '40px', width: '100%', fontSize: 12}}
+                                                className="block focus:outline-none focus:border-none border-0 py-1.5 pl-3 pr-5  ring-1 ring-inset hover:ring-black ring-gray-400  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
+                                            />
                                     </div>
                                 </div>
 
                                 <div className="grid grid-cols-3 gap-20 items-center">
                                     <div className="font-medium col-span-1 text-sm  ">Mã phòng :</div>
                                     <div className="flex px-8 col-span-2  items-center text-right">
-                                        <input
-                                            placeholder="Nhập mã phòng"
-                                            type="text"
-                                            name="room"
-                                            id="room"
-                                            onChange={(e) => handleFilter('room', e.target.value)}
+                                            <input
+                                                placeholder="Nhập mã phòng"
+                                                type="text"
+                                                name="room"
+                                                id="room"
+                                                onChange={(e) => handleFilter('room', e.target.value)}
                                                 style={{height: '40px', width: '100%', fontSize: 12}}
                                                 className="block focus:outline-none focus:border-none border-0 py-1.5 pl-3 pr-5  ring-1 ring-inset hover:ring-orange-600 ring-gray-400  focus:ring-1 focus:ring-inset  sm:text-sm sm:leading-6"
                                             />
@@ -288,9 +255,9 @@ const StreamAuctionTracking = () => {
 
                     <div>
                         {
-                            data &&
+                            adminAuctionCompletedData &&
                             <>
-                                <Table style={{width: '100%'}} columns={columns} dataSource={data}
+                                <Table style={{width: '100%'}} columns={columns} dataSource={adminAuctionCompletedData}
                                        onChange={onChange}/>
                             </>
                         }
@@ -309,4 +276,4 @@ const StreamAuctionTracking = () => {
     );
 };
 
-export default StreamAuctionTracking;
+export default StreamRegisterTracking;
