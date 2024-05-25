@@ -16,7 +16,9 @@ const ConfirmApproved = () => {
     const [cate_name, setCate_name] = useState(null);
     const navigate = useNavigate();
     const {id} = useParams()
+    const [form] = Form.useForm();
     const {state} = useLocation()
+    console.log('state',state)
     const [approveData, setApproveData] = useState({rq_id:id});
     const [open, setOpen] = useState(false);
     const handleapproveData = (key, value) => {
@@ -28,7 +30,7 @@ const ConfirmApproved = () => {
         setCate_name(label[0])
     };
 
-    if(state !== 1){
+    if(state.status !== 1){
         navigate('/404')
     }
     const handleSubmit = async () => {
@@ -48,8 +50,11 @@ const ConfirmApproved = () => {
             toast.error(error?.response?.data?.message);
         }
     };
+    const handleOpen = async () => {
+        const values = await form.validateFields();
+        setOpen(!open);
+    }
 
-    const handleOpen = () => setOpen(!open);
   return(
       <LayOut>
               <div className="home-right bg-white">
@@ -90,114 +95,155 @@ const ConfirmApproved = () => {
 
                   </div>
                   <div className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
-                      <div className="grid grid-cols-6  items-center">
-                          <div className="font-normal text-left col-span-2">
-                              <Form.Item
-                                  name="select"
-                                  label="Hình thức đấu giá"
-                                  hasFeedback
-                                  className="font-semibold"
-                                  rules={[
-                                      {
-                                          required: true,
-                                          message: 'Chọn hình thức đấu giá!',
-                                      },
-                                  ]}
-                              >
-                                  <Select
-                                      style={{
-                                      marginLeft: '16px',
-                                      maxWidth: 176,
-                                  }}
-                                      onChange={(value) => handleapproveData('type_of_auction',value)}
-                                      placeholder="Chọn hình thức đấu giá">
-                                      <Option  value="1">Đấu giá tăng</Option>
-                                      <Option value="-1">Đấu giá giảm</Option>
-                                  </Select>
-                              </Form.Item>
-                          </div>
+                      <div className="grid grid-cols-2   items-center">
                           <div className="font-normal text-left col-span-1">
+                              <Form
+                                  form={form}
+                                  className="custom-error"
+                                  onFinish={(values) => {
+                                      console.log({values})
+                                  }}
+                                  onFinishFailed={(failedValues) => {
+                                      console.log({failedValues})
+                                  }}
+                              >
+                                  <Form.Item
+                                      rootClassName="p-4"
+                                      name="select"
+                                      label="Hình thức đấu giá"
+                                      hasFeedback
+                                      className="font-semibold"
+                                      rules={[
+                                          {
+                                              required: true,
+                                              message: 'Chọn hình thức đấu giá!',
+                                          },
+                                      ]}
+                                  >
+                                      <Select
+                                          style={{
+                                              marginLeft: '48px',
+                                              maxWidth: 216,
+                                          }}
+                                          onChange={(value) => handleapproveData('type_of_auction', value)}
+                                          placeholder="Chọn hình thức đấu giá">
+                                          <Option value="1">Đấu giá tăng</Option>
+                                          {
+                                              state.auction_live !== "Đấu giá thông thường" &&
+                                              <Option value="-1">Đấu giá giảm</Option>
+                                          }
+                                      </Select>
+                                  </Form.Item>
 
-                          </div>
-                          <div className="font-normal col-span-3 text-left">
-                              <Form.Item name="date-time-picker"
-                                         className="font-semibold"
-                                         label="Thời gian bắt đầu"
-                                         rules=
-                                             {[{
-                                                 type: 'object',
-                                                 required: true,
-                                                 message: 'Please select time!',
-                                             },
-                                             ]}>
-                                  <DatePicker
-                                      onChange={(value) => handleapproveData('start_time',formatDateTime(value))}
-                                      showTime format="YYYY-MM-DD HH:mm:ss"/>
-                              </Form.Item>
-                          </div>
-                      </div>
+                                  <div className="grid grid-cols-2  items-center">
+                                      {
+                                          categories &&
+                                          <>
+                                              <div className="font-normal text-left p-4 col-span-2">
+                                                  <Form.Item
+                                                      label="Danh mục sản phẩm"
+                                                      name="TreeSelect"
+                                                      hasFeedback
+                                                      className="font-semibold "
+                                                      rules={[
+                                                          {
+                                                              required: true,
+                                                              message: 'Chọn danh mục sản phẩm!',
+                                                          },
+                                                      ]}
+                                                  >
+                                                      <TreeSelect
+                                                          style={{
+                                                              marginLeft: '32px',
+                                                              maxWidth: 216,
+                                                          }}
+                                                          onChange={handleTreeSelect}
+                                                          treeData={categories}
+                                                      />
+                                                  </Form.Item>
+                                              </div>
+                                          </>
+                                      }
 
-                      <div className="grid grid-cols-6  items-center">
-                          {
-                           categories &&
-                              <>
-                                  <div className="font-normal text-left col-span-2">
-                                      <Form.Item
-                                          label="Danh mục sản phẩm"
-                                          name="TreeSelect"
-                                          hasFeedback
-                                          className="font-semibold "
-                                          rules={[
-                                              {
-                                                  required: true,
-                                                  message: 'Chọn danh mục sản phẩm!',
-                                              },
-                                          ]}
-                                      >
-                                          <TreeSelect
+                                  <div className="font-normal col-span-2 p-4 mr-3 text-left">
+                                      <Form.Item name="start_time"
+                                                 className="font-semibold"
+                                                 label="Thời gian bắt đầu"
+                                                 rules=
+                                                     {[{
+                                                         type: 'object',
+                                                         required: true,
+                                                         message: 'Please select time!',
+                                                     },
+                                                         ({ getFieldValue }) => ({
+                                                             validator(_, value) {
+                                                                 if (!value || value > new Date(new Date().getTime() + 0 * 60 * 60 * 1000)) {
+                                                                     return Promise.resolve();
+                                                                 }
+                                                                 return Promise.reject(new Error(`Thời gian bắt đầu phải sau ${formatDateTime(new Date(new Date().getTime() + 0 * 60 * 60 * 1000))} !`));
+                                                             },
+                                                         }),
+                                                     ]}>
+                                          <DatePicker
                                               style={{
-                                                  maxWidth: 176,
+                                                  marginLeft: '48px',
+                                                  maxWidth: 216,
                                               }}
-                                              onChange={handleTreeSelect}
-                                              treeData={categories}
-                                          />
+                                              onChange={(value) => handleapproveData('start_time', formatDateTime(value))}
+                                              showTime format="YYYY-MM-DD HH:mm:ss"/>
                                       </Form.Item>
                                   </div>
-                              </>
-                          }
 
-                          <div className="font-normal text-left col-span-1"></div>
-                          <div className="font-normal col-span-3 text-left">
-                              <Form.Item name="date-time-picker"
-                                         className="font-semibold"
-                                         label="Thời gian kết thúc"
-                                         rules=
-                                             {[{
-                                                 type: 'object',
-                                                 required: true,
-                                                 message: 'Please select time!',
-                                             },
-                                             ]}>
-                                  <DatePicker
-                                      onChange={(value) => handleapproveData('finish_time', formatDateTime(value))}
-                                      showTime format="YYYY-MM-DD HH:mm:ss"/>
-                              </Form.Item>
+                                      <div className="font-normal col-span-3 p-4 text-left">
+                                          <Form.Item name="finish_time"
+                                                     className="font-semibold"
+                                                     label="Thời gian kết thúc"
+                                                     rules=
+                                                         {[{
+                                                             type: 'object',
+                                                             required: true,
+                                                             message: 'Please select time!',
+                                                         },
+                                                             ({ getFieldValue }) => ({
+                                                                 validator(_, value) {
+                                                                     if (!value || getFieldValue('start_time') < value) {
+                                                                         return Promise.resolve();
+                                                                     }
+                                                                     return Promise.reject(new Error('Thời gian kết thúc phải sau thời gian bắt đầu!'));
+                                                                 },
+                                                             }),
+                                                         ]}>
+                                              <DatePicker
+                                                  style={{
+                                                      marginLeft: '48px',
+                                                      maxWidth: 216,
+                                                  }}
+                                                  onChange={(value) => handleapproveData('finish_time', formatDateTime(value))}
+                                                  showTime format="YYYY-MM-DD HH:mm:ss"/>
+                                          </Form.Item>
+
+                                          <Form.Item>
+                                              <div className="flex m-6 gap-5 pb-6 justify-end mr-10">
+                                                  <Button
+                                                      type="primary"
+                                                      onClick={handleOpen}
+                                                      className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
+                                                      Hoàn tất
+                                                  </Button>
+                                              </div>
+                                          </Form.Item>
+                                      </div>
+                                  </div>
+                              </Form>
                           </div>
                       </div>
-                      <div className="flex m-6 gap-5 pb-6 justify-end mr-10">
-                          <Button
-                              onClick={handleOpen}
-                              className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
-                              Thiết lập
-                          </Button>
-                      </div>
 
-                      <Dialog  open={open} onClose={handleOpen} fullWidth maxWidth="md" >
+                      <Dialog open={open} onClose={handleOpen} fullWidth maxWidth="md">
                           <DialogTitle>
                               <div className="flex items-center justify-between">
-                    <span className="font-semibold text-sm">
-                      Xác nhận thông tin tạo phiên đấu giá
-                    </span>
+                                <span className="font-semibold text-sm">
+                                  Xác nhận thông tin tạo phiên đấu giá
+                                </span>
                                   <div
                                       onClick={handleOpen}
                                       className="bg-gray-800 rounded cursor-pointer text-sm text-white hover:bg-neutral-600 border-none font-medium focus:outline-0"

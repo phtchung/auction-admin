@@ -14,7 +14,7 @@ export default function useStreamAuctionTracking() {
         const dataTracking = item?.auction?.map((data) => {
             console.log(data)
             return {
-                id: data?._id,
+                auction_id: data?._id,
                 room: data?.room_id,
                 start_time : formatDateTime(data?.start_time),
                 finish_time : formatDateTime(data?.finish_time),
