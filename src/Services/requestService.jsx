@@ -197,3 +197,12 @@ export const SendCodeToEmail = async (data) => {
         data
     });
 }
+
+
+export const setStreamUrl = async (data) => {
+    return privateHttp({
+        method: 'POST',
+        url: `/admin/setUrlStream`,
+        data
+    });
+}

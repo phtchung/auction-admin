@@ -5,7 +5,7 @@ import {Form, Input, Modal, Popconfirm, Space, Table, Tooltip} from "antd";
 import {DeleteOutlined, EditOutlined, SendOutlined} from "@ant-design/icons";
 import {toast} from "react-toastify";
 import useStreamAuctionTracking from "./useStreamAuctionTracking.jsx";
-import {reSendCode, SendCodeToEmail} from "../../Services/requestService.jsx";
+import {reSendCode, SendCodeToEmail, setStreamUrl} from "../../Services/requestService.jsx";
 
 const AddCategoryModal = ({visible, onCancel, onAdd,loading, selectedOutput}) => {
     const [form] = Form.useForm()
@@ -32,8 +32,7 @@ const AddCategoryModal = ({visible, onCancel, onAdd,loading, selectedOutput}) =>
                         let data = {}
                         data = {
                                 auctionId: selectedOutput.auction_id,
-                                email: values?.email,
-                                userId : selectedOutput.user_id
+                            url_stream: values?.url_stream,
                             }
                             onAdd(data)
                             onCancel()
@@ -45,7 +44,7 @@ const AddCategoryModal = ({visible, onCancel, onAdd,loading, selectedOutput}) =>
             }}
         >
             <Form form={form} layout="vertical">
-                <Form.Item style={{width: '90%'}} className="mx-4 mt-4" name="email" label='Stream URL'
+                <Form.Item style={{width: '90%'}} className="mx-4 mt-4" name="url_stream" label='Stream URL'
                            rules={[{required: true, message: 'Vui lòng nhập đường dẫn stream'}]}>
                     <Input/>
                 </Form.Item>
@@ -91,7 +90,7 @@ const StreamAuctionTracking = () => {
     const handleReSend = async ({userId, auctionId}) => {
         setLoading(true)
         try {
-            const res = await reSendCode({
+            const res = await setStreamUrl({
                 userId, auctionId
             })
             setLoading(false)
@@ -103,14 +102,15 @@ const StreamAuctionTracking = () => {
             toast.error('Gửi mã thất bại')
         }
     }
-    const handleSendCode = async (values) => {
+
+    const handleSetUrlStream = async (values) => {
         setLoading(true)
 
-        const {email , userId, auctionId} = values
+        const {url_stream, auctionId} = values
         try {
-            const res = await SendCodeToEmail(
+            const res = await setStreamUrl(
                  {
-                    auctionId, email,userId
+                     url_stream, auctionId
             })
             setLoading(false)
             if (res.status === 200) {
@@ -155,7 +155,12 @@ const StreamAuctionTracking = () => {
             title: 'Stream URL',
             dataIndex: 'url_stream',
             width: 150,
-            align: 'center'
+            align: 'center',
+            render:(record) =>(
+                <Space>
+                    <a target="_blank" href={record}>{record}</a>
+                </Space>
+            )
         },
         {
             title: 'Bắt đầu',
@@ -298,7 +303,7 @@ const StreamAuctionTracking = () => {
                         <AddCategoryModal
                             visible={modalUpdateVisible}
                             onCancel={() => setModalUpdateVisible(false)}
-                            onAdd={handleSendCode}
+                            onAdd={handleSetUrlStream}
                             selectedOutput={selectedData}
                             loading={loading}
                         />

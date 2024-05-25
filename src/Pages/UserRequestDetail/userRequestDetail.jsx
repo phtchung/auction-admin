@@ -36,6 +36,14 @@ const UserRequestDetail = () => {
             toast.error(error?.response?.data?.message);
         }
     };
+    const handelApprove = (reqData) => {
+        navigate(`/reqTracking/requestDetail/approveRequest/${reqData?.request_id}`, {
+            state: {
+                status: reqData.status,
+                auction_live: reqData.auction_live
+            }
+        });
+    };
 
     if (isLoading) {
         return (
@@ -43,7 +51,6 @@ const UserRequestDetail = () => {
                 <Spin className="text-center mt-60"  tip="Loading" size="large">
                 </Spin>
             </LayOut>
-
        )
     }
     if(isError){
@@ -71,8 +78,7 @@ const UserRequestDetail = () => {
                                             Từ chối yêu cầu
                                         </Button>
 
-                                        <Button
-                                            onClick={() => navigate(`/reqTracking/requestDetail/approveRequest/${reqData?.request_id}`,{ state: reqData.status})}
+                                        <Button onClick = {() => handelApprove(reqData)}
                                             className="p-2 px-6 py-2 right-0 bg-orange-500 rounded text-white border-gray-400 border-none text-sm hover:bg-orange-500  font-semibold focus:outline-0">
                                             Duyệt yêu cầu
                                         </Button>
