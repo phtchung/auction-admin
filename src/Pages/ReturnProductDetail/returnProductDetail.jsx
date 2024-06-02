@@ -10,7 +10,7 @@ import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
 import {useState} from "react";
 import {toast} from "react-toastify";
 import {acceptReturnProduct,denyReturnProduct} from "../../Services/requestService.jsx";
-import {formatDateTime} from "../../Utils/constant.js";
+import {billChangeStatus, formatDateTime} from "../../Utils/constant.js";
 
 const ReturnProductDetail = () => {
     const {reqData, isLoading, isSuccess, isError} = useUserAuctionCompletedDetail();
@@ -83,9 +83,12 @@ const ReturnProductDetail = () => {
                             </div>
                         </div>
 
-                        <NewProductInfor reqData={reqData}></NewProductInfor>
                         {reqData.status === 9 && <>
-                            <div className="grid grid-cols-3 bg-white pt-8 gap-4 m-10 ">
+                            <div className="grid grid-cols-3 bg-white pt-8 gap-4 m-10 relative">
+                                <div
+                                    className="text-base font-semibold mr-10 bg-amber-300 -right-2 top-4 p-1 px-4 absolute">
+                                    {billChangeStatus(reqData.status)}
+                                </div>
                                 <div className="col-span-2  relative">
                                     <div className="mx-3 pb-2">
                                         <div className="text-base font-semibold text-neutral-600 ml-3 mb-3 text-left">
@@ -119,7 +122,8 @@ const ReturnProductDetail = () => {
 
                                 </div>
 
-                                <div className="text-sm text-left font-light border-l-2  text-neutral-600 mx-6 relative ">
+                                <div
+                                    className="text-sm text-left font-light border-l-2  text-neutral-600 mx-6 relative ">
                                     <div className="flex-col mt-6 mx-6 font-normal ">
                                         <div
                                             className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 py-2 border-b-2 pb-4">
@@ -143,18 +147,21 @@ const ReturnProductDetail = () => {
                             </div>
                         </>}
                         <div className="flex m-6 gap-5 justify-end mr-10">
-                            <Button
+                            <button
                                 onClick={handleOpen1}
-                                className="p-2 px-6 py-2 right-0 bg-white rounded text-red-500  border-red-500 hover:border-red-500 text-sm  font-medium focus:outline-0">
+                                className="p-2 px-6 py-2 right-0 bg-white rounded text-gray-800   border-gray-800  hover:border-gray-800  text-sm  font-medium focus:outline-0">
                                 Từ chối trả hàng
-                            </Button>
+                            </button>
 
-                            <Button
+                            <button
                                 onClick={handleOpen}
-                                className="p-2 px-6 py-2 right-0 bg-red-500 rounded text-white border-gray-400 border-none text-sm  font-semibold focus:outline-0">
+                                className="p-2 px-6 py-2 right-0 bg-gray-800 rounded text-white border-gray-800  border-none text-sm  font-semibold focus:outline-0">
                                 Đồng ý trả hàng
-                            </Button>
+                            </button>
                         </div>
+                        <NewProductInfor reqData={reqData}></NewProductInfor>
+
+
                         {/*đồng ý trả hàng dioalog */}
                         <Dialog open={open} onClose={handleOpen} maxWidth="md">
                             <DialogTitle>
@@ -178,17 +185,17 @@ const ReturnProductDetail = () => {
 
                                     </div>
                                     <div className="flex m-6 gap-5 justify-end mr-10">
-                                        <Button
+                                        <button
                                             onClick={handleOpen}
-                                            className="p-2 px-6 py-2 right-0 bg-white rounded text-red-500 border-red-500 hover:border-red-500  text-sm  font-medium focus:outline-0">
+                                            className="p-2 px-6 py-2 right-0 bg-white rounded text-gray-800   border-gray-800  hover:border-gray-800  text-sm  font-medium focus:outline-0">
                                             Hủy
-                                        </Button>
+                                        </button>
 
-                                        <Button
+                                        <button
                                             onClick={handleSubmit}
-                                            className="p-2 px-6 py-2 right-0 bg-red-500 rounded text-white  border-none text-sm  font-semibold focus:outline-0">
+                                            className="p-2 px-6 py-2 right-0 bg-gray-800 rounded text-white border-gray-800  border-none text-sm  font-semibold focus:outline-0">
                                             Xác nhận
-                                        </Button>
+                                        </button>
                                     </div>
 
                                 </Stack>
@@ -214,21 +221,21 @@ const ReturnProductDetail = () => {
                                 <Stack spacing={2} margin={1}>
                                     <div
                                         className="items-center font-semibold text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
-                                        Bạn có chắc chắn muốn từ chối  yêu cầu trả hàng không ?
+                                        Bạn có chắc chắn muốn từ chối yêu cầu trả hàng không ?
 
                                     </div>
                                     <div className="flex m-6 gap-5 justify-end mr-10">
-                                        <Button
+                                        <button
                                             onClick={handleOpen1}
-                                            className="p-2 px-6 py-2 right-0 bg-white rounded text-red-500 border-red-500 hover:border-red-500  text-sm  font-medium focus:outline-0">
-                                            Không
-                                        </Button>
+                                            className="p-2 px-6 py-2 right-0 bg-white rounded text-gray-800   border-gray-800  hover:border-gray-800  text-sm  font-medium focus:outline-0">
+                                            Hủy
+                                        </button>
 
-                                        <Button
+                                        <button
                                             onClick={handleDeny}
-                                            className="p-2 px-6 py-2 right-0 bg-red-500 rounded text-white  border-none text-sm  font-semibold focus:outline-0">
-                                            Từ chối nè
-                                        </Button>
+                                            className="p-2 px-6 py-2 right-0 bg-gray-800 rounded text-white border-gray-800  border-none text-sm  font-semibold focus:outline-0">
+                                            Từ chối
+                                        </button>
                                     </div>
 
                                 </Stack>

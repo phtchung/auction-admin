@@ -1,49 +1,24 @@
-import {convertWinStatus, formatDateTime} from "../../Utils/constant.js";
-import {Button} from "@material-tailwind/react";
-import {useNavigate, useParams} from "react-router-dom";
-import {cancelProduct, rejectRequest} from "../../Services/requestService.jsx";
-import {toast} from "react-toastify";
+import {adminChangeStateRequestFromUser, convertWinStatus} from "../../Utils/constant.js";
+import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
-import {Input, Form,Spin } from 'antd';
+import { Spin, Tabs} from 'antd';
 import LayOut from "../../Components/Layout/layout.jsx";
 import UpdatePopup from "../../Components/UpdatePopup/UpdatePopup.jsx";
 import useUserReqDetail from "./useUserRequestDetail.jsx";
 import UserProductInfor from "../../Components/UserProductInfor/userProductInfor.jsx";
 import UserBiddingInfo from "../../Components/UserProductInfor/userBiddingInfor.jsx";
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
+import UserSellerInfor from "../../Components/UserProductInfor/userSellerInfor.jsx";
+const TabPane = Tabs.TabPane
 
 const UserRequestDetail = () => {
     const {reqData, isLoading, isSuccess,isError} = useUserReqDetail();
     const navigate = useNavigate();
-    const [open, setOpen] = useState(false);
     const [openCancel, setOpenCancel] = useState(false);
-    const {id} = useParams()
-    const [rejectData, setRejectData] = useState({req_id:id});
 
-    const handleOpen = () => setOpen(!open);
+    const stateStr =  adminChangeStateRequestFromUser(reqData?.status);
 
-    const handleRejectData = (key, value) => {
-        setRejectData({...rejectData, [key]: value});
-        console.log({...rejectData,reject_time:formatDateTime(new Date())})
-    };
-    const handleReject = async () => {
-        try {
-            const res = await rejectRequest({...rejectData,reject_time:formatDateTime(new Date())})
-            handleOpen()
-            navigate("/resultSuccess", { state: 13});
-
-        } catch (error) {
-            toast.error(error?.response?.data?.message);
-        }
-    };
-    const handelApprove = (reqData) => {
-        navigate(`/reqTracking/requestDetail/approveRequest/${reqData?.request_id}`, {
-            state: {
-                status: reqData.status,
-                auction_live: reqData.auction_live
-            }
-        });
-    };
 
     if (isLoading) {
         return (
@@ -61,95 +36,127 @@ const UserRequestDetail = () => {
                 <div className="home-right pb-10 bg-white">
                     {isSuccess && (
                         <>
-                            <UserProductInfor data={reqData}/>
-                            {(reqData.status !== undefined && reqData.status !== 1 && reqData.status !== 13 ) ? (
-                                <UserBiddingInfo data={reqData}/>
-                            ) : (
-                                <></>
-                            )}
+                            <div className="flex p-4 gap-2 items-center px-2 justify-between">
+                                <div
+                                    className="flex items-center cursor-pointer"
+                                    onClick={() => navigate(-1)}
+                                >
+                                    <ArrowBackIosOutlinedIcon
+                                        sx={{fontSize: 20}}
+                                        color="rgb(212,212,212)"
+                                    ></ArrowBackIosOutlinedIcon>
+                                    <div className="text-base"> Trở lại</div>
+                                </div>
 
-                            {
-                                reqData.status === 1 &&
-                                <>
-                                    <div className="flex m-6 gap-5 justify-end mr-10">
-                                        <Button
-                                            onClick={handleOpen}
-                                            className="p-2 px-6 py-2 right-0 bg-white rounded text-orange-500 border-2 border-orange-500  text-sm hover:border-orange-500  font-medium focus:outline-0">
-                                            Từ chối yêu cầu
-                                        </Button>
+                                <div className="flex items-center gap-2">
+                                    <div className="text-left text-base ">Danh Sách {stateStr} </div>
+                                    <ArrowForwardIosOutlinedIcon
+                                        sx={{fontSize: 18}}
+                                        fontSize="small"
+                                        color="gray"
+                                    ></ArrowForwardIosOutlinedIcon>
+                                    <div className="text-base">Chi tiết</div>
+                                </div>
+                            </div>
+                            <div className="border-b border-gray-400  mx-5"></div>
+                            <div>
+                                <Tabs defaultActiveKey="1" className="px-8">
+                                    <TabPane tab="Thông tin sản phẩm" key="1">
+                                        <UserProductInfor data={reqData}/>
+                                    </TabPane>
+                                    <TabPane tab="Thông tin yêu cầu" key="2">
+                                        <UserSellerInfor data={reqData}/>
+                                    </TabPane>
+                                    {(reqData.status !== undefined  && reqData.status !== 13) ? (
+                                            <TabPane tab="Thông tin đấu giá" key="3">
+                                                <UserBiddingInfo data={reqData}/>
+                                            </TabPane>
+                                    ) : (
+                                        <></>
+                                    )}
 
-                                        <Button onClick = {() => handelApprove(reqData)}
-                                            className="p-2 px-6 py-2 right-0 bg-orange-500 rounded text-white border-gray-400 border-none text-sm hover:bg-orange-500  font-semibold focus:outline-0">
-                                            Duyệt yêu cầu
-                                        </Button>
-                                    </div>
-                                </>
-                            }
+                                    {/*lí do từ chôi*/}
+                                    {reqData.status === 13 && (
+                                        <>
+                                            <TabPane tab="Từ chối yêu cầu" key="4">
+                                                <div
+                                                    className="items-center font-medium text-sm gap-6  my-5 px-1 lg:space-y-5  min-[225px]:space-y-3">
 
-                            {/*từ chối yc đấu giá*/}
-                            <Dialog open={open} onClose={handleOpen}  maxWidth="md">
-                                <DialogTitle>
-                                    <div className="flex items-center justify-between">
-                                    <span className="font-semibold text-sm">
-                                        Từ chối yêu cầu đấu giá
-                                    </span>
-                                        <div
-                                            onClick={handleOpen}
-                                            className="bg-gray-800 rounded cursor-pointer text-sm text-white hover:bg-neutral-600 border-none font-medium focus:outline-0"
-                                        >
-                                        </div>
-                                    </div>
-                                    <div className="border-b mt-2  border-gray-300"></div>
-                                </DialogTitle>
-                                <DialogContent>
-                                    <Stack spacing={2} margin={1}>
-                                        <div
-                                            className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
-                                            <div className="flex pt-2   gap-6 text-right">
-                                                <div className="col-span-4">
-                                                    <Form.Item
-                                                        name="intro"
-                                                        label="Lí do"
-                                                        rules={[
-                                                            {
-                                                                required: true,
-                                                                message: 'Lí do từ chối',
-                                                            },
-                                                        ]}
-                                                    >
-                                                        <Input.TextArea
-                                                            onChange={(e) => handleRejectData('reason',e.target.value)}
-                                                            style={{width: 400,}}
-                                                            maxLength={100}/>
-                                                    </Form.Item>
+                                                    <div className="grid grid-cols-6 text-left">
+                                                        <div className="min-[100px]:col-span-6 md:col-span-1"> Thời gian từ chối
+                                                        </div>
+                                                        <div
+                                                            className="font-normal  min-[100px]:col-span-6  md:col-span-5">
+                                                            {reqData?.reject_time}</div>
+                                                    </div>
+                                                    <div className="grid grid-cols-6 text-left">
+                                                        <div className="min-[100px]:col-span-6 md:col-span-1"> Từ chối
+                                                            bởi
+                                                        </div>
+                                                        <div
+                                                            className="font-normal  min-[100px]:col-span-6  md:col-span-5">
+                                                            Quản trị viên
+                                                        </div>
+                                                    </div>
+                                                    <div className="grid grid-cols-6 text-left">
+                                                        <div className="min-[100px]:col-span-6 md:col-span-1"> Lí do
+                                                        </div>
+                                                        <div
+                                                            className="font-normal  min-[100px]:col-span-6  md:col-span-5">
+                                                            {reqData?.reason}
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </TabPane>
+                                        </>
+                                        )}
+                                    {/*thông tin hủy*/}
+                                    {(reqData.status === 11) && (
+                                        <>
+                                            <TabPane tab="Thông tin hủy" key="5">
+                                                <div
+                                                    className="items-center font-medium text-sm gap-6  my-5 px-1 lg:space-y-5  min-[225px]:space-y-3">
 
-                                        </div>
-                                        <div className="flex m-6 gap-5 justify-end mr-10">
-                                            <Button
-                                                onClick={handleOpen}
-                                                className="p-2 px-6 py-2 right-0 bg-white rounded text-red-500 border-2 border-red-500 hover:border-red-500 text-sm font-semibold focus:outline-0">
-                                                Hủy
-                                            </Button>
+                                                    <div className="grid grid-cols-6 text-left">
+                                                        <div className="min-[100px]:col-span-6 md:col-span-1">
+                                                            Thời gian hủy
+                                                        </div>
+                                                        <div
+                                                            className="font-normal  min-[100px]:col-span-6  md:col-span-5">
+                                                            đang fix
+                                                        </div>
+                                                    </div>
+                                                    <div className="grid grid-cols-6 text-left">
+                                                        <div className="min-[100px]:col-span-6 md:col-span-1"> Tác nhân
+                                                        </div>
+                                                        <div
+                                                            className="font-normal  min-[100px]:col-span-6  md:col-span-5">
+                                                            Quản trị viên ? User
+                                                        </div>
+                                                    </div>
+                                                    <div className="grid grid-cols-6 text-left">
+                                                        <div className="min-[100px]:col-span-6 md:col-span-1"> Lí do
+                                                        </div>
+                                                        <div
+                                                            className="font-normal  min-[100px]:col-span-6  md:col-span-5">
+                                                            Người dùng không điền thông tin nhận hàng
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </TabPane>
+                                        </>
+                                    )}
 
-                                            <Button
-                                                onClick={handleReject}
-                                                className="p-2 px-6 py-2 right-0 bg-red-500  rounded text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
-                                                Từ chối
-                                            </Button>
-                                        </div>
 
-                                    </Stack>
-                                </DialogContent>
-                            </Dialog>
+                                </Tabs>
+                            </div>
 
-                            {/*Thông tin giao hàng của người win ấu giá , ng bán vào xác nhận */}
+                            {/*Thông tin giao hàng của người win ấu giá , ng bán vào xác nhận , của phần admin*/}
                             {isSuccess &&
                                 (reqData.status === 5 || reqData.status === 6 || reqData.status === 7 || reqData.status === 8 || reqData.status === 9)
                                 && (
                                     <>
-                                        <div className="flex justify-between m-2.5 items-center px-2">
+                                    <div className="flex justify-between m-2.5 items-center px-2">
                                             <div className="text-left text-base font-semibold pt-8">
                                                 Thông tin giao hàng
                                             </div>
@@ -195,7 +202,6 @@ const UserRequestDetail = () => {
                                     </>
                                 )}
 
-
                             {(reqData.status !== undefined &&
                                 [5, 6].includes(reqData?.status) && reqData.admin_belong === 1) ? (
                                 <UpdatePopup state={reqData.status}/>
@@ -204,62 +210,8 @@ const UserRequestDetail = () => {
                             )}
 
 
-                            {(reqData.status === 11 )&& (
-                                <>
-                                    <div className="flex justify-between m-2.5 items-center px-2">
-                                        <div className="text-left text-sm font-medium pt-5">
-                                            Lí do hủy
-                                        </div>
-                                    </div>
-                                    <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-sm space-y-6 ">
-                                        <div className="grid grid-cols-6 text-left">
-                                            <div> Tác nhân :</div>
-                                            <div className="font-normal col-span-2">
-                                                Quản trị viên ? User
-                                            </div>
-                                        </div>
 
-                                        <div className="grid grid-cols-6 text-left">
-                                            <div> Lí do :</div>
-                                            <div className="font-normal  col-span-2">
-                                                Người dùng không điền thông tin nhận hàng
-                                            </div>
-                                        </div>
-                                    </div>
-                                </>
-                            )}
-                            {reqData.status === 13 && (
-                                <>
-                                    <div className="flex justify-between m-2.5 items-center px-2">
-                                        <div className="text-left text-sm pt-5 font-medium ">
-                                            Lí do từ chối yêu cầu đấu giá sản phẩm
-                                        </div>
-                                    </div>
-                                    <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-sm space-y-6 ">
-                                        <div className="grid grid-cols-6 text-left">
-                                            <div> Thời gian từ chối :</div>
-                                            <div className="font-normal  col-span-2">
-                                                {reqData?.reject_time}
-                                            </div>
-                                        </div>
-                                        <div className="grid grid-cols-6 text-left">
-                                            <div> Từ chối bởi :</div>
-                                            <div className="font-normal col-span-2">
-                                                Quản trị viên
-                                            </div>
-                                        </div>
 
-                                        <div className="grid grid-cols-6 text-left">
-                                            <div> Lí do :</div>
-                                            <div className="font-normal  col-span-2">
-                                                {reqData?.reason}
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </>
-                            )
-                            }
                         </>
                     )}
                 </div>
