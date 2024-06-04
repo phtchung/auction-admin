@@ -180,8 +180,12 @@ const UserAuctionCompleted = () => {
 
                                 <div className="border-b-2 border-gray-300 "></div>
                                 <MaterialReactTable
-
+                                    enableColumnResizing={true}
                                     columns={colUserAuctionHistory}
+                                    defaultColumn= {{
+                                        minSize: 80,
+                                        maxSize: 410,
+                                    }}
                                     data={(userAuctionHistoryData)}
                                     isloading={isLoading}
                                     enableDensityToggle={false}
