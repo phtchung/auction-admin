@@ -177,7 +177,7 @@ const RequestHistory = () => {
                                     data={(reqHistoryData)}
                                     defaultColumn= {{
                                         minSize: 80,
-                                        maxSize: 430,
+                                        maxSize: 400,
                                     }}
                                     isloading={isLoading}
                                     enableDensityToggle={false}

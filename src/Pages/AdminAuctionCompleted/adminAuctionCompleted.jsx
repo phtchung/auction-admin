@@ -177,8 +177,13 @@ const AdminAuctionCompleted = () => {
 
                                 <div className="border-b-2 border-gray-300 "></div>
                                 <MaterialReactTable
+                                    enableColumnResizing={true}
                                     columns={colAdminAuctionHistory}
                                     data={(adminAuctionCompletedData)}
+                                    defaultColumn= {{
+                                        minSize: 80,
+                                        maxSize: 490,
+                                    }}
                                     isloading={isLoading}
                                     enableDensityToggle={false}
                                     enableColumnFilters={false}

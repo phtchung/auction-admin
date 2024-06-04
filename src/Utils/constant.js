@@ -870,37 +870,38 @@ export const colReqHistory =
 
 export const colUserAuctionHistory =
     [
-        {accessorKey: 'id', header: 'Mã sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',}},
+        {accessorKey: 'id', header: 'Mã sản phẩm',enableResizing: false, size: 220, muiTableHeadCellProps: {align: 'center',}},
         {
-            accessorKey: 'start_time', header: 'Ngày đấu giá', size: 120, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'start_time', header: 'Ngày đấu giá',enableResizing: false, size: 160, muiTableHeadCellProps: {align: 'center',},
         },
         {
-            accessorKey: 'finish_time', header: 'Ngày kết thúc', size: 120, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'finish_time', header: 'Ngày kết thúc',enableResizing: false, size: 160, muiTableHeadCellProps: {align: 'center',},
         },
         {
-            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'product_name', header: 'Tên sản phẩm',enableResizing: false, size: 430, muiTableHeadCellProps: {align: 'center',},
         },
         {
-            accessorKey: 'seller_name', header: 'Người bán', size: 100, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'seller_name', header: 'Người bán',enableResizing: false, size: 160, muiTableHeadCellProps: {align: 'center',},muiTableBodyCellProps: {align: 'center'}
         },
         {
-            accessorKey: 'status_name', header: 'Trạng thái', size: 120, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'status_name', header: 'Trạng thái',enableResizing: false, size: 140, muiTableHeadCellProps: {align: 'center',},muiTableBodyCellProps: {align: 'center'}
         },
     ]
+
 export const colAdminAuctionHistory =
     [
-        {accessorKey: 'id', header: 'Mã sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',}},
+        {accessorKey: 'id', header: 'Mã sản phẩm',enableResizing: false, size: 220, muiTableHeadCellProps: {align: 'center',}},
         {
-            accessorKey: 'start_time', header: 'Ngày đấu giá', size: 120, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'start_time', header: 'Ngày đấu giá',enableResizing: false, size: 180, muiTableHeadCellProps: {align: 'center',},
         },
         {
-            accessorKey: 'finish_time', header: 'Ngày kết thúc', size: 120, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'finish_time', header: 'Ngày kết thúc',enableResizing: false, size: 180, muiTableHeadCellProps: {align: 'center',},
         },
         {
-            accessorKey: 'product_name', header: 'Tên sản phẩm', size: 170, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'product_name', header: 'Tên sản phẩm',enableResizing: false, size: 490, muiTableHeadCellProps: {align: 'center',},
         },
         {
-            accessorKey: 'status_name', header: 'Trạng thái', size: 120, muiTableHeadCellProps: {align: 'center',},
+            accessorKey: 'status_name', header: 'Trạng thái',enableResizing: false, size: 150, muiTableHeadCellProps: {align: 'center',},muiTableBodyCellProps: {align: 'center'}
         },
     ]
 
