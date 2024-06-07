@@ -2,7 +2,6 @@ import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import { Select,Form,TreeSelect, DatePicker } from 'antd';
-import {Button} from "@material-tailwind/react";
 import {useState} from "react";
 import {formatDateTime, treeSelectData} from "../../Utils/constant.js";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
@@ -287,17 +286,17 @@ const ConfirmApproved = () => {
 
                                   </div>
                                   <div className="flex m-6 gap-5 justify-end mr-10">
-                                      <Button
+                                      <button
                                           onClick={handleOpen}
-                                          className="p-2 px-6 py-2 right-0 bg-red-500 rounded text-white border-gray-400 border-none text-sm  font-medium focus:outline-0">
-                                      Hủy
-                                      </Button>
+                                          className="p-2 px-6 py-2 right-0 bg-white rounded text-gray-800 border-2   border-gray-800  hover:border-gray-800  text-sm  font-medium focus:outline-0">
+                                          Hủy
+                                      </button>
 
-                                      <Button
+                                      <button
                                           onClick={handleSubmit}
-                                          className="p-2 px-6 py-2 right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
+                                          className="p-2 px-6 py-2 right-0 bg-gray-800 rounded text-white border-gray-800  border-none text-sm  font-semibold focus:outline-0">
                                           Tạo
-                                      </Button>
+                                      </button>
                                   </div>
                               </Stack>
                           </DialogContent>

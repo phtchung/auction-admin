@@ -184,7 +184,7 @@ const UserAuctionCompleted = () => {
                                     columns={colUserAuctionHistory}
                                     defaultColumn= {{
                                         minSize: 80,
-                                        maxSize: 410,
+                                        maxSize: 470,
                                     }}
                                     data={(userAuctionHistoryData)}
                                     isloading={isLoading}

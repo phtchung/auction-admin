@@ -1,4 +1,4 @@
-import {adminChangeStateRequestFromUser, convertWinStatus} from "../../Utils/constant.js";
+import {adminChangeStateRequestFromUser, convertWinStatus, formatDateTime} from "../../Utils/constant.js";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import { Spin, Tabs} from 'antd';
@@ -123,7 +123,7 @@ const UserRequestDetail = () => {
                                                         </div>
                                                         <div
                                                             className="font-normal  min-[100px]:col-span-6  md:col-span-5">
-                                                            đang fix
+                                                            {formatDateTime(reqData.cancel_time)}
                                                         </div>
                                                     </div>
                                                     <div className="grid grid-cols-6 text-left">
@@ -140,6 +140,7 @@ const UserRequestDetail = () => {
                                                         <div
                                                             className="font-normal  min-[100px]:col-span-6  md:col-span-5">
                                                             Người dùng không điền thông tin nhận hàng
+                                                            {reqData?.return_reason}
                                                         </div>
                                                     </div>
                                                 </div>

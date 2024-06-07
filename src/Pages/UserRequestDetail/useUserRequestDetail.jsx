@@ -42,7 +42,9 @@ export default function useUserReqDetail() {
             rank: data?.product_id?.rank,
             status: data?.status,
             admin_belong:data?.admin_belong,
-            type_of_auction: data?.type_of_auction
+            type_of_auction: data?.type_of_auction,
+            cancel_time : data?.cancel_time,
+            return_reason : data?.delivery?.return_reason
         };
         return { detail };
     }, []);
