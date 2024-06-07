@@ -128,7 +128,7 @@ const AdminBiddingTracking = () => {
                                     enableColumnResizing={true}
                                     defaultColumn= {{
                                         minSize: 80,
-                                        maxSize: 600,
+                                        maxSize: 500,
                                     }}
                                     columns={columns}
                                     data={(data)}

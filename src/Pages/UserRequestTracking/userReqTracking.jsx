@@ -107,8 +107,8 @@ const RequestTracking = () => {
                                     enableColumnResizing={true}
                                     columns={columns}
                                     defaultColumn= {{
-                                    minSize: 80,
-                                    maxSize: 440,
+                                    minSize: 100,
+                                    maxSize: 460,
                                 }}
                                     data={(data)}
                                     isloading={isLoading}
