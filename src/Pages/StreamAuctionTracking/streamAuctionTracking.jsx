@@ -6,6 +6,8 @@ import {DeleteOutlined, EditOutlined, SendOutlined} from "@ant-design/icons";
 import {toast} from "react-toastify";
 import useStreamAuctionTracking from "./useStreamAuctionTracking.jsx";
 import {reSendCode, SendCodeToEmail, setStreamUrl} from "../../Services/requestService.jsx";
+import BtnOk from "../../Components/BtnOk/index.jsx";
+import {CircularProgress} from "@mui/material";
 
 const AddCategoryModal = ({visible, onCancel, onAdd,loading, selectedOutput}) => {
     const [form] = Form.useForm()
@@ -181,26 +183,6 @@ const StreamAuctionTracking = () => {
             align: 'center',
             render: (text, record) => (
                 <Space size="middle">
-                    {/*<Popconfirm*/}
-                    {/*    title={`Gửi lại mã truy cập phiên đấu giá?`}*/}
-                    {/*    onConfirm={() => handleReSend({*/}
-                    {/*        userId: record.user_id,*/}
-                    {/*        auctionId: record.auction_id*/}
-                    {/*    })}*/}
-                    {/*    okText="Gửi"*/}
-                    {/*    okButtonProps={{*/}
-                    {/*        style: {backgroundColor: 'rgb(59 130 246)'},*/}
-                    {/*    }}*/}
-                    {/*    cancelText="Không"*/}
-                    {/*    key="update-statuss"*/}
-                    {/*>*/}
-                    {/*    <span onClick={(e) => e.stopPropagation()}>*/}
-                    {/*      <Tooltip title="Gửi lại mã truy cập">*/}
-                    {/*       <SendOutlined />*/}
-                    {/*      </Tooltip>*/}
-                    {/*    </span>*/}
-                    {/*</Popconfirm>*/}
-
                     <Tooltip
                         title="Nhập Stream URL"
                         onClick={() => {
@@ -279,17 +261,17 @@ const StreamAuctionTracking = () => {
                             </div>
                             <div className="col-span-1">
                                 <div className="p-8  ">
-                                    <Button
-                                        onClick={onSubmit}
-                                        size="md"
-                                        className="  bg-blue-800 text-sm  font-medium  py-2 rounded   px-6"
-                                    >
-                                        Tìm kiếm
-                                    </Button>
+                                    <BtnOk onClick={onSubmit} text={'Tìm kiếm'}/>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    {isLoading && (
+                        <>
+                            <CircularProgress color="inherit" className="mt-20"/>{" "}
+                        </>
+                    )}
 
                     <div>
                         {

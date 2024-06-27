@@ -46,6 +46,11 @@ export default function useAdminReqDetail() {
             type_of_auction: data?.type_of_auction === 1 ? 'Đấu giá tăng' : 'Đấu giá giảm',
             register_start : formatDateTime(new Date(data?.register_start)),
             register_finish : formatDateTime(new Date(data?.register_finish)),
+            is_review: data?.is_review,
+            review_images : data?.review?.rv_image_list,
+            review_time: formatDateTime(data?.review?.createdAt),
+            review_comment : data?.review?.comment,
+            review_rate : data?.review?.rating,
         };
         return { detail };
     }, []);

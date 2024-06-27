@@ -523,12 +523,12 @@ const CreateProductAuction = () => {
 
                                                             </>
                                                             :
-                                                            <Button
+                                                            <button
                                                                 type="primary"
                                                                 onClick={ handleSubmit}
                                                                 className=" px-6 mb-8  right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
                                                                 Xác nhận
-                                                            </Button>
+                                                            </button>
                                                     }
                                                 </Form.Item>
                                             </Form>
@@ -1015,11 +1015,11 @@ const CreateProductAuction = () => {
                                                                 </button>
                                                             </>
                                                             :
-                                                            <Button type="primary"
+                                                            <button type="primary"
                                                                     onClick={handleSubmit1}
                                                                     className=" px-6 mb-8  right-0 bg-yellow-400 rounded text-black border-gray-400 border-none text-sm  font-semibold focus:outline-0">
                                                                 Hoàn tất
-                                                            </Button>
+                                                            </button>
                                                     }
                                                 </Form.Item>
                                             </Form>

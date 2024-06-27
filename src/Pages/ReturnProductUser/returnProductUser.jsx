@@ -10,6 +10,8 @@ import LayOut from "../../Components/Layout/layout.jsx";
 import {Checkbox} from "antd";
 import {MaterialReactTable} from "material-react-table";
 import useReturnProductUser from "./useReturnProductUser.jsx";
+import BtnOk from "../../Components/BtnOk/index.jsx";
+import {CircularProgress} from "@mui/material";
 
 const ReturnProductUser = () => {
     const [filter, setFilter] = useState({});
@@ -112,37 +114,26 @@ const ReturnProductUser = () => {
                                 <div className="font-medium text-xs px-2   "> Chỉ tìm kiếm theo số điện thoại</div>
                             </div>
                         </div>
-                        <div className="row-span-3 space-y-6  ">
-                            <Button
-                                onClick={onSubmit}
-                                size="md"
-                                className="block w-24  bg-blue-800 text-xs  h-9 py-2 rounded m-2 mt-5 px-4"
-                            >
-                                Search
-                            </Button>
 
-                            <Button
-                                size="md"
-                                className=" block text-xs w-24 bg-blue-800 h-9 py-1 rounded m-2  px-4"
-                            >
-                                Xuất Excel
-                            </Button>
-                            <Button
-                                onClick={handleReload}
-                                size="md"
-                                className=" block text-xs w-24 bg-blue-800 h-9 py-1 rounded m-2  px-4"
-                            >
-                                Reset
-                            </Button>
+                        <div className="row-span-3 flex flex-col gap-6 mx-auto mt-6 ">
+                            <BtnOk onClick={onSubmit} text={'Tìm kiếm'}/>
+
+                            <BtnOk onClick={handleReload} text={'Làm mới'}/>
                         </div>
 
                     </div>
+
+                    {isLoading && (
+                        <>
+                            <CircularProgress color="inherit" className="mt-20"/>{" "}
+                        </>
+                    )}
 
                     {isSuccess && (
                         <>
                             <div className="bg-white py-1  my-6  font-sans  h-12">
                                 <table style={{width: "100%"}}>
-                                    <thead>
+                                <thead>
                                     <tr
                                         style={{
                                             fontFamily: '"Roboto","Helvetica","Arial",sans-serif',

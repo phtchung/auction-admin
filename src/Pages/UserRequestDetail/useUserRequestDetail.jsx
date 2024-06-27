@@ -44,7 +44,12 @@ export default function useUserReqDetail() {
             admin_belong:data?.admin_belong,
             type_of_auction: data?.type_of_auction,
             cancel_time : data?.cancel_time,
-            return_reason : data?.delivery?.return_reason
+            return_reason : data?.delivery?.return_reason,
+            is_review : data?.is_review,
+            review_images : data?.review?.rv_image_list,
+            review_time: formatDateTime(data?.review?.createdAt),
+            review_comment : data?.review?.comment,
+            review_rate : data?.review?.rating,
         };
         return { detail };
     }, []);
