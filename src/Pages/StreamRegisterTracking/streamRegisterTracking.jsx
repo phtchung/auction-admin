@@ -201,7 +201,7 @@ const StreamRegisterTracking = () => {
             <LayOut>
                 <div className="home-right">
                     <div className="text-left px-5 pt-3 pb-3 text-xl font-bold text-neutral-600  bg-white">
-                        Theo dõi đấu giá livestream
+                        Theo dõi đấu giá giảm
                     </div>
                     <div className="border-b border-neutral-300 "></div>
                     <div className="bg-white p-3 my-7 border-gray-300 border h-56 text-sm gap-7 ">

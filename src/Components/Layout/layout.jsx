@@ -19,10 +19,6 @@ const items = [
         getItem('Người dùng ', '/reqTracking'),
         getItem('Hệ thống', "/adminBidTracking"),
     ]),
-    // getItem( 'Quản lý đấu giá người dùng', '/reqTracking'),
-    // getItem('Quản lý đấu giá hệ thống', "/adminBidTracking"),
-    // getItem('Quản lý đấu giá Livestream', "/streamAuctionTracking"),
-    // getItem('Quản lý đăng ký đấu giá', "/streamRegisterTracking"),
     getItem('Tạo phiên đấu giá', "/createProductAuction"),
     getItem('Lịch sử yêu cầu', "/requestHistory"),
     getItem('Lịch sử đấu giá', '3', [
@@ -37,7 +33,7 @@ const items = [
     ]),
     // getItem('Yêu cầu trả hàng của User', "/returnProductUser"),
     // getItem('Yêu cầu trả hàng của hệ thống', "/returnProductAdmin"),
-    getItem('Đấu giá livestream', '2', [
+    getItem('Đấu giá giảm', '2', [
         getItem('Quản lý đấu giá ', "/streamAuctionTracking"),
         getItem('Đăng ký đấu giá', "/streamRegisterTracking"),
     ]),
@@ -50,15 +46,14 @@ const LayOut = ({ children }) => {
     const [collapsed, setCollapsed] = useState(false);
     const location = useLocation();
     const activeItem = '/'+location.pathname.split('/')[1]
-    console.log(activeItem)
     const navigate = useNavigate()
-    const {currentUser} = useAuthContext();
+    const currentUser = useAuthContext();
     const queryClient = useQueryClient();
     const {loading, logout} = useLogout()
     const [open, setOpen] = useState(false)
     const [open1, setOpen1] = useState(false)
     const [dropdownOpen, setDropdownOpen] = useState(false)
-
+    console.log(currentUser)
 
     const selectItem = (index) => {
         setSelectedItem(index);
@@ -91,8 +86,6 @@ const LayOut = ({ children }) => {
             <Layout style={{
                 minHeight: '100vh',
             }}>
-
-
                 <Sider width={215} trigger={null} collapsible collapsed={collapsed}
                        onCollapse={(value) => setCollapsed(value)}>
                     <Menu theme="dark" onClick={({key}) => navigate(key)} defaultSelectedKeys={[activeItem]}
@@ -100,8 +93,8 @@ const LayOut = ({ children }) => {
                 </Sider>
                 <div className="flex flex-col gap-6">
                     <div className="">
-                        <header className={`flex w-full h-16 header  items-center dark:bg-dark`}
-                                style={{backgroundColor: '#F27C08'}}>
+                        <header className={`flex w-full h-16 bg-white header border-b border-b-gray-400 items-center dark:bg-dark`}
+                               >
                             <div className="container">
                                 <div className="relative -mx-2 flex items-center justify-between">
                                     <div className="flex w-full items-center justify-between px-4">
@@ -146,8 +139,8 @@ const LayOut = ({ children }) => {
                                                             </span>
 
                                                             <svg
-                                                                className={dropdownOpen ? 'rotate-180' : ' fill-white sm:block'}
-                                                                width="12" height="8" viewBox="0 0 12 8" fill="white"
+                                                                className={dropdownOpen ? 'rotate-180' : ' fill-black sm:block'}
+                                                                width="12" height="8" viewBox="0 0 12 8" fill="black"
                                                                 xmlns="http://www.w3.org/2000/svg"
                                                             >
                                                                 <path fillRule="evenodd" clipRule="evenodd"
@@ -215,7 +208,6 @@ const LayOut = ({ children }) => {
                         </Content>
                     </Layout>
                 </div>
-
 
             </Layout>
         </>

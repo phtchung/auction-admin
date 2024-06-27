@@ -21,7 +21,6 @@ const Login = () => {
 
   const handleClick = async () => {
     try {
-
       localStorage.clear()
 
       const res = await adminLogin({
@@ -52,68 +51,62 @@ const Login = () => {
     }
   }, [navigate, accessToken]);
   return (
-    <>
-      <Card color="white" className="p-6" shadow={false}>
-        <Typography variant="h4" color="blue-gray">
-          Đăng nhập
-        </Typography>
+<>
+  <div className=" col-start-3 relative w-[500px] mx-[30rem]">
+    <div className=" font-[sans-serif] w-30">
+      <div className="min-h-screen mx-auto flex flex-col items-center justify-center py-6 px-4">
+        <div className="max-w-md w-full">
+          <div className="p-8 rounded-2xl bg-amber-50 shadow">
+            <h2 className="text-gray-800 text-center text-2xl font-bold">Đăng nhập</h2>
+            <form className="mt-8 space-y-4">
+              <div>
+                <label className="text-gray-800 text-sm mb-2 block">Email</label>
+                <div className="relative flex items-center">
+                  <input name="username" type="text" required
+                         onChange={handleMailChange}
+                         className="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
+                         placeholder="Email"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
+                       className="w-4 h-4 absolute right-4" viewBox="0 0 24 24">
+                    <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
+                    <path
+                        d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+                        data-original="#000000"></path>
+                  </svg>
+                </div>
+              </div>
 
-        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
-          <div className="mb-1 flex flex-col gap-6">
-            <Typography
-              variant="h6"
-              color="blue-gray"
-              className="-mb-3 text-left"
-            >
-              Your Phone Number
-            </Typography>
-            <Input
-              size="lg"
-              placeholder="Số điện thoại"
-              className=" !border-t-blue-gray-200 "
-              onChange={handleMailChange}
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-            />
-            <Typography
-              variant="h6"
-              color="blue-gray"
-              className="-mb-3 text-left"
-            >
-              Password
-            </Typography>
-            <Input
-              type="password"
-              size="lg"
-              placeholder="********"
-              onChange={handlePasswordChange}
-              className=" !border-t-blue-gray-200 "
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-            />
+              <div>
+                <label className="text-gray-800 text-sm mb-2 block">Mật khẩu</label>
+                <div className="relative flex items-center">
+                  <input name="password" type="password" required
+                         onChange={handlePasswordChange}
+                         className="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
+                         placeholder="Mật khẩu"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
+                       className="w-4 h-4 absolute right-4 cursor-pointer" viewBox="0 0 128 128">
+                    <path
+                        d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"
+                        data-original="#000000"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <div className="!mt-8">
+                <button type="button"
+                        onClick={handleClick}
+                        className="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-orange-500 hover:bg-orange-600 focus:outline-none">Đăng nhập
+                </button>
+              </div>
+            </form>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-          {/*<div*/}
-          {/*    color="gray"*/}
-          {/*    className="flex text-sm items-center font-normal">*/}
-          {/*    <Checkbox className="flex"/>*/}
-          {/*    I agree the*/}
-          {/*    <a*/}
-          {/*        href="#"*/}
-          {/*        className="font-medium transition-colors hover:text-gray-900"*/}
-          {/*    >*/}
-          {/*        &nbsp;Terms and Conditions*/}
-          {/*    </a>*/}
-          {/*</div>*/}
-
-          <Button className="mt-6 bg-black" onClick={handleClick} fullWidth>
-            Đăng nhập
-          </Button>
-        </form>
-      </Card>
-    </>
-  );
+</>
+  )
+      ;
 };
 export default Login;

@@ -3,11 +3,12 @@ import { useState } from "react";
 import {toast} from "react-toastify";
 import USER from "../Services/userService.jsx";
 import {useAuthContext} from "../Components/context/AuthContext.jsx";
+import {useNavigate} from "react-router-dom";
 
 const useLogout = () => {
     const [loading, setLoading] = useState(false);
     const { currentUser, setCurrentUser } = useAuthContext();
-
+    const navigate = useNavigate()
     const logout = async () => {
         setLoading(true);
         try {
@@ -21,6 +22,7 @@ const useLogout = () => {
             localStorage.removeItem("accessToken");
             setCurrentUser(null);
             toast.success('Đăng xuất thành công')
+            navigate('/login')
         } catch (error) {
             toast.error(error.message);
         } finally {
