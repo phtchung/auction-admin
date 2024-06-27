@@ -9,6 +9,8 @@ import LayOut from "../../Components/Layout/layout.jsx";
 import {Checkbox} from "antd";
 import {MaterialReactTable} from "material-react-table";
 import useAdminAuctionCompleted from "./useAdminAuctionCompleted.jsx";
+import BtnOk from "../../Components/BtnOk/index.jsx";
+import {CircularProgress} from "@mui/material";
 
 const AdminAuctionCompleted = () => {
     const [filter, setFilter] = useState({});
@@ -51,7 +53,8 @@ const AdminAuctionCompleted = () => {
                         Lịch sử đấu giá hệ thống
                     </div>
                     <div className="border-b border-neutral-300 "></div>
-                    <div className="bg-white p-3 my-7 border-gray-300 border grid grid-rows-4 grid-flow-col h-56 text-sm gap-7 ">
+                    <div
+                        className="bg-white p-3 my-7 border-gray-300 border grid grid-rows-4 grid-flow-col h-56 text-sm gap-7 ">
                         <div className="col-span-3">
                             <div className="font-medium text-sm p-3 pb-9 ">Tìm kiếm ngày :</div>
 
@@ -106,42 +109,28 @@ const AdminAuctionCompleted = () => {
                                 </div>
                             </div>
                             <div className="justify-start pt-3 ml-2 flex items-center pl-14">
-                                <Checkbox onClick={(e) => handleFilter('df',e.target.checked)}/>
+                                <Checkbox onClick={(e) => handleFilter('df', e.target.checked)}/>
                                 <div className="font-medium text-xs px-2   "> Chỉ tìm kiếm theo số điện thoại</div>
                             </div>
                         </div>
-                        <div className="row-span-3 space-y-6  ">
-                            <Button
-                                onClick={onSubmit}
-                                size="md"
-                                className="block w-24  bg-blue-800 text-xs  h-9 py-2 rounded m-2 mt-5 px-4"
-                            >
-                                Search
-                            </Button>
+                        <div className="row-span-3 flex flex-col gap-6 mx-auto mt-6 ">
+                            <BtnOk onClick={onSubmit} text={'Tìm kiếm'}/>
 
-                            <Button
-                                size="md"
-                                className=" block text-xs w-24 bg-blue-800 h-9 py-1 rounded m-2  px-4"
-                            >
-                                Xuất Excel
-                            </Button>
-
-                            <Button
-                                onClick={handleReload}
-                                size="md"
-                                className=" block text-xs w-24 bg-blue-800 h-9 py-1 rounded m-2  px-4"
-                            >
-                                Reset
-                            </Button>
+                            <BtnOk onClick={handleReload} text={'Làm mới'}/>
                         </div>
-
                     </div>
+
+                    {isLoading && (
+                        <>
+                            <CircularProgress color="inherit" className="mt-20"/>{" "}
+                        </>
+                    )}
 
                     {isSuccess && (
                         <>
                             <div className="bg-white   border-gray-300 border p-2 my-7 text-base h-24">
                                 <table style={{width: "100%"}}>
-                                    <thead>
+                                <thead>
                                     <tr
                                         style={{
                                             borderBottom: "1px solid #e5e7eb",

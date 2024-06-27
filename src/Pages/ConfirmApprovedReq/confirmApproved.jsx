@@ -17,7 +17,6 @@ const ConfirmApproved = () => {
     const {id} = useParams()
     const [form] = Form.useForm();
     const {state} = useLocation()
-    console.log('state',state)
     const [approveData, setApproveData] = useState({rq_id:id});
     const [open, setOpen] = useState(false);
     const handleapproveData = (key, value) => {

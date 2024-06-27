@@ -10,6 +10,7 @@ import UserBiddingInfo from "../../Components/UserProductInfor/userBiddingInfor.
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import UserSellerInfor from "../../Components/UserProductInfor/userSellerInfor.jsx";
+import ReviewInfo from "../../Components/AdminProductInfor/ReviewInfo.jsx";
 const TabPane = Tabs.TabPane
 
 const UserRequestDetail = () => {
@@ -73,6 +74,12 @@ const UserRequestDetail = () => {
                                             </TabPane>
                                     ) : (
                                         <></>
+                                    )}
+
+                                    {(reqData.status === 8 && reqData.is_review === 1) && (
+                                        <TabPane tab="Thông tin đánh giá" key="5">
+                                            <ReviewInfo data={reqData}/>
+                                        </TabPane>
                                     )}
 
                                     {/*lí do từ chôi*/}

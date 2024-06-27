@@ -278,6 +278,7 @@ export function convertStatusToData(status) {
 
 export const formatDateTime = (inputDateString) => {
     const inputDate = new Date(inputDateString);
+    console.log(inputDateString)
     const formatDateComponent = (component) => String(component).padStart(2, "0");
     const year = formatDateComponent(inputDate.getFullYear());
     const month = formatDateComponent(inputDate.getMonth() + 1);

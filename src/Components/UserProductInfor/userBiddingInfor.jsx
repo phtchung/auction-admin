@@ -6,6 +6,7 @@ import {useState} from "react";
 import {rejectRequest} from "../../Services/requestService.jsx";
 import {toast} from "react-toastify";
 import {useNavigate, useParams} from "react-router-dom";
+import BtnOk from "../BtnOk/index.jsx";
 
 const UserBiddingInfo = ({ data }) => {
     const {id} = useParams()
@@ -184,11 +185,7 @@ const UserBiddingInfo = ({ data }) => {
                             Từ chối yêu cầu
                         </button>
 
-                        <button
-                            onClick={() => handelApprove(data)}
-                            className="p-2 px-6 py-2 right-0 bg-gray-800 rounded text-white border-gray-800  border-none text-sm  font-semibold focus:outline-0">
-                            Duyệt yêu cầu
-                        </button>
+                        <BtnOk onClick={() => handelApprove(data)} text={'Duyệt yêu cầu'}/>
                     </div>
                 </>
             }

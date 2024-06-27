@@ -6,6 +6,8 @@ import { EditOutlined, SendOutlined} from "@ant-design/icons";
 import {toast} from "react-toastify";
 import {reSendCode, SendCodeToEmail} from "../../Services/requestService.jsx";
 import useStreamRegisterTracking from "./useStreamRegisterTracking.jsx";
+import BtnOk from "../../Components/BtnOk/index.jsx";
+import {CircularProgress} from "@mui/material";
 
 const AddCategoryModal = ({visible, onCancel, onAdd,loading, selectedOutput}) => {
     const [form] = Form.useForm()
@@ -241,17 +243,17 @@ const StreamRegisterTracking = () => {
                             </div>
                             <div className="col-span-1">
                                 <div className="p-8  ">
-                                    <Button
-                                        onClick={onSubmit}
-                                        size="md"
-                                        className="  bg-blue-800 text-sm  font-medium  py-2 rounded   px-6"
-                                    >
-                                        Tìm kiếm
-                                    </Button>
+                                    <BtnOk onClick={onSubmit} text={'Tìm kiếm'}/>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    {isLoading && (
+                        <>
+                            <CircularProgress color="inherit" className="mt-20"/>{" "}
+                        </>
+                    )}
 
                     <div>
                         {

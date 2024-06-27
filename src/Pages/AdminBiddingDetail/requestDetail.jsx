@@ -14,6 +14,7 @@ import UpdatePopup from "../../Components/UpdatePopup/UpdatePopup.jsx";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import AdminDeliveryInfor from "../../Components/AdminProductInfor/adminDeliveryInfor.jsx";
+import ReviewInfo from "../../Components/AdminProductInfor/ReviewInfo.jsx";
 const TabPane = Tabs.TabPane
 
 const AdminRequestDetail = () => {
@@ -100,6 +101,12 @@ const AdminRequestDetail = () => {
                                     {(reqData.status === 7  || reqData.status === 5 || reqData.status === 6  || reqData.status === 8 || reqData.status === 9 || reqData.status === 14 || reqData.status === 15) && (
                                         <TabPane tab="Thông tin giao hàng" key="3">
                                             <AdminDeliveryInfor data={reqData} />
+                                        </TabPane>
+                                    )}
+
+                                    {(reqData.status === 8 && reqData.is_review === 1) && (
+                                        <TabPane tab="Thông tin đánh giá" key="5">
+                                            <ReviewInfo data={reqData}/>
                                         </TabPane>
                                     )}
 
