@@ -536,7 +536,7 @@ const CreateProductAuction = () => {
                                         </div>
                                     </TabPane>
 
-                                    <TabPane tab="Đấu giá qua livestream" key="2">
+                                    <TabPane tab="Đấu giá giảm " key="2">
                                         <div
                                             className="items-center font-medium text-sm gap-6 my-8 mx-8 px-1 space-y-6 ">
                                             <Form
@@ -592,7 +592,6 @@ const CreateProductAuction = () => {
                                                         placeholder="Phương thức đấu giá"
                                                         style={{textAlign: "left"}}
                                                     >
-                                                        <Option value="1">Đấu giá tăng</Option>
                                                         <Option value="-1">Đấu giá giảm</Option>
                                                     </Select>
                                                 </Form.Item>
@@ -607,10 +606,10 @@ const CreateProductAuction = () => {
                                                                },
                                                                ({ getFieldValue }) => ({
                                                                    validator(_, value) {
-                                                                       if (!value || value > new Date(new Date().getTime() + 60 * 60 * 1000)) {
+                                                                       if (!value || value > new Date(new Date().getTime() +  60 * 1000)) {
                                                                            return Promise.resolve();
                                                                        }
-                                                                       return Promise.reject(new Error(`Thời gian bắt đầu đăng kí phải sau ${formatDateTime(new Date(new Date().getTime() + 60 * 60 * 1000))} !`));
+                                                                       return Promise.reject(new Error(`Thời gian bắt đầu đăng kí phải sau ${formatDateTime(new Date(new Date().getTime() +  60 * 1000))} !`));
                                                                    },
                                                                }),
                                                                ]}>
@@ -846,6 +845,34 @@ const CreateProductAuction = () => {
                                                         style={{
                                                             width: '100%',
 
+                                                        }}
+                                                    />
+                                                </Form.Item>
+
+                                                <Form.Item
+                                                    name="min_price"
+                                                    label="Giá tối thiểu"
+                                                    rules={[
+                                                        {
+                                                            required: true,
+                                                            message: 'Hãy điền giá thấp nhất !',
+                                                        },
+                                                        ({ getFieldValue }) => ({
+                                                            validator(_, value) {
+                                                                if (!value || getFieldValue('reserve_price') > value ) {
+                                                                    return Promise.resolve();
+                                                                }
+                                                                return Promise.reject(new Error(`Giá tối thiểu phải nhỏ hơn giá khởi điểm !`));
+                                                            },
+                                                        }),
+                                                    ]}
+                                                >
+                                                    <InputNumber
+                                                        placeholder="Giá tối thiểu"
+                                                        onChange={(value) => handleAdminAucStreamData('min_price',value)}
+                                                        suffix="VNĐ"
+                                                        style={{
+                                                            width: '100%',
                                                         }}
                                                     />
                                                 </Form.Item>
