@@ -86,3 +86,7 @@ button:focus {
 :where(.css-dev-only-do-not-override-1xg9z9n).ant-card .ant-card-body{
     padding: 0!important;
 }
+
+:where(.css-dev-only-do-not-override-1xg9z9n).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-card .ant-upload-list-item-error{
+    border-color: #d6d4d4 !important;
+}

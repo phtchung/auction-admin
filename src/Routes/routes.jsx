@@ -23,7 +23,10 @@ import StreamAuctionTracking from "../Pages/StreamAuctionTracking/streamAuctionT
 import StreamRegisterTracking from "../Pages/StreamRegisterTracking/streamRegisterTracking.jsx";
 
 
-export const NormalRoutes = [{ path: "/login", element: <Login /> }];
+export const NormalRoutes = [
+    { path: "/login", element: <Login/>},
+    { path: "/", element: <Login /> }
+];
 
 export const UserRoutes = [
     { path: "/404", element: <PageNotFound /> },
