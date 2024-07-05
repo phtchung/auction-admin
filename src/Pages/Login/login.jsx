@@ -3,12 +3,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import USER, {adminLogin} from "../../Services/userService.jsx";
 import { toast } from "react-toastify";
+import {useAuthContext} from "../../Components/context/AuthContext.jsx";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const {currentUser, setCurrentUser } = useAuthContext()
   const handleMailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -22,7 +23,6 @@ const Login = () => {
   const handleClick = async () => {
     try {
       localStorage.clear()
-
       const res = await adminLogin({
         email: email,
         password: password,
@@ -34,6 +34,7 @@ const Login = () => {
       }
       const id = res?.data?.id;
       if (id) {
+        setCurrentUser(id)
         localStorage.setItem("id", id);
       }
       toast.success("Login success");

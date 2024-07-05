@@ -6,6 +6,7 @@ import RequireAuth from "./Components/context/requireAuth.jsx";
 import 'react-toastify/dist/ReactToastify.css';
 import '../src/Pages/Login/style.css'
 import {SearchProvider} from "./Components/context/SearchContext.jsx";
+import PageNotFound from "./Components/PageNotFound/pageNotFound.jsx";
 
 const App = () => {
     const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => {
                             element={<RequireAuth>{route.element}</RequireAuth>}
                         ></Route>
                     ))}
+                    <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </BrowserRouter>
             </SearchProvider>

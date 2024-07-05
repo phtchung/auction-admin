@@ -3,9 +3,8 @@ import {useQuery} from "@tanstack/react-query";
 import {getCategories} from "../../Services/categoriesService.jsx";
 
 export default function useCategories() {
-
+    const [key , setKey] = useState('')
     const parseData = useCallback((item) => {
-        console.log(item)
         const categories = item?.categories?.map((data) => {
             return {
                 category_id: data?._id,
@@ -23,8 +22,8 @@ export default function useCategories() {
         isLoading,
         refetch,
     } = useQuery({
-        queryKey: ["getCategories"],
-        queryFn: () => getCategories(),
+        queryKey: ["getCategories",key],
+        queryFn: () => getCategories(key),
         staleTime: 20 * 1000,
         select: (data) => parseData(data.data),
     });
@@ -34,5 +33,6 @@ export default function useCategories() {
         isSuccess,
         isLoading,
         refetch,
+        key,setKey
     };
 }

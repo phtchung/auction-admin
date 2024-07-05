@@ -30,8 +30,10 @@ export default function useUserRequestTracking() {
                 finish_time:formatDateTime(new Date(data?.finish_time)),
                 victory_time: formatDateTime(new Date(data?.victory_time)),
                 total_price: data?.final_price + data?.shipping_fee,
+                reject_time : formatDateTime(data?.updatedAt),
                 completed_at: formatDateTime(
                     new Date(data?.delivery?.completed_at),
+
                 ),
             };
         });

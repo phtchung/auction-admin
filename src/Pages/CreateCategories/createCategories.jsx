@@ -29,7 +29,7 @@ const formItemLayout = {
 };
 const CreateCategories = () => {
     const navigate = useNavigate()
-    const {isLoading, isSuccess, categories, refetch} = useCategories()
+    const {isLoading, isSuccess, categories, refetch, key,setKey} = useCategories()
     const [cateData, setCateData] = useState(null)
     const [open, setOpen] = useState(false);
 
@@ -78,6 +78,10 @@ const CreateCategories = () => {
     const onChange = (page) => {
         setCurrent(page);
     };
+
+    const handleBlur = (e) => {
+        setKey(e.target.value)
+    }
     return (
         <LayOut>
             <div className="home-right ">
@@ -89,7 +93,10 @@ const CreateCategories = () => {
                     </div>
                     <div className="flex flex-col gap-3 mx-4">
                         <div className="flex flex-row gap-10 items-center mt-2.5">
-                            <Input style={{width: '40%'}} placeholder="Tìm kiếm danh mục sản phẩm"/>
+                            <Input onBlur={handleBlur}  style={{width: '40%'}}  placeholder="Tìm kiếm danh mục sản phẩm"/>
+                            <Button type="primary" className="bg-blue-500">
+                                Tìm kiếm
+                            </Button>
                             <Button type="primary" className="bg-blue-500" onClick={showModal}>
                                 Thêm mới
                             </Button>
@@ -178,12 +185,6 @@ const CreateCategories = () => {
                                                         style={{width: 100, height: 90}}
                                                         alt="example" src={category.image}/>}
                                                     actions={[
-                                                        <div>
-                                                            <CloudUploadOutlined/>
-                                                        </div>,
-                                                        <div>
-                                                            <DeleteOutlined key="delete"/>
-                                                        </div>,
                                                         <div>
                                                             <EditOutlined />
                                                         </div>

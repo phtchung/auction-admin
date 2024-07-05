@@ -90,3 +90,8 @@ button:focus {
 :where(.css-dev-only-do-not-override-1xg9z9n).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-card .ant-upload-list-item-error{
     border-color: #d6d4d4 !important;
 }
+
+:where(.css-1xg9z9n).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture .ant-upload-list-item-error, :where(.css-1xg9z9n).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-card .ant-upload-list-item-error, :where(.css-1xg9z9n).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-circle .ant-upload-list-item-error{
+    border-color: #d6d4d4 !important;
+
+}

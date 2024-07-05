@@ -1,28 +1,15 @@
 import { useLocation, Navigate } from "react-router-dom";
-import {useEffect, useMemo, useState} from "react";
-import USER from "../../Services/userService.jsx";
+
+import {useAuthContext} from "./AuthContext.jsx";
 
 // eslint-disable-next-line react/prop-types
 const RequireAuth = ({ children }) => {
-
-    const [handle, setHandle] = useState(false)
+    const {currentUser}  = useAuthContext()
     const location = useLocation();
 
-    useEffect(() => {
-        ;(async () => {
-            let result = await USER.me()
-
-            if (result.data._id && result.data.roles[0] === 'admin') {
-                setHandle(true)
-            }
-        })()
-    }, [])
-
-    if (handle === false) {
-        return <> </>
+    if (!currentUser) {
+        return <Navigate to="/login" state={{ from: location }} replace />;
     }
-    return <>{handle === true ? children : <Navigate to="/login" state={{ from: location }} replace />}</>
-
+    return children;
 };
-
 export default RequireAuth;

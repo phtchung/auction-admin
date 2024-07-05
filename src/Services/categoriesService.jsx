@@ -1,10 +1,11 @@
 import privateHttp from "./Http/privateHttp.config.js";
 import publicHttp from "./Http/publicHttp.config.js";
 
-export const getCategories = async () => {
+export const getCategories = async (key) => {
+    let url = key ? `/admin/categories?key=${key}` : `/admin/categories`
     return privateHttp({
         method: "GET",
-        url: `/admin/categories`,
+        url: url,
     });
 };
 

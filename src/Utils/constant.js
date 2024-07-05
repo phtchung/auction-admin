@@ -287,7 +287,7 @@ export const formatDateTime = (inputDateString) => {
     const minutes = formatDateComponent(inputDate.getMinutes());
     const seconds = formatDateComponent(inputDate.getSeconds());
 
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
 };
 
 export function processStatus(status) {
@@ -596,7 +596,7 @@ export const rejectColumns =
         {
             accessorKey: 'product_name',
             header: 'Tên sản phẩm',
-            size: 430,
+            size: 400,
             muiTableHeadCellProps: {
                 align: 'center',
             },
@@ -619,9 +619,9 @@ export const rejectColumns =
             },
         },
         {
-            accessorKey: 'sale_price',
-            header: 'Giá bán',
-            size: 150,
+            accessorKey: 'reject_time',
+            header: 'Thời gian hủy',
+            size: 170,
             muiTableHeadCellProps: {
                 align: 'center',
             },
