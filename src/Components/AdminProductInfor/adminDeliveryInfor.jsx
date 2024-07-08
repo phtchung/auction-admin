@@ -38,6 +38,14 @@ const AdminDeliveryInfor = ({data}) => {
                         {data?.deliData?.payment_method}</div>
                 </div>
 
+                <div className="grid grid-cols-6 text-left">
+                    <div className="min-[100px]:col-span-6 md:col-span-1"> Giao hàng trước:
+                    </div>
+                    <div className="font-normal  min-[100px]:col-span-6  md:col-span-5">
+                        {formatDateTime(data?.deliData?.delivery_before)}</div>
+                </div>
+
+
                 {data.status === 8 && <>
                     <div className="grid grid-cols-6 text-left">
                         <div className="min-[100px]:col-span-6 md:col-span-1"> Thời gian nhận hàng

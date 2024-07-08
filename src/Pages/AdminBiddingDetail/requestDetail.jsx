@@ -159,17 +159,10 @@ const AdminRequestDetail = () => {
                                                         </div>
                                                         <div
                                                             className="font-normal  min-[100px]:col-span-6  md:col-span-5">
-                                                            đang fix
+                                                            {reqData.updatedAt}
                                                         </div>
                                                     </div>
-                                                    <div className="grid grid-cols-6 text-left">
-                                                        <div className="min-[100px]:col-span-6 md:col-span-1"> Tác nhân
-                                                        </div>
-                                                        <div
-                                                            className="font-normal  min-[100px]:col-span-6  md:col-span-5">
-                                                            Quản trị viên ? User
-                                                        </div>
-                                                    </div>
+
                                                     <div className="grid grid-cols-6 text-left">
                                                         <div className="min-[100px]:col-span-6 md:col-span-1"> Lí do
                                                         </div>

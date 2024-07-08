@@ -134,7 +134,7 @@ export const colReject = [
     {id: "product_name", name: "Tên sản phẩm"},
     {id: "reserve_price", name: "Giá khởi điểm"},
     {id: "reject_time", name: "Thời gian từ chối"},
-    {id: "action_by", name: "Tác nhân"},
+
 ];
 export const colDlvWait = [
     {id: "product_id", name: "Mã sản phẩm"},
@@ -290,6 +290,19 @@ export const formatDateTime = (inputDateString) => {
     return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
 };
 
+export const formatDateTimeSelect = (inputDateString) => {
+    const inputDate = new Date(inputDateString);
+    console.log(inputDateString)
+    const formatDateComponent = (component) => String(component).padStart(2, "0");
+    const year = formatDateComponent(inputDate.getFullYear());
+    const month = formatDateComponent(inputDate.getMonth() + 1);
+    const day = formatDateComponent(inputDate.getDate());
+    const hours = formatDateComponent(inputDate.getHours());
+    const minutes = formatDateComponent(inputDate.getMinutes());
+    const seconds = formatDateComponent(inputDate.getSeconds());
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+};
 export function processStatus(status) {
     if (
         status === 567 ||

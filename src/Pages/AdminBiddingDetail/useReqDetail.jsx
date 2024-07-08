@@ -51,6 +51,7 @@ export default function useAdminReqDetail() {
             review_time: formatDateTime(data?.review?.createdAt),
             review_comment : data?.review?.comment,
             review_rate : data?.review?.rating,
+            updatedAt : formatDateTime(data?.updatedAt),
         };
         return { detail };
     }, []);

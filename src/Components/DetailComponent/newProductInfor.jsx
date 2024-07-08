@@ -284,12 +284,6 @@ const NewProductInfor = ({reqData}) => {
                         </div>
                     </div>
                     <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-sm space-y-6 ">
-                        <div className="grid grid-cols-6 text-left">
-                            <div> Tác nhân :</div>
-                            <div className="font-normal col-span-2">
-                                Quản trị viên ? User
-                            </div>
-                        </div>
 
                         <div className="grid grid-cols-6 text-left">
                             <div> Lí do :</div>
@@ -300,10 +294,6 @@ const NewProductInfor = ({reqData}) => {
                     </div>
                 </>
             )}
-
-
-
-
         </>
     )
 }

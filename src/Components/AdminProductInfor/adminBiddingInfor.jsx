@@ -126,15 +126,6 @@ const AdminBiddingInfo = ({ data }) => {
                                     </div>
                                 </div>
 
-                                <div className="lg:col-span-3  min-[225px]:col-span-6 grid grid-cols-3">
-                                    <div className="min-[225px]:col-span-3  sm:col-span-1"> Tổng tiền thực nhận</div>
-                                    <div className="font-normal  sm:col-span-2 min-[225px]:col-span-3 ">
-                                        {formatMoney((
-                                            (data?.final_price + data?.shipping_fee) *
-                                            0.9
-                                        )).toLocaleString() + " VND"}
-                                    </div>
-                                </div>
                             </div>
 
                             <div className="grid grid-cols-6 text-left">

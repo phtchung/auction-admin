@@ -1,6 +1,5 @@
 import {DatePicker, Form, Input, InputNumber, Select, Tabs, TreeSelect} from "antd";
 import {formatDateTime} from "../../Utils/constant.js";
-import {Button} from "@material-tailwind/react";
 import {useNavigate} from "react-router-dom";
 import FileUpload from "../../Components/UploadFile/uploadFile.jsx";
 import {useState} from "react";
@@ -9,7 +8,6 @@ import LayOut from "../../Components/Layout/layout.jsx";
 import useTreeCategories from "./useCategories.jsx";
 import {useMutation} from "@tanstack/react-query";
 import {toast} from "react-toastify";
-
 const TabPane = Tabs.TabPane
 const {Option} = Select;
 const formItemLayout = {
@@ -212,13 +210,13 @@ const CreateProductAuction = () => {
                                                                ]}>
                                                     <DatePicker
                                                         placeholder="Thời gian bắt đầu"
-                                                        onChange={(value) => handleAdminAuctionData('start_time', formatDateTime(value))}
+                                                        onChange={(value) => handleAdminAuctionData('start_time', (value.toISOString()))}
                                                         showTime
                                                         style={{
                                                             width: '100%',
                                                             textAlign: 'center'
                                                         }}
-                                                        format="YYYY-MM-DD HH:mm:ss"/>
+                                                        />
                                                 </Form.Item>
 
 
@@ -241,13 +239,13 @@ const CreateProductAuction = () => {
                                                            >
                                                     <DatePicker
                                                         placeholder="Thời gian kết thúc"
-                                                        onChange={(value) => handleAdminAuctionData('finish_time', formatDateTime(value))}
+                                                        onChange={(value) => handleAdminAuctionData('finish_time', (value.toISOString()))}
                                                         showTime
                                                         style={{
                                                             width: '100%',
                                                             textAlign: 'center'
                                                         }}
-                                                        format="YYYY-MM-DD HH:mm:ss"/>
+                                                        />
                                                 </Form.Item>
 
                                                 <Form.Item
@@ -615,13 +613,13 @@ const CreateProductAuction = () => {
                                                                ]}>
                                                     <DatePicker
                                                         placeholder="Thời gian bắt đầu đăng ký"
-                                                        onChange={(value) => handleAdminAucStreamData('register_start', formatDateTime(value))}
+                                                        onChange={(value) => handleAdminAucStreamData('register_start', (value.toISOString()))}
                                                         showTime
                                                         style={{
                                                             width: '100%',
                                                             textAlign: 'center'
                                                         }}
-                                                        format="YYYY-MM-DD HH:mm:ss"/>
+                                                       />
                                                 </Form.Item>
 
                                                 <Form.Item name="register_finish"
@@ -643,13 +641,13 @@ const CreateProductAuction = () => {
                                                                ]}>
                                                     <DatePicker
                                                         placeholder="Thời gian kết thúc đăng ký"
-                                                        onChange={(value) => handleAdminAucStreamData('register_finish', formatDateTime(value))}
+                                                        onChange={(value) => handleAdminAucStreamData('register_finish', (value.toISOString()))}
                                                         showTime
                                                         style={{
                                                             width: '100%',
                                                             textAlign: 'center'
                                                         }}
-                                                        format="YYYY-MM-DD HH:mm:ss"/>
+                                                        />
                                                 </Form.Item>
 
                                                 <Form.Item name="start_time"
@@ -671,13 +669,13 @@ const CreateProductAuction = () => {
                                                                ]}>
                                                     <DatePicker
                                                         placeholder="Thời gian bắt đầu đấu giá"
-                                                        onChange={(value) => handleAdminAucStreamData('start_time', formatDateTime(value))}
+                                                        onChange={(value) => handleAdminAucStreamData('start_time', (value.toISOString()))}
                                                         showTime
                                                         style={{
                                                             width: '100%',
                                                             textAlign: 'center'
                                                         }}
-                                                        format="YYYY-MM-DD HH:mm:ss"/>
+                                                        />
                                                 </Form.Item>
 
                                                 <Form.Item name="finish_time"
@@ -699,13 +697,13 @@ const CreateProductAuction = () => {
                                                                ]}>
                                                     <DatePicker
                                                         placeholder="Thời gian kết thúc đấu giá"
-                                                        onChange={(value) => handleAdminAucStreamData('finish_time', formatDateTime(value))}
+                                                        onChange={(value) => handleAdminAucStreamData('finish_time', (value.toISOString()))}
                                                         showTime
                                                         style={{
                                                             width: '100%',
                                                             textAlign: 'center'
                                                         }}
-                                                        format="YYYY-MM-DD HH:mm:ss"/>
+                                                    />
                                                 </Form.Item>
 
                                                 <Form.Item

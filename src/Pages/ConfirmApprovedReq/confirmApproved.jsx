@@ -3,7 +3,7 @@ import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutl
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import { Select,Form,TreeSelect, DatePicker } from 'antd';
 import {useState} from "react";
-import {formatDateTime, treeSelectData} from "../../Utils/constant.js";
+import {formatDateTime, formatDateTimeSelect, treeSelectData} from "../../Utils/constant.js";
 import {Dialog, DialogContent, DialogTitle, Stack} from "@mui/material";
 import {toast} from "react-toastify";
 import { sendApproveData} from "../../Services/requestService.jsx";
@@ -126,10 +126,6 @@ const ConfirmApproved = () => {
                                           onChange={(value) => handleapproveData('type_of_auction', value)}
                                           placeholder="Chọn hình thức đấu giá">
                                           <Option value="1">Đấu giá tăng</Option>
-                                          {
-                                              state.auction_live !== "Đấu giá thông thường" &&
-                                              <Option value="-1">Đấu giá giảm</Option>
-                                          }
                                       </Select>
                                   </Form.Item>
 
@@ -187,8 +183,8 @@ const ConfirmApproved = () => {
                                                   marginLeft: '48px',
                                                   maxWidth: 216,
                                               }}
-                                              onChange={(value) => handleapproveData('start_time', formatDateTime(value))}
-                                              showTime format="YYYY-MM-DD HH:mm:ss"/>
+                                              onChange={(value) => handleapproveData('start_time', (value.toISOString()))}
+                                              showTime/>
                                       </Form.Item>
                                   </div>
 
@@ -216,8 +212,8 @@ const ConfirmApproved = () => {
                                                       marginLeft: '48px',
                                                       maxWidth: 216,
                                                   }}
-                                                  onChange={(value) => handleapproveData('finish_time', formatDateTime(value))}
-                                                  showTime format="YYYY-MM-DD HH:mm:ss"/>
+                                                  onChange={(value) => handleapproveData('finish_time', (value.toISOString()))}
+                                                  showTime />
                                           </Form.Item>
 
                                           <Form.Item>
@@ -272,14 +268,14 @@ const ConfirmApproved = () => {
                                       <div className="flex pt-1  gap-6 text-right">
                                           <div className=" w-1/5"> Thời gian bắt đầu :</div>
                                           <div className="col-span-2">
-                                              {approveData?.start_time || null}
+                                              {formatDateTime(approveData?.start_time) || null}
                                           </div>
                                       </div>
 
                                       <div className="flex pt-1  gap-6 text-right">
                                           <div className=" w-1/5"> Thời gian kết thúc :</div>
                                           <div className="col-span-2">
-                                              {approveData?.finish_time || null}
+                                              {formatDateTime(approveData?.finish_time) || null}
                                           </div>
                                       </div>
 

@@ -149,16 +149,7 @@ const UserBiddingInfo = ({ data }) => {
                             <div className="grid grid-cols-6 text-left">
                                 <div> Tổng tiền :</div>
                                 <div className="font-normal col-span-2">
-                                    {" "}
                                     {data?.final_price + data?.shipping_fee} VND
-                                </div>
-                                <div> Tổng tiền thực nhận :</div>
-                                <div className="font-normal  col-span-2">
-                                    {" "}
-                                    {(
-                                        (data?.final_price + data?.shipping_fee) *
-                                        0.9
-                                    ).toLocaleString() + " VND"}
                                 </div>
                             </div>
 

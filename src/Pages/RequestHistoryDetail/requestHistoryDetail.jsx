@@ -231,9 +231,6 @@ const RequestHistoryDetail = () => {
                                             </div>
                                             <div
                                                 className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 py-2 ">
-                                                <div className="col-start-1 font-semibold col-span-1 ">Tác nhân </div>
-                                                <div
-                                                    className="col-start-2 text-left col-span-2 ">Quản trị viên</div>
                                                 <div className="col-start-4 font-semibold col-span-1 ...">Thời gian
                                                     từ chối
                                                 </div>
