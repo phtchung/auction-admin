@@ -94,12 +94,12 @@ const ReturnProductDetail = () => {
                                         <div className="text-base font-semibold text-neutral-600 ml-3 mb-3 text-left">
                                             Thông tin trả hàng
                                         </div>
-                                        <div className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4  p-3 ">
-                                            <div className="col-start-1 text-left col-span-5 ">
+                                        <div className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-3 p-3 ">
+                                            <div className="col-start-1 text-left col-span-6 ">
                                                 {
                                                     reqData.deliData.return_image_list &&
                                                     <>
-                                                        <div className="grid grid-cols-6 text-left ">
+                                                        <div className="grid grid-cols-4 text-left ">
                                                             <Image.PreviewGroup
                                                                 preview={{
                                                                     onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
@@ -119,7 +119,6 @@ const ReturnProductDetail = () => {
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
 
                                 <div

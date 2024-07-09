@@ -14,7 +14,7 @@ export default function useAdminAuctionCompleted() {
         id: data?._id,
         product_name: data?.product_id?.product_name,
         status: data?.status,
-        status_name : data?.status === 8 ? 'Hoàn thành' :  data?.status === 10 ? 'Thất bại' : data?.status === 11 ? 'Hủy' : 'Đã trả hàng',
+        status_name : data?.status === 8 ? 'Hoàn thành' :  data?.status === 10 ? 'Thất bại' : data?.status === 11 ? 'Hủy' : data?.status === 14 ? 'Đã trả hàng' : 'Từ chối trả hàng',
         start_time: formatDateTime(new Date(data?.start_time)),
         finish_time: formatDateTime(new Date(data?.finish_time)),
         seller_name:data?.seller_id?.name,

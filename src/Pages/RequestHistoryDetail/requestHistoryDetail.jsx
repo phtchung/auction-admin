@@ -168,7 +168,8 @@ const RequestHistoryDetail = () => {
                             <div
                                 className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
                                 <div className="col-start-1 font-semibold col-span-1 ">Mô tả sản phẩm :</div>
-                                <div className="col-start-2 text-left col-span-5 ">{reqData?.description}</div>
+                                <div className="col-start-2 text-left col-span-5 " style={{ whiteSpace: 'pre-line' }}>{reqData?.description}</div>
+
                             </div>
                         </div>
 

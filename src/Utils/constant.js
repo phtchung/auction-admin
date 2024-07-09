@@ -25,64 +25,64 @@ export const colSuccess = [
 ];
 
 export const tabDataAdmin = [
-    {value: "1", name: "New Request", top: "New", color: "bg-cyan-400"},
-    {value: "2", name: "Approved", top: "Approved", color: "bg-amber-500"},
-    {value: "3", name: "Bidding", top: "Bidding", color: "bg-indigo-800"},
-    {value: "4", name: "Reject", top: "Reject", color: "bg-pink-900"},
-    {value: "5", name: "Cancel", top: "Cancel", color: "bg-red-600"},
-    {value: "6", name: "Return", top: "Return", color: "bg-fuchsia-700"},
+    {value: "1", name: "Yêu cầu mới", top: "Mới", color: "bg-cyan-400"},
+    {value: "2", name:"Đã duyệt", top: "Duyệt", color: "bg-amber-500"},
+    {value: "3", name: "Đang đấu giá", top: "Đấu giá", color: "bg-indigo-800"},
+    {value: "4", name: "Từ chối", top: "Từ chối", color: "bg-pink-900"},
+    {value: "5", name: "Hủy", top: "Hủy", color: "bg-red-600"},
+    {value: "6", name: "Trả hàng", top: "Trả hàng", color: "bg-fuchsia-700"},
 
 ];
 
 export const tabDataBiddingAdmin = [
     {
         value: "N",
-        name: "New Product",
-        top: "New",
+        name: "Sản phẩm mới",
+        top: "Mới",
         color: "bg-orange-400",
     },
     {
         value: "B",
-        name: "Bidding",
-        top: "Bidding",
+        name: "Đấu giá",
+        top: "Đấu giá",
         color: "bg-lime-500",
     },
     {
         value: "S",
-        name: "Success",
-        top: "Success",
+        name: "Thành công",
+        top: "Thành công",
         color: "bg-green-700",
     },
     {
         value: "C",
-        name: "Confirm",
-        top: "Confirm",
+        name: "Xác nhận",
+        top: "Xác nhận",
         color: "bg-fuchsia-700",
     },
 
     {
         value: "D",
-        name: "Delivery start",
-        top: "Departure",
+        name: "Bắt đầu giao hàng",
+        top: "Bắt đầu giao hàng",
         color: "bg-indigo-800",
     },
     {
         value: "E",
-        name: "Completed",
-        top: "Completion",
+        name: "Hoàn thành",
+        top: "Hoàn thành",
         color: "bg-emerald-800",
     },
     {value: "R", name: "Cancel", top: "Cancel", color: "bg-red-600"},
     {
         value: "G",
-        name: "Return",
-        top: "Return",
+        name: "Trả hàng",
+        top: "Trả hàng",
         color: "bg-yellow-300",
     },
     {
         value: "F",
-        name: "Failure ",
-        top: "Failure",
+        name: "Thất bại",
+        top: "Thất bại",
         color: "bg-rose-900",
     },
     {

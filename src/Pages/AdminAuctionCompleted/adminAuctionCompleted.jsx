@@ -131,27 +131,29 @@ const AdminAuctionCompleted = () => {
                             <div className="bg-white   border-gray-300 border p-2 my-7 text-base h-24">
                                 <table style={{width: "100%"}}>
                                 <thead>
-                                    <tr
-                                        style={{
-                                            borderBottom: "1px solid #e5e7eb",
-                                            height: 40,
-                                            fontSize: 12,
-                                        }}
-                                    >
-                                        <th className="w-1/3">Tổng số phiên đấu giá</th>
-                                        <th className="w-1/6">Thành công</th>
-                                        <th className="w-1/6">Thất bại</th>
-                                        <th className="w-1/6">Trả hàng</th>
-                                        <th className="w-1/6">Hủy</th>
+                                <tr
+                                    style={{
+                                        borderBottom: "1px solid #e5e7eb",
+                                        height: 40,
+                                        fontSize: 12,
+                                    }}
+                                >
+                                    <th className="w-1/5">Tổng số phiên đấu giá</th>
+                                    <th className="w-1/6">Thành công</th>
+                                    <th className="w-1/6">Thất bại</th>
+                                    <th className="w-1/6">Trả hàng thành công</th>
+                                    <th className="w-1/6">Từ chối trả hàng</th>
+                                    <th className="w-1/6">Hủy</th>
 
-                                    </tr>
-                                    </thead>
+                                </tr>
+                                </thead>
                                     <tbody className="font-semibold">
                                     <tr style={{height: 40, fontSize: 16}}>
                                         <td className="cursor-pointer">{total?.total_product}</td>
                                         <td>{total?.total_completed}</td>
                                         <td>{total?.total_failure}</td>
                                         <td>{total?.total_returned}</td>
+                                        <td>{total?.total_rj_returned}</td>
                                         <td>{total?.total_canceled}</td>
                                     </tr>
                                     </tbody>

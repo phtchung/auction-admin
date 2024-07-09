@@ -137,7 +137,7 @@ const NewProductInfor = ({reqData}) => {
                 <div
                     className="grid grid-rows-1 grid-cols-6 grid-flow-col gap-4 border-b-2 p-3 ">
                     <div className="col-start-1 font-semibold col-span-1 ">Mô tả sản phẩm :</div>
-                    <div className="col-start-2 text-left col-span-5 ">{reqData?.description}</div>
+                    <div className="col-start-2 text-left col-span-5 " style={{ whiteSpace: 'pre-line' }}>{reqData?.description}</div>
                 </div>
             </div>
 
@@ -277,14 +277,19 @@ const NewProductInfor = ({reqData}) => {
 
             </div>
             {(reqData.status === 11) && (
-                <>
-                    <div className="flex justify-between m-2.5 items-center px-2">
+                <div className="bg-white mx-10 pb-4">
+                    <div className="flex justify-between bg-white m-2.5 items-center px-2">
                         <div className="text-left text-sm font-medium pt-5">
                             Lí do hủy
                         </div>
                     </div>
                     <div className="items-center gap-6 font-medium my-8 mx-8 px-1 text-sm space-y-6 ">
-
+                        <div className="grid grid-cols-6 text-left">
+                            <div> Thời gian hủy :</div>
+                            <div className="font-normal  col-span-2">
+                                {reqData.updatedAt}
+                            </div>
+                        </div>
                         <div className="grid grid-cols-6 text-left">
                             <div> Lí do :</div>
                             <div className="font-normal  col-span-2">
@@ -292,7 +297,7 @@ const NewProductInfor = ({reqData}) => {
                             </div>
                         </div>
                     </div>
-                </>
+                </div>
             )}
         </>
     )

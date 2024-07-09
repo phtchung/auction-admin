@@ -154,7 +154,7 @@ const UserAuctionCompleted = () => {
                                         <td>{total?.total_completed}</td>
                                         <td>{total?.total_failure}</td>
                                         <td>{total?.total_returned}</td>
-                                        <td>chưa làm</td>
+                                        <td>{total?.total_rj_returned}</td>
                                         <td>{total?.total_canceled}</td>
                                     </tr>
                                     </tbody>
