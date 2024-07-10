@@ -500,7 +500,7 @@ const CreateProductAuction = () => {
                                                         className="hover:border-none"
                                                         placeholder="Mô tả sản phẩm"
                                                         onChange={(e) => handleAdminAuctionData('description', e.target.value)}
-                                                        maxLength={300}/>
+                                                        maxLength={3000}/>
                                                 </Form.Item>
 
                                                 <Form.Item {...tailFormItemLayout}>
@@ -993,7 +993,7 @@ const CreateProductAuction = () => {
                                                         className="hover:border-none"
                                                         placeholder="Mô tả sản phẩm"
                                                         onChange={(e) => handleAdminAucStreamData('description', e.target.value)}
-                                                        maxLength={300}/>
+                                                        maxLength={2000}/>
                                                 </Form.Item>
 
                                                 <Form.Item {...tailFormItemLayout}>
