@@ -20,7 +20,7 @@ export default function useStreamAuctionTracking() {
                 finish_time : formatDateTime(data?.finish_time),
                 register_finish : formatDateTime(data?.register_finish),
                 url_stream:data?.url_stream,
-                state : data?.status === 3 ? 'Đang đấu giá' : data?.register_finish < new Date() ? 'Sắp bắt đầu'  : 'Đăng ký',
+                state : data?.status === 3 ? 'Đang đấu giá' : new Date (data?.register_finish) < new Date() ? 'Sắp bắt đầu'  : 'Đăng ký',
                 register_count : data?.code_access.length,
             };
         });
